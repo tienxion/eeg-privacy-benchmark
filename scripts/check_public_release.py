@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import functools
 import hashlib
 import json
 import re
@@ -114,12 +115,22 @@ TEXT_EXTENSIONS = {
 }
 
 
+@functools.lru_cache(maxsize=1)
 def _files() -> list[Path]:
+    result = subprocess.run(
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"could not enumerate release files: {result.stderr.strip()}")
     return sorted(
         (
-            path
-            for path in ROOT.rglob("*")
-            if path.is_file() and ".git" not in path.relative_to(ROOT).parts
+            ROOT / relative
+            for relative in result.stdout.split("\0")
+            if relative and (ROOT / relative).is_file()
         ),
         key=lambda path: path.relative_to(ROOT).as_posix(),
     )
