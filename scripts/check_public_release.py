@@ -229,6 +229,7 @@ def _check_markdown_links(errors: list[str]) -> None:
 
 def _check_manifest(errors: list[str]) -> None:
     manifest_path = ROOT / "release" / "v1.0.0-rc1-manifest.json"
+    checksums_path = ROOT / "release" / "SHA256SUMS"
     if not manifest_path.exists():
         return
     payload = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -245,6 +246,16 @@ def _check_manifest(errors: list[str]) -> None:
             errors.append(f"manifest file missing: {entry['path']}")
         elif _sha256(path) != entry["sha256"]:
             errors.append(f"manifest checksum mismatch: {entry['path']}")
+        elif path.stat().st_size != entry["bytes"]:
+            errors.append(f"manifest byte-size mismatch: {entry['path']}")
+    if checksums_path.exists():
+        expected = [f"{entry['sha256']}  {entry['path']}" for entry in entries]
+        expected.append(
+            f"{_sha256(manifest_path)}  {manifest_path.relative_to(ROOT).as_posix()}"
+        )
+        actual = checksums_path.read_text(encoding="utf-8").splitlines()
+        if actual != expected:
+            errors.append("SHA256SUMS does not exactly match the release manifest")
 
 
 def _check_git(errors: list[str], allowed_remotes: set[str]) -> None:
