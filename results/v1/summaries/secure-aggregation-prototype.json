@@ -1,0 +1,59 @@
+{
+  "claim": "functional_equivalence_and_local_overhead_only",
+  "decision": "go_limited_functional_prototype",
+  "metrics": {
+    "baseline_full_run_communication_bytes": 62171424,
+    "benchmark_repeats": 3,
+    "client_count": 36,
+    "client_update_payload_bytes": 388224,
+    "estimated_seed_setup_communication_bytes": 40320,
+    "floating_tensor_count": 18,
+    "full_run_communication_increase_percent": 0.06485294594507085,
+    "mask_applications": 11340,
+    "max_abs_error_vs_checkpoint": 1.8189894035458565e-12,
+    "max_abs_error_vs_fedavg": 2.384185791015625e-07,
+    "max_abs_mask": 5.341556685317422,
+    "nonfloating_tensor_count": 3,
+    "pair_count": 630,
+    "per_round_payload_overhead_bytes": 0,
+    "plain_median_runtime_seconds": 0.00046416700000007083,
+    "runtime_ratio": 217.7729136280358,
+    "secure_full_run_communication_bytes": 62211744,
+    "secure_median_runtime_seconds": 0.10108299999999992,
+    "unique_pairwise_seed_bytes": 20160
+  },
+  "reference": {
+    "checkpoint": "private frozen checkpoint; not distributed",
+    "clients": 36,
+    "dataset": "physionet_motor_imagery",
+    "rounds": 80,
+    "seed": 13,
+    "task": "private frozen task summary; not distributed"
+  },
+  "schema_version": 1,
+  "threat_model": {
+    "assumptions": [
+      "all clients are present",
+      "pairwise secrets are unknown to the aggregator",
+      "clients do not collude"
+    ],
+    "does_not_protect": [
+      "dropout recovery",
+      "malicious clients or collusion",
+      "authentication or poisoning",
+      "metadata",
+      "global-model or output leakage",
+      "membership inference",
+      "differential privacy"
+    ],
+    "implementation_caveat": "functional centralized simulator; deterministic PRG is not production cryptography",
+    "protects": "individual floating-point updates from an honest-but-curious aggregator"
+  },
+  "verification": {
+    "absolute_tolerance": 1e-06,
+    "aggregate_matches_reference": true,
+    "checkpoint_preserved": true,
+    "reference_aggregation": "fedavg_state_dicts",
+    "relative_tolerance": 1e-06
+  }
+}

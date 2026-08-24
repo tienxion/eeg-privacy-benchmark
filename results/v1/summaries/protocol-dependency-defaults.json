@@ -1,0 +1,30 @@
+{
+  "left_right_imagery": {
+    "attrs": {
+      "baseline": "None",
+      "channels": "None",
+      "events": "['left_hand', 'right_hand']",
+      "filters": "[[8, 32]]",
+      "fmax": "None",
+      "fmin": "None",
+      "n_classes": "None",
+      "resample": "None",
+      "tmax": "None",
+      "tmin": "0.0"
+    },
+    "module": "moabb.paradigms.motor_imagery",
+    "motor_imagery_signature": "(n_classes=None, **kwargs)",
+    "signature": "(**kwargs)",
+    "source_module": "moabb.paradigms.motor_imagery"
+  },
+  "status": "available",
+  "versions": {
+    "mne": "1.8.0",
+    "moabb": "1.2.0",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "scipy": "1.13.1",
+    "sklearn": "1.5.2",
+    "torch": "2.8.0"
+  }
+}

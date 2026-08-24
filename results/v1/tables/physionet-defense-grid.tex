@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{PhysioNet defense-grid stop-rule read.}
+\label{tab:physionet-defense-grid}
+\begin{tabular}{lllll}
+\toprule
+Candidate & Attacks & Delta AUC & Delta task & Decision \\
+\midrule
+mixup alpha=0.20 & mlp\_posterior, threshold\_max\_probability, threshold\_label\_known & -0.0086 & -0.0351 & utility boundary failed \\
+mixup alpha=0.10 & mlp\_posterior, threshold\_max\_probability, threshold\_label\_known & +0.0030 & -0.0110 & attack-specific only \\
+confidence penalty beta=0.010 & mlp\_posterior, threshold\_max\_probability & +0.0011 & -0.0009 & early stop: cannot reach two-family rule \\
+confidence penalty beta=0.075 & mlp\_posterior, threshold\_max\_probability & +0.0018 & -0.0105 & early stop: cannot reach two-family rule \\
+bottleneck dim=12 & mlp\_posterior, threshold\_max\_probability & -0.0253 & -0.0631 & early stop: utility boundary failed \\
+\bottomrule
+\end{tabular}
+\end{table}

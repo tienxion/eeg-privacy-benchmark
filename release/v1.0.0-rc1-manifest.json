@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "release": "1.0.0-rc1",
+  "source_checkpoint": "5dee43de85a2b4011fc97581efcf65f35fa5a4aa",
+  "evidence_file_count": 37,
+  "files": [
+    {
+      "path": "paper/README.md",
+      "bytes": 333,
+      "sha256": "4408c90d33521aab990895e996848520a156cd54eb9992fcb30fc569dc65355d",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "paper/manuscript.md",
+      "bytes": 19900,
+      "sha256": "2108e15a6673bdef89ff10078234dd5c3f6e9f16921a3a5fa753921e85fcf559",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "paper/references.bib",
+      "bytes": 5924,
+      "sha256": "21b3504f86903fe132d5438eeb13fb3c92e84bd8b873e65efbdfd492533df62e",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/PROVENANCE.md",
+      "bytes": 737,
+      "sha256": "9e50fd0f61d78960e937968a4941d17d13ea40250707fa5fa79331a6485b77a1",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/README.md",
+      "bytes": 1416,
+      "sha256": "a4169e39bafe13a9cbec12d2b07dfa84fee0484bdd71a253ba2d091d5d5f2080",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/figures/attack-family-split-auc.png",
+      "bytes": 166265,
+      "sha256": "fd9be0bd00812bdc947145de9eb18df39cb48367191078e23fe75db4d8a809c4",
+      "media_type": "image/png",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/figures/csp-anchor-auc.png",
+      "bytes": 328364,
+      "sha256": "ae37ab6ab16c545bec70fc30acc571170719fdbd06cc79d49c5c1ef02948895e",
+      "media_type": "image/png",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/figures/seed-stability-deltas.png",
+      "bytes": 364519,
+      "sha256": "a7c38c4024311884a2fde97ea65d685425b98253b35bf41a937d484adc78cb63",
+      "media_type": "image/png",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/attack-robustness.md",
+      "bytes": 5369,
+      "sha256": "cfc4fb999fb7693b5f5b630b339b74361bb8a17efbf80d7672eeb6d4942c961e",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/benchmark-summary.md",
+      "bytes": 58284,
+      "sha256": "9cb3b6cad49d1858820df359e3c8a4ec1345fb9c66bd5380494ea59e6491cd53",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/bnci-lee-validation.md",
+      "bytes": 9514,
+      "sha256": "a36c38a533f405df6e931f4567dc0d9ee42b75087c1fa3ce5b5143facaced008",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/claim-traceability.csv",
+      "bytes": 8581,
+      "sha256": "02d0e62b741ceee4d5b1b091422ab24922b808f12e4f58b4f1adde7e4ee0897a",
+      "media_type": "text/csv",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/claim-traceability.md",
+      "bytes": 10102,
+      "sha256": "194daf3db519c90522e400f157b5baee6f58f25ac3d66177645dd02390853023",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/claims-audit.csv",
+      "bytes": 7098,
+      "sha256": "2ecd54592c0a6b5602cefeb16ca6ad322a78b4f67bdfc7ddc5840f42908dc6a4",
+      "media_type": "text/csv",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/claims-audit.md",
+      "bytes": 8790,
+      "sha256": "32b61409e97a86ef1dbc9c2c69eb0af11116cea8862c9bc5c0132fd07457ab4b",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/csp-anchor.md",
+      "bytes": 5151,
+      "sha256": "486d5bbad227538494b61c41da93da1c651c128eed6f9bf497faef9dd65a372a",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/federated-phase45.csv",
+      "bytes": 1006,
+      "sha256": "a1b36232b85f8d4c6e21c55c8c621d669e4be80ed7f53db8abf75d0aefe458b9",
+      "media_type": "text/csv",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/federated-phase45.json",
+      "bytes": 3926,
+      "sha256": "587a912ca15355f8ba3b989822ea6e7994645af4fd891e9420d5e44f6dc87a99",
+      "media_type": "application/json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/federated-phase45.md",
+      "bytes": 1559,
+      "sha256": "717f3cfd53852f35243d287fd2aae7206195cc0fd240f6847fbb92b151aa562a",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/mlp-posterior-attack.md",
+      "bytes": 3371,
+      "sha256": "c040325d527de71e8b298b59671353f3b9294e2acddabe48bb50e68c5d4f65a6",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/physionet-cross-protocol-holdout.md",
+      "bytes": 2445,
+      "sha256": "4fd0b26b61acef80d0fdd5a0629452e983bd4120c74bc4deb57472982039d6be",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/physionet-defense-grid.md",
+      "bytes": 5894,
+      "sha256": "28e06192ca7e21e4279d3ad024c25ba4c4548e68ce6d884739a47138ae020cd0",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/physionet-mlp-seed-extension.md",
+      "bytes": 1700,
+      "sha256": "28aa4dcdb46bb7d1d8c6859e0ec19e5066a6a7a9c1762027f5f7ce0545adccd8",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/physionet-random-subset-validation.md",
+      "bytes": 12475,
+      "sha256": "35ec965fe8ed8e653204915c37481be65e12521679d4a65d2166a09750b491d8",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/protocol-audit.csv",
+      "bytes": 7975,
+      "sha256": "c2687582498bf660732c6dbb78dfd5ad11f91b998c2fa9abf28eaf85d39b4879",
+      "media_type": "text/csv",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/protocol-audit.md",
+      "bytes": 11182,
+      "sha256": "a6b3a6c848e409bae3e85d41e78267ebed2db0f904798cf9e419d95f19f79bb0",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/protocol-dependency-defaults.json",
+      "bytes": 718,
+      "sha256": "4561dabebb237861a72ce6452442165f98b27a1fe09c7319bf4f08b65a96f18e",
+      "media_type": "application/json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/secure-aggregation-prototype.json",
+      "bytes": 2085,
+      "sha256": "6d0341fb04cf1ae9fb601138a823756914ef88c33645052f65b46e1cd4fa0105",
+      "media_type": "application/json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/seed-stability.md",
+      "bytes": 13975,
+      "sha256": "8d4f30bf0276d0358058ab44a17784aff58980bc18f961828c65f83d2b4316d2",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/statistical-intervals.csv",
+      "bytes": 23458,
+      "sha256": "fcb9020e71dbf7bf8897a69c163537e10e64c29e743b2c40aabffc3759aaf312",
+      "media_type": "text/csv",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/summaries/statistical-intervals.md",
+      "bytes": 21805,
+      "sha256": "075fee5b6c9dd8dcdb4c628f89836284418d1d2e719007dc1b4c556407996401",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/tables/attack-family-winners.tex",
+      "bytes": 511,
+      "sha256": "59125d2ad534a5049964f0c5019c56e50a7b4b720dd9ee1723e44b16b01cb28b",
+      "media_type": "application/x-tex",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/tables/claims-audit.tex",
+      "bytes": 690,
+      "sha256": "58886ee9e559dd106b67019715e36fff8dcad56de48610d91e7cd473d09c5463",
+      "media_type": "application/x-tex",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/tables/core-findings.tex",
+      "bytes": 461,
+      "sha256": "e38d8e4b6f4458ea62ea9215a7d2fc170ff082727006c8b7f74f0942f2293f2f",
+      "media_type": "application/x-tex",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/tables/mlp-seed-stability.tex",
+      "bytes": 422,
+      "sha256": "ab9474311ac0daa3e2695e7ad686fadc7a4914429804abe688979af723a953d6",
+      "media_type": "application/x-tex",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/tables/physionet-defense-grid.tex",
+      "bytes": 930,
+      "sha256": "d1fa4c894a2def0a9c664dfe9c8aebe28a9f323483ad0725154806ac9d39307c",
+      "media_type": "application/x-tex",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1/tables/systems-diagnostics.tex",
+      "bytes": 361,
+      "sha256": "72a698a757d675cefda06d30f7f973817f03ea36577458520c618c1e89fa1c10",
+      "media_type": "application/x-tex",
+      "license": "CC-BY-4.0"
+    }
+  ]
+}
