@@ -1,0 +1,33 @@
+name: public-v1-ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  no-download-validation:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.11"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install validated dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-lock.txt
+          python -m pip install --no-deps -e .
+      - name: Whitespace check
+        run: git diff --check
+      - name: Compile, import, parse configs, and run no-download smoke
+        run: python scripts/check_public_smoke.py
+      - name: Validate public inventory, links, paths, licenses, and checksums
+        run: python scripts/check_public_release.py --allow-remote origin
