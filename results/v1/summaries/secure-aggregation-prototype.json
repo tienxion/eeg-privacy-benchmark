@@ -23,12 +23,12 @@
     "unique_pairwise_seed_bytes": 20160
   },
   "reference": {
-    "checkpoint": "private frozen checkpoint; not distributed",
+    "checkpoint": "frozen development checkpoint; not part of the public evidence package",
     "clients": 36,
     "dataset": "physionet_motor_imagery",
     "rounds": 80,
     "seed": 13,
-    "task": "private frozen task summary; not distributed"
+    "task": "frozen development task summary; not part of the public evidence package"
   },
   "schema_version": 1,
   "threat_model": {

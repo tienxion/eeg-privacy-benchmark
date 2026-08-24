@@ -2,7 +2,7 @@
 
 This report summarizes completed commands from the deterministic PhysioNet random-subset validation plan. Lower membership-inference AUC is better for privacy. Deltas are computed versus same-subset plain EEGNet for the same attack tier.
 
-Companion private row tables are not distributed; aggregate values are frozen in this summary.
+The aggregate values below are the frozen public record for this protocol.
 
 ## Completion
 
@@ -10,24 +10,24 @@ Companion private row tables are not distributed; aggregate values are frozen in
 - Tier B: `25/25` commands complete.
 - Tier C: `25/25` commands complete.
 
-## Current Decision Read
+## Interpretation
 
 - Tier A mixup completed subsets: `5`.
 - Mean delta AUC versus EEGNet: `+0.0022`; privacy-improving subsets: `3/5`.
 - Mean delta task balanced accuracy: `-0.0365`.
-- Current decision: `practical tie or unresolved`.
+- Tier A conclusion: `practical tie or unresolved`.
 - Tier B max-probability threshold aggregate:
 - `adversarial_eegnet` mean delta AUC `+0.0083`, privacy-improving subsets `2/5`, mean delta task BA `-0.0625`.
 - `confidence_penalty_eegnet` mean delta AUC `+0.0001`, privacy-improving subsets `3/5`, mean delta task BA `-0.0016`.
 - `csp_lda` mean delta AUC `-0.0139`, privacy-improving subsets `3/5`, mean delta task BA `+0.0632`.
 - `mixup_eegnet` mean delta AUC `-0.0223`, privacy-improving subsets `4/5`, mean delta task BA `-0.0365`.
-- Current Tier B threshold-family decision: no stable promotable default; keep the result attack-family-specific.
+- Tier B conclusion: no stable default; the result remains attack-family-specific.
 - Tier C label-known-log-probability threshold aggregate:
 - `adversarial_eegnet` mean delta AUC `-0.0398`, privacy-improving subsets `4/5`, mean delta task BA `-0.0625`.
 - `confidence_penalty_eegnet` mean delta AUC `+0.0000`, privacy-improving subsets `3/5`, mean delta task BA `-0.0016`.
 - `csp_lda` mean delta AUC `-0.0641`, privacy-improving subsets `5/5`, mean delta task BA `+0.0632`.
 - `mixup_eegnet` mean delta AUC `-0.0108`, privacy-improving subsets `4/5`, mean delta task BA `-0.0365`.
-- Current Tier C threshold-family decision: candidate threshold-score-specific defense: `csp_lda`.
+- Tier C conclusion: `csp_lda` is a threshold-score-specific anchor.
 - Interpretation: this supports a CSP-LDA label-known threshold anchor, not a learned-attack PhysioNet defense default.
 
 ## Tier A Aggregate Model Read

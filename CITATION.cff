@@ -3,6 +3,8 @@ message: "If you use this software or its curated v1 evidence, please cite it us
 title: "EEG Privacy Benchmark"
 type: software
 version: 1.0.0
+repository-code: "https://github.com/tienxion/eeg-privacy-benchmark"
+url: "https://github.com/tienxion/eeg-privacy-benchmark"
 authors:
   - family-names: Adepu
     given-names: Arnav
@@ -10,3 +12,9 @@ license: Apache-2.0
 abstract: >-
   A reproducible, attack-sensitive benchmark of subject-identification and
   membership leakage in binary EEG motor-imagery decoding.
+keywords:
+  - EEG
+  - privacy
+  - membership inference
+  - subject identification
+  - motor imagery

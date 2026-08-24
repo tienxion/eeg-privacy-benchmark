@@ -2,19 +2,19 @@
   "schema_version": 1,
   "release": "1.0.0-rc1",
   "source_checkpoint": "5dee43de85a2b4011fc97581efcf65f35fa5a4aa",
-  "evidence_file_count": 37,
+  "evidence_file_count": 36,
   "files": [
     {
       "path": "paper/README.md",
-      "bytes": 333,
-      "sha256": "4408c90d33521aab990895e996848520a156cd54eb9992fcb30fc569dc65355d",
+      "bytes": 479,
+      "sha256": "aeb204210109859b7a6ca014df8dd97722f3b07a108c93a4dd90d09725d0d754",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
     {
       "path": "paper/manuscript.md",
-      "bytes": 19900,
-      "sha256": "2108e15a6673bdef89ff10078234dd5c3f6e9f16921a3a5fa753921e85fcf559",
+      "bytes": 19897,
+      "sha256": "abb458e53b35fed9100177c0248a3e2d0dfb883585eb399b9bf85b3d111cc6c1",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
@@ -27,15 +27,15 @@
     },
     {
       "path": "results/v1/PROVENANCE.md",
-      "bytes": 737,
-      "sha256": "9e50fd0f61d78960e937968a4941d17d13ea40250707fa5fa79331a6485b77a1",
+      "bytes": 743,
+      "sha256": "ae6a9d73dd31eeb551636e1c97f3a61a0e472139ced3fe00194b04f4fe7776d4",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
     {
       "path": "results/v1/README.md",
-      "bytes": 1416,
-      "sha256": "a4169e39bafe13a9cbec12d2b07dfa84fee0484bdd71a253ba2d091d5d5f2080",
+      "bytes": 1442,
+      "sha256": "ae81f2c55309bd2245f3466295e817cb0c42a9d452b4838e062256701733e5f7",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
@@ -62,22 +62,15 @@
     },
     {
       "path": "results/v1/summaries/attack-robustness.md",
-      "bytes": 5369,
-      "sha256": "cfc4fb999fb7693b5f5b630b339b74361bb8a17efbf80d7672eeb6d4942c961e",
-      "media_type": "application/octet-stream",
-      "license": "CC-BY-4.0"
-    },
-    {
-      "path": "results/v1/summaries/benchmark-summary.md",
-      "bytes": 58284,
-      "sha256": "9cb3b6cad49d1858820df359e3c8a4ec1345fb9c66bd5380494ea59e6491cd53",
+      "bytes": 5365,
+      "sha256": "9c894f962d9505dff41e2300da6effb139d04da17336b1f110bc276c42c4b155",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
     {
       "path": "results/v1/summaries/bnci-lee-validation.md",
-      "bytes": 9514,
-      "sha256": "a36c38a533f405df6e931f4567dc0d9ee42b75087c1fa3ce5b5143facaced008",
+      "bytes": 9451,
+      "sha256": "7a08aaeff7ae429cd076f904c31e04e2a2745c530a06c4db849472c71db1bff9",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
@@ -90,8 +83,8 @@
     },
     {
       "path": "results/v1/summaries/claim-traceability.md",
-      "bytes": 10102,
-      "sha256": "194daf3db519c90522e400f157b5baee6f58f25ac3d66177645dd02390853023",
+      "bytes": 10087,
+      "sha256": "3abfcd2bcc6cd5e40e77535a5f8c9c1d211aaea8d164004d5e29b036f07c8078",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
@@ -104,15 +97,15 @@
     },
     {
       "path": "results/v1/summaries/claims-audit.md",
-      "bytes": 8790,
-      "sha256": "32b61409e97a86ef1dbc9c2c69eb0af11116cea8862c9bc5c0132fd07457ab4b",
+      "bytes": 8815,
+      "sha256": "8371c3873f4406bea8e134fe04409ef91c0fb5592a2eee71816967b49ee4db58",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
     {
       "path": "results/v1/summaries/csp-anchor.md",
-      "bytes": 5151,
-      "sha256": "486d5bbad227538494b61c41da93da1c651c128eed6f9bf497faef9dd65a372a",
+      "bytes": 5073,
+      "sha256": "fb1ebcb6fea6b2f3ab0d666261b41c1ea6aab275422856c6de62a1f9e0c69eae",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
@@ -139,50 +132,50 @@
     },
     {
       "path": "results/v1/summaries/mlp-posterior-attack.md",
-      "bytes": 3371,
-      "sha256": "c040325d527de71e8b298b59671353f3b9294e2acddabe48bb50e68c5d4f65a6",
+      "bytes": 3257,
+      "sha256": "064cce327c89c291b4c8393712faf50f0bd483fcbe674cf6fe820a54888d9856",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
     {
       "path": "results/v1/summaries/physionet-cross-protocol-holdout.md",
-      "bytes": 2445,
-      "sha256": "4fd0b26b61acef80d0fdd5a0629452e983bd4120c74bc4deb57472982039d6be",
+      "bytes": 2404,
+      "sha256": "60e9a6f918c1dda8ae75b3dbd096d35e1cf153dba67d781c00a338e12e29b82a",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
     {
       "path": "results/v1/summaries/physionet-defense-grid.md",
-      "bytes": 5894,
-      "sha256": "28e06192ca7e21e4279d3ad024c25ba4c4548e68ce6d884739a47138ae020cd0",
+      "bytes": 5903,
+      "sha256": "f9b28c5ebda9280d836a69565afbf720c3633fa66d9f7bb828591c8c857c25e2",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
     {
       "path": "results/v1/summaries/physionet-mlp-seed-extension.md",
-      "bytes": 1700,
-      "sha256": "28aa4dcdb46bb7d1d8c6859e0ec19e5066a6a7a9c1762027f5f7ce0545adccd8",
+      "bytes": 1639,
+      "sha256": "2148c0e80ad8d571e97d4d9ffdbcca7259e8345c9d5da2a70b31076ef970f7b3",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
     {
       "path": "results/v1/summaries/physionet-random-subset-validation.md",
-      "bytes": 12475,
-      "sha256": "35ec965fe8ed8e653204915c37481be65e12521679d4a65d2166a09750b491d8",
+      "bytes": 12388,
+      "sha256": "7bee58e81479395be162b32ee936dce7ddded283745666a23d8194d461ae7747",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
     {
       "path": "results/v1/summaries/protocol-audit.csv",
-      "bytes": 7975,
-      "sha256": "c2687582498bf660732c6dbb78dfd5ad11f91b998c2fa9abf28eaf85d39b4879",
+      "bytes": 7942,
+      "sha256": "8499646a57a40d4d8a0f05b1157ce2545e2ea683a678b8743467bc1d6f827055",
       "media_type": "text/csv",
       "license": "CC-BY-4.0"
     },
     {
       "path": "results/v1/summaries/protocol-audit.md",
-      "bytes": 11182,
-      "sha256": "a6b3a6c848e409bae3e85d41e78267ebed2db0f904798cf9e419d95f19f79bb0",
+      "bytes": 10989,
+      "sha256": "ddaf7b5c8ea55aa133ae67d2779e66a411280a29f73afd0155c00a56f9ca95bc",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
@@ -195,15 +188,15 @@
     },
     {
       "path": "results/v1/summaries/secure-aggregation-prototype.json",
-      "bytes": 2085,
-      "sha256": "6d0341fb04cf1ae9fb601138a823756914ef88c33645052f65b46e1cd4fa0105",
+      "bytes": 2141,
+      "sha256": "e536fca0b8559df11858669ddc77a1a8da1b982fe150140a6e36084c68ef00a7",
       "media_type": "application/json",
       "license": "CC-BY-4.0"
     },
     {
       "path": "results/v1/summaries/seed-stability.md",
-      "bytes": 13975,
-      "sha256": "8d4f30bf0276d0358058ab44a17784aff58980bc18f961828c65f83d2b4316d2",
+      "bytes": 13987,
+      "sha256": "40c96ce5360486de1283d40a00d1d311aa8c2165ff83ed9779c524f5a126012b",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
@@ -216,8 +209,8 @@
     },
     {
       "path": "results/v1/summaries/statistical-intervals.md",
-      "bytes": 21805,
-      "sha256": "075fee5b6c9dd8dcdb4c628f89836284418d1d2e719007dc1b4c556407996401",
+      "bytes": 21801,
+      "sha256": "a363af564c8fccb01f9e3fafcd65008a3e1f5df7dfa23d6fad0e6d7ca785226a",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },

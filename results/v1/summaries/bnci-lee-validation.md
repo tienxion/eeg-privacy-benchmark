@@ -1,9 +1,8 @@
 # BNCI/Lee Validation Results
 
-This report summarizes whichever staged BNCI/Lee validation commands have completed. Lower subject-ID accuracy and lower membership AUC mean less leakage; deltas are paired against the same-scope plain EEGNet row.
+This report summarizes the completed BNCI/Lee validation protocol. Lower subject-ID accuracy and lower membership AUC mean less measured leakage; deltas are paired against the same-scope plain EEGNet row.
 
-Companion files:
-- Companion private row tables are not distributed; aggregate values are frozen in this summary.
+The aggregate values below are the frozen public record for this protocol.
 
 ## Completion
 
@@ -73,11 +72,9 @@ Companion files:
 | `C` | `lee2019_mi` | `membership` | `threshold::negative_entropy` | `adversarial_eegnet` | 0.5138 | 0.4940 | -0.0054 | `practical tie` |
 | `C` | `lee2019_mi` | `membership` | `threshold::negative_entropy` | `csp_lda` | 0.5617 | 0.4454 | -0.0540 | `privacy-favorable` |
 
-## Current Read
+## Interpretation
 
 - `bnci2014_001` bottleneck subject-ID delta is `-0.2683` with task delta `+0.0106`: `supports bottleneck subject-ID claim`.
 - `lee2019_mi` bottleneck subject-ID delta is `-0.2340` with task delta `+0.0019`: `supports bottleneck subject-ID claim`.
 - `bnci2014_001` bottleneck MLP-membership delta is `+0.0007` with task delta `+0.0106`: `no material membership regression`.
 - `lee2019_mi` bottleneck MLP-membership delta is `+0.0011` with task delta `+0.0019`: `no material membership regression`.
-
-## Pending Rows

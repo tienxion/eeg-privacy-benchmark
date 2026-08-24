@@ -1,12 +1,11 @@
-# Curated Benchmark v1 Evidence
+# Benchmark v1 Evidence
 
 This directory contains aggregate, participant-anonymous evidence selected from
-the frozen private benchmark checkpoint. It contains no raw EEG, trial-level
-predictions, checkpoints, posterior caches, or sweep directories.
+the frozen benchmark evaluation. It contains no raw EEG, trial-level
+predictions, model checkpoints, posterior caches, or run directories.
 
 ## Primary evidence
 
-- [Benchmark summary](summaries/benchmark-summary.md)
 - [Claim traceability](summaries/claim-traceability.md)
 - [Claims audit](summaries/claims-audit.md)
 - [Protocol audit](summaries/protocol-audit.md)
@@ -27,5 +26,6 @@ PhysioNet federation privacy differences are diagnostic because utility failed
 the frozen 0.60 gate. Secure aggregation is a functional-only simulator with a
 217.77x measured local runtime ratio and no output-level privacy protection.
 
-Curated figures, tables, and report assets are licensed under CC BY 4.0.
-Checksums are in `release/SHA256SUMS`.
+Figures, tables, and report assets are licensed under CC BY 4.0. File-level
+provenance and checksums are recorded in [`PROVENANCE.md`](PROVENANCE.md) and
+[`release/SHA256SUMS`](../../release/SHA256SUMS).

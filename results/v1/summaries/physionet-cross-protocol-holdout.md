@@ -2,12 +2,12 @@
 
 This report summarizes completed rows from the `cross_protocol_physionet_holdout` plan. Lower membership-inference AUC is better for privacy. Deltas are computed versus the same-attack plain EEGNet baseline when available.
 
-Companion CSV: physionet_cross_protocol_holdout_results_v1.csv
+The table below is the frozen public record for this protocol.
 
 ## Completion
 
 - Completed rows: `11/11`.
-- Current decision: threshold-only or attack-specific privacy wins; keep PhysioNet unresolved.
+- Conclusion: threshold-only or attack-specific privacy wins; PhysioNet remains unresolved.
 
 ## Rows
 
@@ -25,6 +25,6 @@ Companion CSV: physionet_cross_protocol_holdout_results_v1.csv
 | `10` | `bottleneck_dim_6` | `threshold::label_known_log_probability` | `complete` | `0.5366` | `0.5665` | `+0.0137` | `-0.0085` | mixed |
 | `11` | `csp_lda_anchor` | `threshold::label_known_log_probability` | `complete` | `0.6182` | `0.5196` | `+0.0953` | `-0.0555` | family win within utility |
 
-## Claim Guardrail
+## Interpretation Boundary
 
-Do not change the paper-facing PhysioNet claim until completed cross-run rows satisfy the pre-registered two-family privacy and utility rule. Pending or mixed results preserve the current unresolved/protocol-sensitive framing.
+The completed cross-run rows do not satisfy the pre-registered two-family privacy and utility rule. They therefore preserve the unresolved, protocol-sensitive PhysioNet conclusion.

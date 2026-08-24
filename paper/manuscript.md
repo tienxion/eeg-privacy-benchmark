@@ -123,7 +123,7 @@ This study analyzes public EEG datasets and introduces no new human-subject data
 
 ## 9. Reproducibility
 
-Benchmark v1 is frozen. Paper-facing values were generated from archived sweep summaries through deterministic report scripts. This public candidate records claim-level evidence, protocol and dependency audits, selected assets, and release checksums. Public-release QA rejects missing claim boundaries, host-specific paths, prohibited artifacts, incomplete documentation, and checksum drift. No model training is required to inspect or validate the curated public evidence.
+Benchmark v1 is frozen. Paper-facing values were generated from archived sweep summaries through deterministic report scripts. The public release records claim-level evidence, protocol and dependency audits, selected assets, and release checksums. Public-release QA rejects missing claim boundaries, host-specific paths, prohibited artifacts, incomplete documentation, and checksum drift. No model training is required to inspect or validate the curated public evidence.
 
 ## 10. Conclusion
 

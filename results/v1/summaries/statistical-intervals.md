@@ -1,8 +1,8 @@
 # Statistical Intervals Summary
 
-This artifact adds paired seed-level uncertainty checks to the current report layer. Intervals are 95% t intervals over the four task-model seeds for privacy-metric deltas versus same-seed plain EEGNet. Because `n=4`, these intervals are intentionally conservative and mainly prevent overclaiming tiny margins.
+This report presents paired seed-level uncertainty checks. Intervals are 95% t intervals over the four task-model seeds for privacy-metric deltas versus same-seed plain EEGNet. Because `n=4`, these intervals are intentionally conservative and mainly prevent overclaiming small margins.
 
-Companion table: statistical_intervals_matrix_v1.csv
+Companion table: [`statistical-intervals.csv`](statistical-intervals.csv)
 
 ## Key Comparisons
 

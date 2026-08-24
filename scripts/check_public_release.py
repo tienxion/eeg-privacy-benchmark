@@ -57,11 +57,8 @@ ALLOWED_TOP_LEVEL = {
     "SECURITY.md",
     "configs",
     "data",
-    "notebooks",
-    "outputs",
     "paper",
     "pyproject.toml",
-    "raw_data",
     "release",
     "requirements-lock.txt",
     "results",
@@ -191,12 +188,10 @@ def _check_paths_and_contents(errors: list[str]) -> None:
             errors.append(f"prohibited artifact extension: {relative_text}")
         if any(marker in lower for marker in PRIVATE_FILENAME_MARKERS):
             errors.append(f"private/internal filename: {relative_text}")
-        if relative.parts[:1] == ("raw_data",) and relative_text != "raw_data/README.md":
-            errors.append(f"raw_data contains non-placeholder file: {relative_text}")
-        if relative.parts[:1] == ("outputs",) and relative_text != "outputs/README.md":
-            errors.append(f"outputs contains generated file: {relative_text}")
-        if relative.parts[:2] == ("data", "manifests") and relative.name != ".gitkeep":
-            errors.append(f"data manifest is not public metadata: {relative_text}")
+        if relative.parts[:1] in {("raw_data",), ("outputs",)}:
+            errors.append(f"generated runtime path is tracked: {relative_text}")
+        if relative.parts[:2] == ("data", "manifests"):
+            errors.append(f"generated data manifest is tracked: {relative_text}")
 
         data = path.read_bytes()
         if path.suffix.lower() not in {".png"} and b"\0" in data:

@@ -1,18 +1,18 @@
-# Protocol Audit Note
+# Protocol Verification Record
 
-This generated note separates protocol details that are pinned in the local repository from details that still require manual confirmation before paper submission.
+This record documents the benchmark protocol details verified in the frozen release code and the constraints that apply when reporting them.
 
 Companion files:
-- protocol_audit_matrix_v1.csv
-- protocol_dependency_defaults_v1.json
+- [`protocol-audit.csv`](protocol-audit.csv)
+- [`protocol-dependency-defaults.json`](protocol-dependency-defaults.json)
 
-## High-Level Read
+## Summary
 
-- Verified local protocol items: `18`.
+- Verified protocol items: `18`.
 - Verified-with-caveat items: `0`.
 - Installed dependency snapshot: MOABB `1.2.0`, MNE `1.8.0`, PyTorch `2.8.0`, scikit-learn `1.5.2`.
 - The MOABB preprocessing defaults are verified against the installed MOABB source snapshot; final paper text should cite MOABB and report the dependency version.
-- Splits, task-model defaults, privacy-attack definitions, and report-layer membership semantics are pinned in local code.
+- Splits, task-model defaults, privacy-attack definitions, and report-layer membership semantics are pinned in the release code.
 
 ## Installed MOABB LeftRightImagery Snapshot
 
@@ -30,11 +30,11 @@ Companion files:
 
 | Component | Status | Verified detail | Source | Paper-safe language | Follow-up |
 | --- | --- | --- | --- | --- | --- |
-| benchmark scope | verified | Version-1 config lists PhysioNet Motor Imagery, BNCI2014-001, and Lee2019_MI with a left_vs_right_motor_imagery task. | `configs/benchmark_v1.yaml` | We evaluate binary left-versus-right motor imagery on three public MOABB-backed datasets. | None for scope; add formal dataset citations manually. |
-| dataset registry | verified | Dataset keys map to MOABB source IDs PhysionetMI, BNCI2014_001, and Lee2019_MI; BNCI and Lee are marked as two-session datasets. | `src/eeg_privacy_benchmark/datasets/registry.py` | The benchmark uses fixed dataset identifiers and records session structure for cross-session evaluation where available. | Confirm source-dataset licenses/citation requirements before paper release. |
+| benchmark scope | verified | Version-1 config lists PhysioNet Motor Imagery, BNCI2014-001, and Lee2019_MI with a left_vs_right_motor_imagery task. | `configs/benchmark_v1.yaml` | We evaluate binary left-versus-right motor imagery on three public MOABB-backed datasets. | Dataset citations are recorded in `paper/references.bib` and `DATASETS.md`. |
+| dataset registry | verified | Dataset keys map to MOABB source IDs PhysionetMI, BNCI2014_001, and Lee2019_MI; BNCI and Lee are marked as two-session datasets. | `src/eeg_privacy_benchmark/datasets/registry.py` | The benchmark uses fixed dataset identifiers and records session structure for cross-session evaluation where available. | Dataset access and reuse boundaries are documented in `DATASETS.md`. |
 | MOABB loading | verified | The loader instantiates MOABB's LeftRightImagery() with no explicit preprocessing arguments, then calls paradigm.get_data(dataset=..., subjects=...). Installed-source introspection of MOABB 1.2.0 reports filters [[8, 32]], tmin 0.0, tmax None, resample None, channels None, baseline None, reject None, and events left_hand/right_hand. | `src/eeg_privacy_benchmark/datasets/moabb_loader.py; installed moabb/paradigms/motor_imagery.py` | Trial arrays are obtained through MOABB's LeftRightImagery paradigm using the installed MOABB 1.2.0 defaults. | For final venue formatting, cite MOABB and place the dependency snapshot in the reproducibility table or appendix. |
 | trial metadata | verified | Trial records preserve dataset key, subject_id, session_id, run_id, trial_id, raw_label, and canonical_label from MOABB metadata. | `src/eeg_privacy_benchmark/datasets/moabb_loader.py` | Each extracted trial is aligned with subject, session, run, and label metadata. | None for local metadata construction. |
-| cross-subject split | verified | Subjects are sorted, shuffled with Python Random(seed), and split by subject with an 80 percent default train fraction while forcing non-empty train/test subject sets. | `src/eeg_privacy_benchmark/datasets/splits.py` | Cross-subject evaluation holds out subjects, so no subject appears in both task-model train and test splits. | For final PhysioNet claims, add random subject-subset validation rather than relying only on sequential widening. |
+| cross-subject split | verified | Subjects are sorted, shuffled with Python Random(seed), and split by subject with an 80 percent default train fraction while forcing non-empty train/test subject sets. | `src/eeg_privacy_benchmark/datasets/splits.py` | Cross-subject evaluation holds out subjects, so no subject appears in both task-model train and test splits. | Random subject-subset validation is recorded in `physionet-random-subset-validation.md`. |
 | cross-session split | verified | Sessions are sorted, shuffled with Python Random(seed), and one session is assigned to train while the remaining session(s) are assigned to test. | `src/eeg_privacy_benchmark/datasets/splits.py` | Cross-session evaluation trains on one session and tests on held-out session data from the same subjects. | Confirm session naming/order from generated manifests if reporting per-session details. |
 | cross-run split | verified | Runs are sorted, shuffled with Python Random(seed), and one run is assigned to train while the remaining run(s) are assigned to test. | `src/eeg_privacy_benchmark/datasets/splits.py` | Cross-run evaluation trains on one recording run and tests on held-out run data from the same subjects. | Use this for PhysioNet protocol-sensitivity checks because MOABB exposes one session but repeated run IDs for the left/right imagery trials. |
 | EEGNet normalization | verified | Deep models cast features to float32 and normalize using per-channel mean/std estimated only from the post-validation training subset. | `src/eeg_privacy_benchmark/models/eegnet.py` | Deep-model inputs are standardized using training-subset statistics and then applied to validation and test trials. | None; this is pinned in local code. |
@@ -55,15 +55,15 @@ We obtained left-versus-right motor-imagery trial arrays through MOABB's `LeftRi
 
 For deep models, validation trials are drawn from the task-model training partition and are treated as members for membership-inference evaluation. Inputs are standardized using statistics from the post-validation training subset only. Membership attacks are reported by attack family because threshold, learned logistic, and nonlinear learned attackers can induce different defense rankings.
 
-## Do Not Write Yet
+## Interpretation Constraints
 
-- Do not state MOABB preprocessing defaults without tying them to the installed MOABB version and reproducibility snapshot.
-- Do not imply PhysioNet subject-ID leakage has been evaluated under the same interpretation as BNCI/Lee cross-session subject-ID probes.
-- Do not describe validation trials as nonmembers; the current membership implementation treats train plus validation as members.
-- Do not report CLI defaults as paper hyperparameters when the artifact label records an explicit non-default value.
+- MOABB preprocessing defaults are version-bound and must be tied to the dependency snapshot.
+- PhysioNet does not support the same subject-identification interpretation as the BNCI/Lee cross-session probes.
+- Validation trials are members under the frozen membership definition.
+- Explicit artifact hyperparameters take precedence over CLI defaults.
 
-## Submission Follow-Up
+## Venue-Specific Reporting
 
-- Record `moabb`, `mne`, `numpy`, `torch`, and `scikit-learn` versions in the final environment table.
-- Add formal citations for the three source datasets, MOABB/MNE, EEGNet, CSP-LDA, membership inference, and adversarial representation learning.
-- If possible, export a small manifest summary with trial counts per dataset/protocol/subject subset for the final appendix.
+- Report the frozen `moabb`, `mne`, `numpy`, `torch`, and `scikit-learn` versions in the environment table or appendix.
+- Preserve the dataset, model, and attack citations recorded in `paper/references.bib`.
+- Report trial counts from generated manifests when a venue requests per-protocol appendix detail.

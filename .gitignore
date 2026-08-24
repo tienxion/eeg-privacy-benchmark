@@ -13,12 +13,9 @@ __pycache__/
 .coverage
 htmlcov/
 
-raw_data/*
-!raw_data/README.md
-outputs/*
-!outputs/README.md
-data/manifests/*.json
-!data/manifests/.gitkeep
+raw_data/
+outputs/
+data/manifests/
 wandb/
 mlruns/
 

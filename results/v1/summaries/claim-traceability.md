@@ -1,8 +1,8 @@
-# Submission Claim Traceability Map
+# Claim Traceability Matrix
 
-This internal map connects each claim-audit entry to manuscript locations, evidence assets, caveats, and editing rules. It is intended to prevent unsupported claims from drifting into the abstract, results, or conclusion during venue formatting.
+This matrix connects each claim-audit entry to manuscript locations, evidence assets, caveats, and reporting constraints. It preserves the boundary between supported, qualified, and unsupported conclusions across future venue formats.
 
-Companion CSV: paper_submission_claim_traceability_map_v1.csv
+Companion CSV: [`claim-traceability.csv`](claim-traceability.csv)
 
 ## Traceability Matrix
 

@@ -84,11 +84,13 @@ is run. Keep all downloads under ignored `raw_data/mne_data/`.
 - `src/eeg_privacy_benchmark/`: benchmark package and CLI
 - `configs/`: frozen v1 and explicitly labeled diagnostic configurations
 - `scripts/`: runners, plan/result tools, smoke tests, and release validation
-- `data/splits/`: small frozen split definitions
-- `raw_data/`: ignored local dataset cache placeholder
-- `outputs/`: ignored local run-output placeholder
+- `data/`: frozen split definitions and metadata documentation
 - `paper/`: venue-neutral manuscript and bibliography
 - `results/v1/`: curated aggregate evidence, figures, tables, and checksums
+
+Dataset caches, generated manifests, and run outputs are written to the ignored
+`raw_data/`, `data/manifests/`, and `outputs/` paths when required; generated
+artifacts are not part of the source distribution.
 
 ## Licensing and citation
 
@@ -100,6 +102,6 @@ granted by this repository. See [LICENSE_SCOPE.md](LICENSE_SCOPE.md),
 ## Release status
 
 The `v1.0.0-rc1` tag is the first public release candidate. The versioned
-release manifest records its private source checkpoint and curated-evidence
+release manifest records its development source checkpoint and curated-evidence
 checksums. Additional secret-scan and manuscript-render checks are recorded in
 [the publication QA note](release/PUBLICATION_QA.md).

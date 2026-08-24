@@ -2,7 +2,7 @@
 
 ## Provenance
 
-The public candidate is curated from private source checkpoint
+The public release tree is derived from development checkpoint
 `5dee43de85a2b4011fc97581efcf65f35fa5a4aa`. Curated evidence is versioned under
 `results/v1/` and covered by `release/v1.0.0-rc1-manifest.json` plus
 `release/SHA256SUMS`.
@@ -11,7 +11,7 @@ The public candidate is curated from private source checkpoint
 
 ```bash
 python scripts/check_public_smoke.py
-python scripts/check_public_release.py
+python scripts/check_public_release.py --allow-remote origin
 ```
 
 The smoke suite compiles Python, parses YAML/CFF, imports the package, checks the

@@ -1,10 +1,8 @@
 # CSP Baseline Anchor Summary
 
-This artifact positions `csp_lda` against the current BNCI, Lee, and PhysioNet defense stories. It keeps the existing four-model robustness report intact and adds the classical baseline as an external anchor.
+This report compares `csp_lda` with the BNCI, Lee, and PhysioNet neural-defense families and uses the classical baseline as an external anchor.
 
-Companion artifacts:
-- csp_anchor_matrix_v1.csv
-- csp_anchor_auc_plot_v1.png
+Related figure: [CSP anchor AUC](../figures/csp-anchor-auc.png)
 
 ## At A Glance
 

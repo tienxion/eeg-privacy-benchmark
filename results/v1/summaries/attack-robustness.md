@@ -1,8 +1,8 @@
 # Cross-Attack Robustness Summary
 
-This artifact consolidates the matched `4`-seed membership-defense families that were already completed across BNCI, Lee, and the current `subjects 1-46` PhysioNet key slice. It is meant to make attack sensitivity visible in one place.
+This report consolidates the completed matched four-seed membership-defense families across BNCI, Lee, and the `subjects 1-46` PhysioNet evaluation. It provides a single view of attack sensitivity.
 
-Related plot: attack_robustness_auc_plot_v1.png
+Related figure: [attack-family split AUC](../figures/attack-family-split-auc.png)
 
 ## At A Glance
 

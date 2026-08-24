@@ -8,7 +8,7 @@ version = "1.0.0"
 description = "Attack-sensitive privacy evaluation for EEG motor-imagery decoding"
 readme = "README.md"
 requires-python = ">=3.9"
-license = {text = "Apache-2.0"}
+license = "Apache-2.0"
 authors = [{name = "Arnav Adepu"}]
 dependencies = [
   "mne>=1.8,<2",
@@ -22,11 +22,15 @@ dependencies = [
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
-  "License :: OSI Approved :: Apache Software License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.9",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
+
+[project.urls]
+Homepage = "https://github.com/tienxion/eeg-privacy-benchmark"
+Repository = "https://github.com/tienxion/eeg-privacy-benchmark"
+Issues = "https://github.com/tienxion/eeg-privacy-benchmark/issues"
 
 [project.scripts]
 eeg-privacy-benchmark = "eeg_privacy_benchmark.cli:main"

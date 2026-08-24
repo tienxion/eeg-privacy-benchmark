@@ -1,12 +1,11 @@
 # Seed Stability Summary
 
-This artifact checks whether the current defense rankings survive paired seed-level comparison against plain `eegnet`. Lower membership AUC is better. A negative `mean ΔAUC` means the model improves privacy versus the same-seed EEGNet baseline.
+This report evaluates whether defense rankings survive paired seed-level comparison against plain `eegnet`. Lower membership AUC is better. A negative `mean ΔAUC` indicates lower measured leakage than the same-seed EEGNet baseline.
 
 Related files:
 
-- seed_stability_matrix_v1.csv
-- seed_stability_seed_matrix_v1.csv
-- seed_stability_delta_plot_v1.png
+- [Seed-stability figure](../figures/seed-stability-deltas.png)
+- [MLP seed-stability table](../tables/mlp-seed-stability.tex)
 
 ## At A Glance
 

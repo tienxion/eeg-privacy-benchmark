@@ -9,7 +9,7 @@ and no-download smoke checks.
 - Date: 2026-08-24
 - Scanner: Gitleaks v8.30.1, built from its official Go module
 - Configuration: default rules, no baseline, no allowlist
-- Git scope: all seven public commits through `7b2a10a`
+- Git scope: complete public history at the time of verification
 - Directory scope: the complete public working tree
 - Approximate content scanned per mode: 1.29 MB
 - Result: zero findings in both full-history and directory scans
@@ -24,9 +24,9 @@ but the independent scanner materially strengthens the publication boundary.
   assets under `results/v1/`
 - Builder: isolated ReportLab 4.4.9 venue-neutral preview
 - Renderer: Poppler
-- Output: 7 US-letter pages, 444,220 bytes
+- Output: 7 US-letter pages, 444,219 bytes
 - PDF SHA-256:
-  `f1734f3408720f0f25c9f43f18ba1006fdc259c724af8d54db899970204a04e8`
+  `b5682847173e8eb2cccd5024da17acaffdca82c6ef99a2bc32ed308b8fca76fd`
 - Structural result: all seven pages reopen and yield nonempty text; expected
   title, abstract, tables, figure, conclusion, and references are present
 - Visual result: all seven rendered pages were inspected; no clipping,

@@ -1,8 +1,8 @@
-# Paper Claims Audit
+# Claims Audit
 
-This artifact separates defensible paper claims from claims that need caveats or should not be made. It is generated from the current attack-family, shortlist, and seed-stability tables.
+This record separates supported conclusions from conclusions that require caveats or are not supported by benchmark v1. It is derived from the frozen attack-family, shortlist, and seed-stability evidence.
 
-Companion table: paper_claims_audit_v1.csv
+Companion table: [`claims-audit.csv`](claims-audit.csv)
 
 ## Summary
 

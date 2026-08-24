@@ -1,10 +1,6 @@
 # MLP Posterior Attack Summary
 
-This artifact adds a nonlinear learned membership attacker to the benchmark: `attack_type=mlp`, `score_type=posterior_probabilities`. It is meant to answer whether the current learned-attack conclusions are just a linear logistic-regression artifact.
-
-Companion artifacts:
-- mlp_posterior_attack_matrix_v1.csv
-- mlp_posterior_attack_auc_plot_v1.png
+This report evaluates a nonlinear learned membership attacker with `attack_type=mlp` and `score_type=posterior_probabilities`. It tests whether conclusions obtained with linear logistic-regression attacks survive a nonlinear attacker.
 
 ## At A Glance
 

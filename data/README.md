@@ -1,13 +1,12 @@
-# Data directory
+# Data Metadata
 
-Use this directory for:
-- cached metadata
-- generated dataset manifests
-- frozen train and test splits
-- processed artifacts that are small enough to keep under version control
+This directory contains the small, non-recording metadata required to reproduce
+the benchmark protocols.
 
-Do not place large raw recordings here. Use `raw_data/` for that.
+- `splits/` contains versioned train/test assignments used by the documented
+  benchmark examples.
+- `manifests/` is created locally when dataset metadata are generated and is
+  excluded from version control.
 
-Version-control policy:
-- Keep `splits/*.json` public so benchmark train/test assignments are reproducible.
-- Do not commit generated `manifests/*.json`; rebuild them locally from the public source datasets.
+EEG recordings are never stored in this directory. Dataset acquisition and
+rights information is documented in [`DATASETS.md`](../DATASETS.md).

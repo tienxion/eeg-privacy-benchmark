@@ -1,9 +1,8 @@
 # PhysioNet MLP Seed-Extension Results
 
-This report combines the existing PhysioNet subjects `1-46` MLP-posterior seed rows with any completed seed-extension rows. Lower membership-inference AUC is better for privacy; deltas are paired against same-seed plain EEGNet.
+This report combines the PhysioNet subjects `1-46` MLP-posterior seed rows with the completed seed-extension rows. Lower membership-inference AUC is better for privacy; deltas are paired against same-seed plain EEGNet.
 
-Companion files:
-- Companion private row tables are not distributed; aggregate values are frozen in this summary.
+The aggregate values below are the frozen public record for this protocol.
 
 ## Completion
 
@@ -13,13 +12,13 @@ Companion files:
 - `adversarial_eegnet` extension seeds complete: `4`.
 - `csp_lda` extension seeds complete: `4`.
 
-## Current Decision Read
+## Interpretation
 
 - Mixup seeds evaluated: `8` (`13,17,19,23,29,31,37,41`).
 - Mixup mean delta AUC versus EEGNet: `+0.0096`.
 - Mixup privacy-improving same-seed comparisons: `2/8`.
 - Mixup mean task balanced-accuracy delta: `+0.0014`.
-- Current decision: `not supported`.
+- Conclusion: `not supported`.
 
 ## Aggregate Model Read
 
