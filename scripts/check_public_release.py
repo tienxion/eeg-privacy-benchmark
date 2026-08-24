@@ -34,7 +34,7 @@ REQUIRED_FILES = {
     "paper/references.bib",
     "pyproject.toml",
     "release/SHA256SUMS",
-    "release/v1.0.0-rc1-manifest.json",
+    "release/v1.0.0-manifest.json",
     "requirements-lock.txt",
     "results/v1/README.md",
     "results/v1/PROVENANCE.md",
@@ -234,13 +234,13 @@ def _check_markdown_links(errors: list[str]) -> None:
 
 
 def _check_manifest(errors: list[str]) -> None:
-    manifest_path = ROOT / "release" / "v1.0.0-rc1-manifest.json"
+    manifest_path = ROOT / "release" / "v1.0.0-manifest.json"
     checksums_path = ROOT / "release" / "SHA256SUMS"
     if not manifest_path.exists():
         return
     payload = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if payload.get("release") != "1.0.0-rc1":
-        errors.append("release manifest version is not 1.0.0-rc1")
+    if payload.get("release") != "1.0.0":
+        errors.append("release manifest version is not 1.0.0")
     if payload.get("source_checkpoint") != "5dee43de85a2b4011fc97581efcf65f35fa5a4aa":
         errors.append("release manifest source checkpoint mismatch")
     entries = payload.get("files", [])

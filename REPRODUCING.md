@@ -4,7 +4,7 @@
 
 The public release tree is derived from development checkpoint
 `5dee43de85a2b4011fc97581efcf65f35fa5a4aa`. Curated evidence is versioned under
-`results/v1/` and covered by `release/v1.0.0-rc1-manifest.json` plus
+`results/v1/` and covered by `release/v1.0.0-manifest.json` plus
 `release/SHA256SUMS`.
 
 ## No-download validation

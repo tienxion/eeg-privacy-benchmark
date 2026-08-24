@@ -1,8 +1,8 @@
 # Publication QA
 
-This note records the additional checks performed before promoting the public
-release candidate. It complements, rather than replaces, the automated release
-and no-download smoke checks.
+This note records the additional checks performed for the public `v1.0.0`
+release. It complements, rather than replaces, the automated release and
+no-download smoke checks.
 
 ## Dedicated secret scan
 

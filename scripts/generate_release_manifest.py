@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE_DIR = ROOT / "release"
-MANIFEST = RELEASE_DIR / "v1.0.0-rc1-manifest.json"
+MANIFEST = RELEASE_DIR / "v1.0.0-manifest.json"
 CHECKSUMS = RELEASE_DIR / "SHA256SUMS"
 SOURCE_CHECKPOINT = "5dee43de85a2b4011fc97581efcf65f35fa5a4aa"
 
@@ -51,7 +51,7 @@ def main() -> None:
         )
     payload = {
         "schema_version": 1,
-        "release": "1.0.0-rc1",
+        "release": "1.0.0",
         "source_checkpoint": SOURCE_CHECKPOINT,
         "evidence_file_count": len(entries),
         "files": entries,

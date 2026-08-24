@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release": "1.0.0-rc1",
+  "release": "1.0.0",
   "source_checkpoint": "5dee43de85a2b4011fc97581efcf65f35fa5a4aa",
   "evidence_file_count": 36,
   "files": [
@@ -27,8 +27,8 @@
     },
     {
       "path": "results/v1/PROVENANCE.md",
-      "bytes": 743,
-      "sha256": "ae6a9d73dd31eeb551636e1c97f3a61a0e472139ced3fe00194b04f4fe7776d4",
+      "bytes": 715,
+      "sha256": "40e2d695148d04d30a5665c2284c7217277c1819c491626d70a6f9340bbdd529",
       "media_type": "application/octet-stream",
       "license": "CC-BY-4.0"
     },
