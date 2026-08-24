@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eeg-privacy-benchmark"
+version = "1.0.0"
+description = "Attack-sensitive privacy evaluation for EEG motor-imagery decoding"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "Apache-2.0"}
+authors = [{name = "Arnav Adepu"}]
+dependencies = [
+  "mne>=1.8,<2",
+  "moabb>=1.2,<2",
+  "numpy>=1.26,<2",
+  "pandas>=2,<3",
+  "pyyaml>=6,<7",
+  "scikit-learn>=1.5,<2",
+  "scipy>=1.13,<2",
+  "torch>=2.8,<3",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.scripts]
+eeg-privacy-benchmark = "eeg_privacy_benchmark.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

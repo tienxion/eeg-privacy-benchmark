@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software or its curated v1 evidence, please cite it using this metadata."
+title: "EEG Privacy Benchmark"
+type: software
+version: 1.0.0
+authors:
+  - family-names: Adepu
+    given-names: Arnav
+license: Apache-2.0
+abstract: >-
+  A reproducible, attack-sensitive benchmark of subject-identification and
+  membership leakage in binary EEG motor-imagery decoding.
