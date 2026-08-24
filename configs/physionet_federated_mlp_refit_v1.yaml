@@ -1,0 +1,32 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: physionet_federated_mlp_attacker_refit
+  status: complete
+
+scope:
+  task_seeds: [13, 17, 19, 23]
+  attacker_seeds: [101, 103, 107]
+  centralized_model: eegnet
+  federated_model: federated_eegnet
+  task_model_retraining: false
+  source: completed_posterior_caches
+
+attack:
+  attack_type: mlp
+  score_type: posterior_probabilities
+  attack_seed_policy: explicit_fixed_seed
+
+decision_rule: >-
+  Pair federated and centralized AUCs by task seed for each fixed attacker seed.
+  Report whether all attacker-seed mean deltas share one direction and whether
+  that direction agrees with the original task-seed-default policy. Do not
+  retrain or modify task models.
+
+result:
+  default_policy_mean_paired_delta: -0.05832853223593969
+  fixed_seed_mean_paired_deltas:
+    101: -0.0617
+    103: -0.0296
+    107: -0.0370
+  decision: refit_direction_stable_and_default_consistent
+  claim_scope: diagnostic_only_due_to_failed_task_utility_gate

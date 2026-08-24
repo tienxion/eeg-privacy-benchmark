@@ -1,0 +1,22 @@
+"""Factory helpers for benchmark dataset loaders."""
+
+from __future__ import annotations
+
+from eeg_privacy_benchmark.datasets.base import EEGDatasetLoader
+from eeg_privacy_benchmark.datasets.moabb_loader import MOABBDatasetLoader
+from eeg_privacy_benchmark.datasets.registry import DATASET_REGISTRY
+
+
+def build_dataset_loader(
+    dataset_key: str, *, resample_hz: float | None = None
+) -> EEGDatasetLoader:
+    """Construct the benchmark loader for a dataset key."""
+
+    spec = DATASET_REGISTRY.get(dataset_key)
+    if spec is None:
+        raise KeyError(f"Unknown benchmark dataset: {dataset_key}")
+    if spec.source_library != "moabb":
+        raise ValueError(
+            f"Unsupported source library {spec.source_library} for {dataset_key}."
+        )
+    return MOABBDatasetLoader(dataset_key=dataset_key, resample_hz=resample_hz)

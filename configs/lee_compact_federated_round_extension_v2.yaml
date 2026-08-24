@@ -1,0 +1,45 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_compact_architecture_matched_federation
+  status: four_seed_confirmation_complete
+
+source_checkpoint:
+  path: outputs/federated_lee_compact_multiseed/seed13/federated_eegnet_checkpoint.pt
+  completed_rounds: 80
+  best_checkpoint_round: 80
+
+frozen_extension:
+  target_rounds: 160
+  early_stopping_patience: 80
+  checkpoint_interval: 1
+  exact_resume: true
+  architecture_and_optimizer_unchanged: true
+
+decision_basis: >-
+  The minimum-validation-loss checkpoint occurred at the final registered round
+  80, so the initial budget did not bracket convergence. Extend only seed 13 to
+  round 160 from the exact checkpoint. This decision uses validation trajectory
+  only, not test accuracy or privacy metrics. Treat 160 as the fixed cap even if
+  its selected checkpoint again lies at the boundary.
+
+confirmation_rule: >-
+  If the resumed seed-13 task balanced accuracy remains at least 0.60, freeze
+  the selected 160-round budget for seeds 17,19,23. Otherwise stop compact
+  federation without a privacy-defense claim.
+
+completed_calibration:
+  rounds_trained: 160
+  best_checkpoint_round: 155
+  checkpoint_validation_balanced_accuracy: 0.7166666666666667
+  test_balanced_accuracy: 0.7116666666666667
+  subject_id_accuracy: 0.445
+  utility_gate_passed: true
+  confirmation_seeds: [17, 19, 23]
+
+completed_confirmation:
+  task_balanced_accuracy: [0.7116666666666667, 0.74, 0.705, 0.6883333333333334]
+  mean_task_balanced_accuracy: 0.71125
+  mean_subject_id_accuracy: 0.5258333333333333
+  best_checkpoint_rounds: [155, 149, 160, 118]
+  utility_gate_passed: true
+  claim: identity_gain_membership_attack_tradeoff_not_general_defense

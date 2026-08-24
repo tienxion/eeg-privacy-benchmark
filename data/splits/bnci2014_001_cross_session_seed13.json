@@ -1,0 +1,1159 @@
+{
+  "dataset_key": "bnci2014_001",
+  "protocol": "cross_session",
+  "seed": 13,
+  "assignments": [
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-0",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-1",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-2",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-3",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-4",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-5",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-6",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-7",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-8",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-9",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-10",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-11",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-12",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-13",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-14",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-15",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-16",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-17",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-18",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-19",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-20",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-21",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-22",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-0:trial-23",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-24",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-25",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-26",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-27",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-28",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-29",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-30",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-31",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-32",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-33",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-34",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-35",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-36",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-37",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-38",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-39",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-40",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-41",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-42",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-43",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-44",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-45",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-46",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-1:trial-47",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-48",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-49",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-50",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-51",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-52",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-53",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-54",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-55",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-56",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-57",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-58",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-59",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-60",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-61",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-62",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-63",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-64",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-65",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-66",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-67",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-68",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-69",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-70",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-2:trial-71",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-72",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-73",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-74",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-75",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-76",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-77",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-78",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-79",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-80",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-81",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-82",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-83",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-84",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-85",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-86",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-87",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-88",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-89",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-90",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-91",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-92",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-93",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-94",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-3:trial-95",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-96",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-97",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-98",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-99",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-100",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-101",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-102",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-103",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-104",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-105",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-106",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-107",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-108",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-109",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-110",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-111",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-112",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-113",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-114",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-115",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-116",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-117",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-118",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-4:trial-119",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-120",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-121",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-122",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-123",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-124",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-125",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-126",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-127",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-128",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-129",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-130",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-131",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-132",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-133",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-134",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-135",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-136",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-137",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-138",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-139",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-140",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-141",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-142",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-0train:run-5:trial-143",
+      "split": "train"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-144",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-145",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-146",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-147",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-148",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-149",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-150",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-151",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-152",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-153",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-154",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-155",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-156",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-157",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-158",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-159",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-160",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-161",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-162",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-163",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-164",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-165",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-166",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-0:trial-167",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-168",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-169",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-170",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-171",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-172",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-173",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-174",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-175",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-176",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-177",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-178",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-179",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-180",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-181",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-182",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-183",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-184",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-185",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-186",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-187",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-188",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-189",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-190",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-1:trial-191",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-192",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-193",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-194",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-195",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-196",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-197",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-198",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-199",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-200",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-201",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-202",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-203",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-204",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-205",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-206",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-207",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-208",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-209",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-210",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-211",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-212",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-213",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-214",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-2:trial-215",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-216",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-217",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-218",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-219",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-220",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-221",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-222",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-223",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-224",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-225",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-226",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-227",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-228",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-229",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-230",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-231",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-232",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-233",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-234",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-235",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-236",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-237",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-238",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-3:trial-239",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-240",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-241",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-242",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-243",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-244",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-245",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-246",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-247",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-248",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-249",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-250",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-251",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-252",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-253",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-254",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-255",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-256",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-257",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-258",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-259",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-260",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-261",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-262",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-4:trial-263",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-264",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-265",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-266",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-267",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-268",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-269",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-270",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-271",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-272",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-273",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-274",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-275",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-276",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-277",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-278",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-279",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-280",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-281",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-282",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-283",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-284",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-285",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-286",
+      "split": "test"
+    },
+    {
+      "trial_id": "bnci2014_001:sub-1:ses-1test:run-5:trial-287",
+      "split": "test"
+    }
+  ]
+}

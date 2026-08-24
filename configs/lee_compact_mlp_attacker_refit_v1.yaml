@@ -1,0 +1,40 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_compact_mlp_attacker_refit
+  status: complete
+
+scope:
+  dataset: lee2019_mi
+  subjects: [1, 2, 3, 4, 5, 6]
+  protocol: cross_session
+  task_seeds: [13, 17, 19, 23]
+  attacker_seeds: [101, 103, 107]
+  task_model_retraining: false
+  source: completed_posterior_caches
+
+models:
+  - compact_eegnet
+  - compact_bottleneck_dim6
+  - compact_confidence_penalty_beta0p05
+
+attack:
+  attack_type: mlp
+  score_type: posterior_probabilities
+
+decision_rule: >-
+  For each attacker seed, pair defense and baseline AUCs on task seeds
+  13,17,19,23. Call a defense refit-stable only if the paired mean delta has
+  the same direction for all attacker seeds. Report all deltas within 0.01 as a
+  practical tie. Do not retrain or alter any task model.
+
+completed_result:
+  compact_bottleneck_dim6:
+    attacker_seed_deltas: [0.027468055555555565, 0.025855555555555562, -0.00687083333333334]
+    mean_delta: 0.015484259259259262
+    decision: attacker_refit_direction_mixed
+  compact_confidence_penalty_beta0p05:
+    attacker_seed_deltas: [-0.0059180555555555375, -0.00364305555555558, -0.01145277777777777]
+    mean_delta: -0.007004629629629629
+    refit_decision: refit_stable_privacy_improvement
+    default_task_seed_coupled_delta: 0.007286111111111104
+    cross_policy_decision: attacker_seed_protocol_sensitive_no_general_mlp_claim

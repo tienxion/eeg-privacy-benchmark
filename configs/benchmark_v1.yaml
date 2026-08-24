@@ -1,0 +1,51 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: baseline
+  description: >
+    Version 1 benchmark focused on centralized EEG motor-imagery decoding
+    and subject-identification privacy auditing.
+
+task:
+  name: left_vs_right_motor_imagery
+  labels:
+    - left_hand
+    - right_hand
+
+datasets:
+  - name: physionet_motor_imagery
+    source: moabb
+    enabled: true
+  - name: bnci2014_001
+    source: moabb
+    enabled: true
+  - name: lee2019_mi
+    source: moabb
+    enabled: true
+
+evaluation:
+  protocols:
+    - cross_subject
+    - cross_session
+    - cross_dataset
+  random_seeds:
+    - 13
+    - 17
+    - 23
+
+models:
+  baselines:
+    - csp_lda
+    - eegnet
+
+privacy:
+  first_attack:
+    name: subject_identification_linear_probe
+    target: frozen_embeddings
+  deferred_attacks:
+    - membership_inference
+    - attribute_inference
+
+deferred_work:
+  - federated_learning
+  - secure_aggregation
+  - encrypted_inference

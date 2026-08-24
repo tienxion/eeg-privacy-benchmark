@@ -1,0 +1,55 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_neural_normalization_head_diagnostic
+  status: privacy_evaluation_complete
+
+calibration:
+  dataset: lee2019_mi
+  subjects: [1, 2, 3, 4, 5, 6]
+  protocol: cross_session
+  seed: 13
+
+frozen_components:
+  resample_hz: 250
+  learning_rate: 0.001
+  batch_size: 32
+  max_epochs: 60
+  early_stopping_patience: 15
+  temporal_and_spatial_convolutions: unchanged
+
+factorial:
+  normalization: [global_train_channel, per_trial_channel]
+  classifier_head: [flatten, global_average]
+  candidates: 4
+
+selection:
+  checkpoint_selection_metric: minimum_validation_loss
+  candidate_selection_metric: checkpoint_validation_balanced_accuracy
+  tie_breaker: simpler_global_average_head_then_registered_order
+  test_metrics_used_for_selection: false
+  privacy_metrics_computed: false
+
+utility_gate:
+  selected_seed13_test_balanced_accuracy_minimum: 0.60
+  csp_lda_seed13_reference: 0.6633333333333333
+
+decision_rule: >-
+  If a candidate passes 0.60, confirm the exact setting on seeds 17,19,23
+  before privacy evaluation. If all candidates fail, stop this EEGNet
+  architecture family on Lee and evaluate a compact spectral neural model or
+  retain CSP+LDA as the useful-decoder anchor.
+
+selected_setting:
+  normalization: per_trial_channel
+  classifier_head: global_average
+  seed13_checkpoint_validation_balanced_accuracy: 0.8833333333333333
+  seed13_test_balanced_accuracy: 0.7916666666666666
+  confirmation_seeds: [17, 19, 23]
+  four_seed_test_balanced_accuracy_mean: 0.7491666666666666
+  four_seed_test_balanced_accuracy_sample_std: 0.03238941299366313
+  utility_gate_passed: true
+  privacy_evaluation: outputs/lee_compact_eegnet_privacy/lee_compact_eegnet_privacy.json
+
+compatibility: >-
+  All interventions are opt-in. Benchmark-v1 defaults and completed artifacts
+  remain global_train_channel, flatten, and resample=None.

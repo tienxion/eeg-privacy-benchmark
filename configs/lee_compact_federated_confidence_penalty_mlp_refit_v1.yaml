@@ -1,0 +1,34 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_compact_federated_confidence_penalty_mlp_attacker_refit
+  status: complete
+
+scope:
+  task_seeds: [13, 17, 19, 23]
+  attacker_seeds: [101, 103, 107]
+  baseline_model: compact_federated_eegnet
+  defense_model: compact_federated_confidence_penalty_eegnet
+  confidence_penalty_beta: 0.05
+  task_model_retraining: false
+  source: completed_posterior_caches
+
+attack:
+  attack_type: mlp
+  score_type: posterior_probabilities
+  attack_seed_policy: explicit_fixed_seed
+
+decision_rule: >-
+  Pair defended and baseline AUCs by task seed for each fixed attacker seed.
+  Report whether all attacker-seed mean deltas share one direction and whether
+  that direction agrees with the original task-seed-default policy. Do not
+  retrain or modify task models.
+
+completed_result:
+  default_task_seed_policy_delta: 0.008784722222222291
+  fixed_attacker_seed_deltas:
+    - -0.011158333333333284
+    - -0.0011513888888888824
+    - 0.00044583333333340913
+  mean_fixed_seed_delta: -0.003954629629629586
+  same_direction_across_refits: false
+  decision: attacker_seed_protocol_sensitive_no_general_mlp_claim

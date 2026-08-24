@@ -1,0 +1,56 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_compact_federated_confidence_penalty
+  status: complete
+
+scope:
+  dataset: lee2019_mi
+  subjects: [1, 2, 3, 4, 5, 6]
+  protocol: cross_session
+  screening_seed: 13
+  confirmation_seeds: [17, 19, 23]
+
+matched_federated_setting:
+  resample_hz: 250
+  normalization: per_trial_channel
+  classifier_head: global_average
+  rounds: 160
+  local_epochs: 1
+  batch_size: 32
+  learning_rate: 0.001
+  validation_fraction: 0.2
+  early_stopping_patience: 80
+  checkpoint_interval: 1
+
+defense:
+  type: confidence_penalty
+  confidence_penalty_beta: 0.05
+  rationale: transfer_existing_untuned_compact_default
+
+decision_rule: >-
+  Run seed 13 once with exact checkpoint resume and reuse the fitted model for
+  every privacy attack. Continue seeds 17,19,23 only if held-out task balanced
+  accuracy is at least 0.60. Keep beta and the calibrated 160-round budget fixed.
+  Do not select or stop based on privacy metrics.
+
+screening_result:
+  task_balanced_accuracy: 0.7233333333333334
+  subject_id_accuracy: 0.44666666666666666
+  best_checkpoint_round: 153
+  utility_gate_passed: true
+
+completed_result:
+  task_balanced_accuracy_mean: 0.7183333333333334
+  task_paired_delta_vs_federated_baseline: 0.007083333333333358
+  subject_id_accuracy_mean: 0.5237499999999999
+  subject_id_paired_delta_vs_federated_baseline: -0.002083333333333312
+  membership_paired_deltas:
+    threshold_label_known: -0.0012260416666666496
+    threshold_max_probability: 0.0005934027777777934
+    logistic_posterior: -0.002019444444444421
+    mlp_posterior_task_seed_default: 0.008784722222222291
+  member_entropy_delta: 0.003787495195865631
+  nonmember_entropy_delta: 0.00431341677904129
+  entropy_membership_gap_delta: -0.0005259215831756592
+  utility_gate_passed_all_seeds: true
+  decision: negligible_privacy_effect_mlp_attacker_policy_sensitive

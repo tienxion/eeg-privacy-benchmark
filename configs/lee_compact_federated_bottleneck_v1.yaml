@@ -1,0 +1,60 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_compact_federated_bottleneck
+  status: complete
+
+scope:
+  dataset: lee2019_mi
+  subjects: [1, 2, 3, 4, 5, 6]
+  protocol: cross_session
+  screening_seed: 13
+  confirmation_seeds: [17, 19, 23]
+
+matched_federated_setting:
+  resample_hz: 250
+  normalization: per_trial_channel
+  classifier_head: global_average
+  rounds: 160
+  rounds_are_maximum_with_early_stopping: true
+  local_epochs: 1
+  batch_size: 32
+  learning_rate: 0.001
+  validation_fraction: 0.2
+  early_stopping_patience: 80
+  checkpoint_interval: 1
+
+defense:
+  type: bottleneck
+  bottleneck_dim: 6
+  confidence_penalty_beta: 0.0
+  rationale: transfer_existing_untuned_compact_default
+
+decision_rule: >-
+  Run seed 13 once with exact checkpoint resume and reuse the fitted model for
+  every privacy attack. Continue seeds 17,19,23 only if held-out task balanced
+  accuracy is at least 0.60. Keep dim 6 and the calibrated 160-round budget
+  fixed. Do not select or stop based on privacy metrics.
+
+screening_result:
+  task_balanced_accuracy: 0.7166666666666667
+  subject_id_accuracy: 0.375
+  best_checkpoint_round: 138
+  utility_gate_passed: true
+
+completed_result:
+  task_balanced_accuracy_mean: 0.6841666666666667
+  task_paired_delta_vs_federated_baseline: -0.027083333333333348
+  subject_id_accuracy_mean: 0.40625
+  subject_id_paired_delta_vs_federated_baseline: -0.1195833333333333
+  subject_id_improved_seeds: 4
+  membership_paired_deltas:
+    threshold_label_known: -0.006860416666666647
+    threshold_max_probability: -0.00810694444444443
+    logistic_posterior: 0.028519444444444472
+    mlp_posterior_task_seed_default: -0.04260277777777777
+  rounds_trained: [160, 160, 160, 141]
+  best_checkpoint_rounds: [138, 153, 138, 61]
+  mean_communication_delta_bytes: 105816
+  relative_communication_delta: 0.006217565433212996
+  utility_gate_passed_all_seeds: true
+  decision: identity_gain_logistic_tradeoff_mlp_attacker_policy_sensitive

@@ -1,0 +1,53 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_compact_confidence_penalty_transfer
+  status: four_seed_evaluation_complete
+
+frozen_task_setting:
+  dataset: lee2019_mi
+  subjects: [1, 2, 3, 4, 5, 6]
+  protocol: cross_session
+  resample_hz: 250
+  normalization: per_trial_channel
+  classifier_head: global_average
+  learning_rate: 0.001
+  batch_size: 32
+  max_epochs: 60
+  early_stopping_patience: 15
+
+defense:
+  type: confidence_penalty
+  confidence_penalty_beta: 0.05
+  rationale: transfer_the_existing_benchmark_default_without_parameter_tuning
+
+staging:
+  screening_seed: 13
+  confirmation_seeds: [17, 19, 23]
+  utility_gate: 0.60
+  continue_only_if_screening_gate_passes: true
+  screening_task_balanced_accuracy: 0.7883333333333333
+  screening_gate_passed: true
+
+completed_result:
+  mean_task_balanced_accuracy: 0.7470833333333333
+  mean_subject_id_accuracy: 0.5716666666666667
+  mean_membership_auc:
+    threshold_label_known: 0.5599642361111111
+    threshold_max_probability: 0.4960496527777778
+    logistic_posterior: 0.5098638888888889
+    mlp_posterior: 0.5378972222222222
+  claim: small_threshold_and_logistic_gains_mlp_regression
+
+privacy_evaluation:
+  subject_identification: true
+  membership_attacks:
+    - [threshold, label_known_log_probability]
+    - [threshold, max_probability]
+    - [logistic_regression, posterior_probabilities]
+    - [mlp, posterior_probabilities]
+
+decision_rule: >-
+  Keep all compact baseline choices fixed and transfer beta 0.05 without tuning.
+  Run seed 13 once and reuse its fitted model for every privacy attack. Continue
+  seeds 17,19,23 only if seed-13 task balanced accuracy is at least 0.60. Do not
+  select or tune on attack results.

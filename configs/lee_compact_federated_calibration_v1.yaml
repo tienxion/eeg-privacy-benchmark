@@ -1,0 +1,48 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_compact_architecture_matched_federation
+  status: round_budget_boundary_extension_required
+
+scope:
+  dataset: lee2019_mi
+  subjects: [1, 2, 3, 4, 5, 6]
+  protocol: cross_session
+  calibration_seed: 13
+  confirmation_seeds: [17, 19, 23]
+
+matched_architecture:
+  resample_hz: 250
+  normalization: per_trial_channel
+  classifier_head: global_average
+  bottleneck_dim: null
+
+federation:
+  aggregation: fedavg_sample_weighted
+  client_partition: subject_id
+  rounds: 80
+  local_epochs: 1
+  batch_size: 32
+  learning_rate: 0.001
+  validation_fraction: 0.2
+  checkpoint_selection: minimum_validation_loss
+  early_stopping_patience: 80
+  checkpoint_interval: 1
+
+utility_gate:
+  seed13_task_balanced_accuracy_minimum: 0.60
+  run_confirmation_only_if_gate_passes: true
+
+initial_calibration_result:
+  rounds_trained: 80
+  best_checkpoint_round: 80
+  checkpoint_validation_balanced_accuracy: 0.625
+  test_balanced_accuracy: 0.635
+  utility_gate_passed: true
+  round_budget_boundary_hit: true
+
+decision_rule: >-
+  Run seed 13 sequentially with thread caps and exact checkpoint resume. If its
+  held-out task balanced accuracy is below 0.60, stop compact federation and do
+  not interpret privacy metrics as a useful-decoder result. If it passes,
+  continue seeds 17,19,23 without changing the round budget or architecture.
+  Compare only against the matched compact centralized baseline.

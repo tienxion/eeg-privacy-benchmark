@@ -1,0 +1,63 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: secure_aggregation_prototype
+  status: complete
+
+decision:
+  outcome: go_limited_functional_prototype
+  reason: >-
+    Secure aggregation remains relevant after Phase 4 because federation alone
+    is not a privacy guarantee, and a pairwise-mask simulator can be added
+    without retraining or changing completed benchmark results.
+
+scope:
+  reference_dataset: physionet_motor_imagery
+  reference_seed: 13
+  reference_clients: 36
+  reference_rounds: 80
+  aggregation: fedavg_sample_weighted
+  pairwise_seed_bytes: 32
+  mask_scale: 1.0
+  benchmark_repeats: 3
+  implementation: single_process_functional_simulator
+
+verification:
+  aggregate_reference: fedavg_state_dicts
+  absolute_tolerance: 1.0e-6
+  relative_tolerance: 1.0e-6
+  preserve_reference_checkpoint: true
+  report_runtime: true
+  report_communication: true
+
+threat_model:
+  protects: individual_floating_point_client_updates_from_honest_but_curious_aggregator
+  assumptions:
+    - all_clients_present
+    - pairwise_secrets_not_known_to_aggregator
+    - no_client_collusion
+    - authenticated_channels_out_of_scope
+  does_not_protect:
+    - client_dropout
+    - malicious_clients
+    - collusion
+    - model_poisoning
+    - global_model_or_output_leakage
+    - membership_inference
+    - differential_privacy
+    - metadata
+  implementation_caveat: >-
+    The local deterministic PRG and centralized simulation are for functional
+    equivalence and overhead measurement only, not production cryptography.
+
+result:
+  aggregate_matches_reference: true
+  checkpoint_preserved: true
+  max_abs_error_vs_fedavg: 2.384185791015625e-7
+  max_abs_error_vs_checkpoint: 1.8189894035458565e-12
+  pair_count: 630
+  mask_applications: 11340
+  median_runtime_ratio: 217.7729136280358
+  one_time_seed_setup_communication_bytes: 40320
+  per_round_payload_overhead_bytes: 0
+  full_run_communication_increase_percent: 0.06485294594507085
+  claim: functional_equivalence_and_local_overhead_only

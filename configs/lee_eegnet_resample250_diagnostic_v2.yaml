@@ -1,0 +1,44 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_neural_input_scale_diagnostic
+  status: gate_failed_architecture_diagnostic_required
+
+motivation: >-
+  Benchmark v1 leaves MOABB resampling disabled. Lee2019 MI therefore yields
+  4001 samples per four-second trial, making EEGNet's fixed 64-sample temporal
+  kernel and flattened classifier operate at a different physical scale and
+  capacity than on 250 Hz datasets.
+
+calibration:
+  dataset: lee2019_mi
+  subjects: [1, 2, 3, 4, 5, 6]
+  protocol: cross_session
+  seed: 13
+
+intervention:
+  resample_hz: 250
+  observed_shape_before: [62, 4001]
+  observed_shape_after: [62, 1000]
+  learning_rate: 0.001
+  batch_size: 32
+  max_epochs: 60
+  early_stopping_patience: 15
+  architecture: eegnet_unchanged
+
+selection:
+  checkpoint_selection_metric: minimum_validation_loss
+  test_metrics_used_for_selection: false
+  privacy_metrics_computed: false
+
+utility_gate:
+  seed13_test_balanced_accuracy_minimum: 0.60
+  csp_lda_seed13_reference: 0.6633333333333333
+
+decision_rule: >-
+  If the 250 Hz candidate passes the 0.60 utility gate, confirm on seeds
+  17,19,23 before defining a version-2 federated comparison. If it fails, stop
+  and test architecture changes that remove the large flattened classifier.
+
+compatibility: >-
+  This is a versioned diagnostic. Do not overwrite or mix it with benchmark-v1
+  resample=None artifacts.

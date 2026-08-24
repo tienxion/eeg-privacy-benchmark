@@ -1,0 +1,56 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_neural_utility_diagnostic
+  status: gate_failed_architecture_diagnostic_required
+
+objective: >-
+  Determine whether conservative optimization changes can recover useful
+  centralized EEGNet decoding on Lee2019 MI before interpreting neural privacy
+  metrics or extending defenses under federation.
+
+calibration:
+  dataset: lee2019_mi
+  subjects: [1, 2, 3, 4, 5, 6]
+  protocol: cross_session
+  seed: 13
+
+frozen_components:
+  model: eegnet
+  labels: [left_hand, right_hand]
+  preprocessing: benchmark_v1
+  split_manifest: benchmark_v1_cross_session
+  batch_size: 32
+  validation_fraction: 0.2
+  max_epochs: 60
+  early_stopping_patience: 15
+
+stage_1_learning_rate_candidates: [0.0001, 0.0003, 0.001]
+
+selection:
+  checkpoint_selection_metric: minimum_validation_loss
+  candidate_selection_metric: checkpoint_validation_balanced_accuracy
+  tie_breaker: lower_learning_rate
+  test_metrics_used_for_selection: false
+  privacy_metrics_computed_during_selection: false
+
+utility_gate:
+  selected_seed13_test_balanced_accuracy_minimum: 0.60
+  csp_lda_seed13_reference: 0.6633333333333333
+  rationale: >-
+    A neural model below 0.60 remains too close to chance for defensible privacy
+    interpretation on this cohort, even if an attack metric moves.
+
+confirmation:
+  run_only_if_utility_gate_passes: true
+  seeds: [17, 19, 23]
+  promote_if_four_seed_mean_balanced_accuracy_minimum: 0.60
+
+stop_rule: >-
+  If no stage-1 candidate passes the seed-13 utility gate, stop learning-rate
+  tuning and investigate architecture, temporal filtering, and normalization.
+  Do not tune against membership or subject-identification metrics.
+
+federated_follow_up: >-
+  Rerun a federated Lee comparison only after the selected centralized setting
+  passes confirmation. Keep the completed plain 80-round FedAvg sweep as the
+  frozen negative baseline.

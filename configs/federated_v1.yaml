@@ -1,0 +1,88 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: federated_baseline
+  status: complete_all_frozen_datasets
+
+federation:
+  algorithm: fedavg_sample_weighted
+  client_unit: subject_id
+  participation: all_clients_every_round
+  local_optimizer: adam
+  local_learning_rate: 0.001
+  local_epochs: 1
+  batch_size: 32
+  normalization: federated_sufficient_statistics
+  validation_fraction: 0.2
+  early_stopping_patience_rounds: 80
+  model: eegnet
+
+calibration:
+  dataset: bnci2014_001
+  subjects: [1, 2, 3, 4]
+  protocol: cross_session
+  seed: 13
+  round_candidates: [5, 10, 20, 40, 80]
+  execution: >-
+    Run one deterministic 80-round trajectory and evaluate the candidate
+    budgets as prefixes. Rerun only the selected budget for held-out metrics.
+  boundary_extension_reason: >-
+    The initial 40-round trajectory selected the maximum candidate, reached its
+    best validation loss at round 40, and had a strongly improving late-round
+    loss slope. The search boundary was therefore extended once to 80 rounds.
+  checkpoint_selection_metric: minimum_validation_loss
+  budget_selection_metric: checkpoint_validation_balanced_accuracy
+  selection_rule: >-
+    Within each candidate prefix, select the minimum-validation-loss checkpoint.
+    Then choose the smallest round budget within 0.01 checkpoint validation
+    balanced accuracy of the best candidate. Do not use test utility or privacy
+    metrics to select either checkpoint or budget.
+
+matched_evaluation:
+  seeds: [13, 17, 19, 23]
+  cohorts:
+    - dataset: bnci2014_001
+      subjects: [1, 2, 3, 4]
+      protocol: cross_session
+      subject_id_probe: true
+    - dataset: lee2019_mi
+      subjects: [1, 2, 3, 4, 5, 6]
+      protocol: cross_session
+      subject_id_probe: true
+    - dataset: physionet_motor_imagery
+      subject_range: [1, 46]
+      protocol: cross_subject
+      subject_id_probe: false
+
+privacy_attacks:
+  membership_inference:
+    - attack_type: threshold
+      score_type: label_known_log_probability
+    - attack_type: threshold
+      score_type: max_probability
+    - attack_type: logistic_regression
+      score_type: posterior_probabilities
+    - attack_type: mlp
+      score_type: posterior_probabilities
+  subject_identification:
+    model: logistic_regression
+    representation: frozen_eegnet_embedding
+    protocol: cross_session
+
+reporting:
+  task_metrics: [balanced_accuracy, macro_f1]
+  privacy_metrics: [membership_auc, membership_average_precision, subject_id_accuracy]
+  systems_metrics: [model_state_bytes, estimated_communication_bytes]
+  required_comparators: [centralized_eegnet, federated_eegnet]
+  caveat: >-
+    Federation is a collaboration mechanism, not a privacy guarantee. This
+    baseline does not provide secure aggregation, differential privacy, or
+    protection against update-observing adversaries.
+
+promotion_rule:
+  baseline_complete_when: >-
+    All matched seeds complete for one dataset and task utility, membership
+    inference, subject identification where valid, and communication cost are
+    reported against centralized EEGNet.
+  defense_extension: bottleneck_eegnet_dim6
+  defense_extension_gate: >-
+    Implement only after the plain federated baseline round budget is frozen.

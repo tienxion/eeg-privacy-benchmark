@@ -1,0 +1,74 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: physionet_federated_replication
+  status: complete
+
+scope:
+  dataset: physionet_motor_imagery
+  subjects: [1, 46]
+  subject_interpretation: inclusive_range
+  protocol: cross_subject
+  seeds: [13, 17, 19, 23]
+  subject_id_probe: false
+  expected_training_clients: 36
+  expected_held_out_subjects: 10
+
+federated_setting:
+  algorithm: fedavg_sample_weighted
+  participation: all_clients_every_round
+  rounds: 80
+  local_epochs: 1
+  batch_size: 32
+  learning_rate: 0.001
+  validation_fraction: 0.2
+  early_stopping_patience: 80
+  normalization: federated_sufficient_statistics
+  classifier_head: flatten
+  bottleneck_dim: null
+  confidence_penalty_beta: 0.0
+  checkpoint_interval: 1
+  resume: true
+
+privacy_evaluation:
+  attack_seed_policy: task_seed_default
+  membership_attacks:
+    - [threshold, label_known_log_probability]
+    - [threshold, max_probability]
+    - [logistic_regression, posterior_probabilities]
+    - [mlp, posterior_probabilities]
+
+decision_rule: >-
+  Complete all four seeds sequentially and compare with the existing matched
+  centralized EEGNet artifacts. Do not stop, select, or tune based on privacy
+  results. Apply the 0.60 mean task-balanced-accuracy utility gate only when
+  deciding whether privacy deltas support a claim or are diagnostic only.
+
+completed_seeds:
+  13:
+    rounds_trained: 80
+    best_checkpoint_round: 1
+    task_balanced_accuracy: 0.5044052863436124
+    utility_gate_passed: false
+  17:
+    rounds_trained: 80
+    best_checkpoint_round: 80
+    task_balanced_accuracy: 0.5378786381868838
+    utility_gate_passed: false
+  19:
+    rounds_trained: 80
+    best_checkpoint_round: 1
+    task_balanced_accuracy: 0.4952380011460412
+    utility_gate_passed: false
+  23:
+    rounds_trained: 80
+    best_checkpoint_round: 9
+    task_balanced_accuracy: 0.5364509246088194
+    utility_gate_passed: false
+
+final_result:
+  centralized_mean_task_balanced_accuracy: 0.6573913809404754
+  federated_mean_task_balanced_accuracy: 0.5184932125713392
+  mean_paired_task_delta: -0.13889816836913627
+  utility_gate_passed: false
+  claim: utility_gate_failed_no_privacy_claim
+  fixed_mlp_refit_decision: refit_direction_stable_and_default_consistent

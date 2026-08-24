@@ -1,0 +1,38 @@
+project:
+  name: eeg_privacy_benchmark
+  phase: lee_compact_federated_bottleneck_mlp_attacker_refit
+  status: complete
+
+scope:
+  task_seeds: [13, 17, 19, 23]
+  attacker_seeds: [101, 103, 107]
+  baseline_model: compact_federated_eegnet
+  defense_model: compact_federated_bottleneck_eegnet
+  bottleneck_dim: 6
+  task_model_retraining: false
+  source: completed_posterior_caches
+
+attack:
+  attack_type: mlp
+  score_type: posterior_probabilities
+  attack_seed_policy: explicit_fixed_seed
+
+decision_rule: >-
+  Pair bottleneck and baseline AUCs by task seed for each fixed attacker seed.
+  Report the centralized and federated bottleneck effects and their interaction.
+  Do not retrain or modify task models.
+
+completed_result:
+  default_task_seed_policy_delta: -0.04260277777777777
+  fixed_attacker_seed_federated_deltas:
+    - -0.01389583333333333
+    - 0.0015333333333333449
+    - 0.00030833333333336876
+  fixed_attacker_seed_interactions:
+    - -0.041363888888888894
+    - -0.024322222222222217
+    - 0.007179166666666709
+  mean_fixed_seed_federated_delta: -0.004018055555555539
+  mean_fixed_seed_interaction: -0.019502314814814802
+  same_direction_across_refits: false
+  decision: attacker_seed_protocol_sensitive_no_general_mlp_claim
