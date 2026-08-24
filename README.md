@@ -48,7 +48,7 @@ These commands do not download EEG data or train a model:
 
 ```bash
 python scripts/check_public_smoke.py
-python scripts/check_public_release.py
+python scripts/check_public_release.py --allow-remote origin
 eeg-privacy-benchmark --help
 ```
 
@@ -99,6 +99,6 @@ granted by this repository. See [LICENSE_SCOPE.md](LICENSE_SCOPE.md),
 
 ## Release status
 
-This tree is a local `v1.0.0-rc1` candidate. It has not been published and has
-no configured remote. The versioned release manifest records its source
-checkpoint and curated-evidence checksums.
+The `v1.0.0-rc1` tag is the first public release candidate. The versioned
+release manifest records its private source checkpoint and curated-evidence
+checksums.
