@@ -101,4 +101,5 @@ granted by this repository. See [LICENSE_SCOPE.md](LICENSE_SCOPE.md),
 
 The `v1.0.0-rc1` tag is the first public release candidate. The versioned
 release manifest records its private source checkpoint and curated-evidence
-checksums.
+checksums. Additional secret-scan and manuscript-render checks are recorded in
+[the publication QA note](release/PUBLICATION_QA.md).
