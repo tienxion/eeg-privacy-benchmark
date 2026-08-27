@@ -60,7 +60,7 @@ def _check_import_and_cli() -> None:
         capture_output=True,
         check=True,
     ).stdout.strip()
-    if version != "1.1.0":
+    if version != "1.2.0":
         raise AssertionError(f"Unexpected package version: {version}")
 
 
@@ -102,6 +102,9 @@ def main() -> None:
         "check_plan_runner_common.py",
         "check_posterior_cache_plumbing.py",
         "check_secure_aggregation_plumbing.py",
+        "check_shin2017a_nemar_loader.py",
+        "check_shin2017a_public_evidence.py",
+        "check_shin2017a_split_plumbing.py",
     ):
         _run(script)
     _check_manuscript_and_tables()

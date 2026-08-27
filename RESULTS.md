@@ -42,6 +42,25 @@ See [the v1.1 evidence index](results/v1.1/README.md) and [the Cho2017 claim
 audit](docs/V1_1_CHO2017_CLAIM_AUDIT.md). The negative privacy result does not
 prove absence of leakage or model equivalence.
 
+## v1.2 Shin2017A temporal-validation result
+
+- All 27 confirmatory subjects and 81 imagery subject-sessions passed the
+  checksum-backed, outcome-blind cache QA with zero exclusions.
+- Plain compact EEGNet passed temporal utility at mean subject balanced
+  accuracy `0.6341`, with 95% subject-bootstrap CI `[0.6008, 0.6705]`.
+- A frozen cache-only linear probe reached mean cross-session subject-ID
+  accuracy `0.3198`, or `+0.2827` above 27-subject chance. This supports only
+  detectability under the named linear threat model.
+- Compact bottleneck EEGNet (`dim=6`) reached mean subject balanced accuracy
+  `0.6137`. Paired mean loss was `0.02037`, but its one-sided 95% upper bound
+  was `0.03071` against the strict `<0.030` noninferiority rule.
+- The gate recorded **NONINFERIORITY NOT ESTABLISHED**. The preregistered stop
+  rule prevented bottleneck subject-ID promotion and membership attacks, so v1.2
+  makes no Shin2017A bottleneck privacy claim.
+
+See the [Shin2017A claim audit](docs/V1_2_SHIN2017A_CLAIM_AUDIT.md) and
+[public aggregate evidence check](scripts/check_shin2017a_public_evidence.py).
+
 ## Claim boundary
 
 No result establishes formal privacy, attack invariance, resistance to adaptive

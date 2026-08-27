@@ -1,8 +1,9 @@
 # Datasets and Data Rights
 
 This repository contains no EEG recordings. It stores only small split metadata
-and code that can access upstream datasets through MOABB/MNE. Users must review
-the current upstream terms before downloading or processing data.
+and code that can access upstream datasets through provider-specific helpers or
+MOABB/MNE. Users must review the current upstream terms before downloading or
+processing data.
 
 ## PhysioNet EEG Motor Movement/Imagery Dataset
 
@@ -57,6 +58,29 @@ The v1.1 manifest records checksums and source-shape QA, not EEG samples. Review
 the current GigaDB record terms before downloading or processing the data. The
 full confirmatory cache is approximately 10.3 GB, remains under ignored
 `raw_data/mne_data/`, and is not redistributed by this repository.
+
+## Shin2017A / NEMAR nm000267
+
+- Official record: https://nemar.org/dataset/nm000267
+- Dataset DOI: https://doi.org/10.82901/nemar.nm000267
+- Benchmark key: `shin2017a`
+- Frozen v1.2 provider/version: NEMAR `nm000267`, `v1.0.3`
+- v1.2 scope: subjects 1-2 were pilot-only; confirmatory subjects are 3-29;
+  only imagery sessions `0imagery`, `2imagery`, and `4imagery` are evaluated.
+- Citation: Shin et al. (2017), Open access dataset for EEG+NIRS single-trial
+  classification, IEEE Transactions on Neural Systems and Rehabilitation
+  Engineering, doi:10.1109/TNSRE.2016.2628057.
+
+The official record currently identifies GPL-3.0 licensing and provides the
+authoritative download/citation information. Review the current record before
+using the data. This repository includes no EEG recordings and grants no
+dataset rights.
+
+The public acquisition helper defaults to a plan and requires two separate
+flags before downloading: `--confirm-download` and
+`--accept-dataset-terms`. The latter records only the current user's
+acknowledgement; the historical project authorization is not transferable.
+Downloads remain under ignored `raw_data/mne_data/NEMAR-nm000267-v1.0.3/`.
 
 ## Local acquisition
 

@@ -1,4 +1,4 @@
-"""Dataset registry for the frozen v1 benchmark and bounded v1.1 pilots."""
+"""Dataset registry for released benchmarks and bounded extension pilots."""
 
 from __future__ import annotations
 
@@ -63,6 +63,19 @@ CHO2017 = DatasetSpec(
     ),
 )
 
+SHIN2017A = DatasetSpec(
+    key="shin2017a",
+    display_name="Shin2017A EEG Motor Imagery",
+    source_library="moabb",
+    source_id="Shin2017A",
+    sessions=3,
+    notes=(
+        "Version 1.2 temporal-generalization study using the version-pinned "
+        "NEMAR BIDS record. Acquisition requires explicit review of the upstream "
+        "license and provenance before download."
+    ),
+)
+
 DATASET_REGISTRY = {
     spec.key: spec
     for spec in (
@@ -70,5 +83,6 @@ DATASET_REGISTRY = {
         BNCI2014_001,
         LEE2019_MI,
         CHO2017,
+        SHIN2017A,
     )
 }

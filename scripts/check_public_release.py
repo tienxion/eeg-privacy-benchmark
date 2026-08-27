@@ -35,15 +35,21 @@ REQUIRED_FILES = {
     "pyproject.toml",
     "release/SHA256SUMS",
     "release/SHA256SUMS-v1.1.0",
+    "release/SHA256SUMS-v1.2.0",
     "release/V1_1_PUBLICATION_QA.md",
     "release/V1_1_RELEASE_NOTES.md",
+    "release/V1_2_PUBLICATION_QA.md",
+    "release/V1_2_RELEASE_NOTES.md",
     "release/v1.0.0-manifest.json",
     "release/v1.1.0-manifest.json",
+    "release/v1.2.0-manifest.json",
     "requirements-lock.txt",
     "results/v1/README.md",
     "results/v1/PROVENANCE.md",
     "results/v1.1/README.md",
+    "results/v1.2/README.md",
     "docs/V1_1_CHO2017_CLAIM_AUDIT.md",
+    "docs/V1_2_SHIN2017A_CLAIM_AUDIT.md",
 }
 
 ALLOWED_TOP_LEVEL = {
@@ -302,6 +308,12 @@ def _check_manifest(errors: list[str]) -> None:
         release="1.1.0",
         source_checkpoint="c737c1a",
         checksums_name="SHA256SUMS-v1.1.0",
+    )
+    _check_manifest_file(
+        errors,
+        release="1.2.0",
+        source_checkpoint="0ed3c3c",
+        checksums_name="SHA256SUMS-v1.2.0",
     )
 
 

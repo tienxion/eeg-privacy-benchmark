@@ -1,4 +1,4 @@
-name: public-v1.1-ci
+name: public-v1.2-ci
 
 on:
   push:
@@ -36,6 +36,11 @@ jobs:
         run: |
           PYTHONPATH=src python scripts/check_cho2017_validation_contract.py
           PYTHONPATH=src python scripts/check_cho2017_split_plumbing.py
+      - name: Validate Shin2017A public evidence and plumbing without data
+        run: |
+          PYTHONPATH=src python scripts/check_shin2017a_public_evidence.py
+          PYTHONPATH=src python scripts/check_shin2017a_split_plumbing.py
+          PYTHONPATH=src python scripts/check_shin2017a_nemar_loader.py
       - name: Validate public inventory, links, paths, licenses, and checksums
         run: >-
           python scripts/check_public_release.py

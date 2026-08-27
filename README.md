@@ -1,4 +1,4 @@
-# EEG Privacy Benchmark v1.1
+# EEG Privacy Benchmark v1.2
 
 A reproducible benchmark for asking a narrow question: when an EEG decoder is
 trained for left- versus right-hand motor imagery, what subject-identity and
@@ -45,6 +45,29 @@ See the [v1.1 evidence index](results/v1.1/README.md), [validation
 contract](docs/V1_1_CHO2017_VALIDATION_CONTRACT.md), and [claim
 audit](docs/V1_1_CHO2017_CLAIM_AUDIT.md).
 
+## v1.2 Shin2017A temporal validation
+
+v1.2 adds a preregistered 27-subject, three-session temporal validation using
+Shin2017A imagery sessions from NEMAR `nm000267` version `v1.0.3`. Plain compact
+EEGNet passed its temporal-utility gate at mean subject balanced accuracy
+`0.6341` (95% subject-bootstrap CI `[0.6008, 0.6705]`). A cache-only linear
+probe reached mean cross-session subject-ID accuracy `0.3198`, compared with
+27-subject chance `0.0370`, so the frozen identity-detectability prerequisite
+passed for that named threat model.
+
+The fixed compact bottleneck (`dim=6`) completed all 12 jobs at mean subject
+balanced accuracy `0.6137`. Its paired mean utility loss was `0.02037`, inside
+the frozen `0.030` margin, but the preregistered one-sided 95% upper loss bound
+was `0.03071`. Noninferiority was therefore not established under the strict
+rule, and the study stopped before bottleneck identity promotion or membership
+evaluation. This is a narrow negative temporal-transfer result, not a supported
+Shin2017A privacy-defense claim.
+
+See the [historical contract](configs/shin2017a_temporal_validation_v1.yaml),
+[aggregate evidence check](scripts/check_shin2017a_public_evidence.py), and
+[claim audit](docs/V1_2_SHIN2017A_CLAIM_AUDIT.md). The complete curated record
+is indexed under [results/v1.2](results/v1.2/README.md).
+
 ## Installation
 
 Python 3.9 or newer is supported. The exact top-level versions used for the
@@ -83,8 +106,8 @@ eeg-privacy-benchmark check-dataset-cache \
 
 No EEG recordings are included. Review [DATASETS.md](DATASETS.md) and each
 upstream dataset's current access terms before downloading. Dataset access is
-performed through MOABB/MNE only when an explicit manifest or training command
-is run. Keep all downloads under ignored `raw_data/mne_data/`.
+performed through explicit provider-specific helpers or MOABB/MNE commands.
+Keep all downloads under ignored `raw_data/mne_data/`.
 
 ## Reproduction tiers
 
@@ -107,6 +130,8 @@ is run. Keep all downloads under ignored `raw_data/mne_data/`.
 - `paper/`: venue-neutral manuscript and bibliography
 - `results/v1/`: curated aggregate evidence, figures, tables, and checksums
 - `results/v1.1/`: Cho2017 confirmatory-extension evidence index
+- `results/v1.2/`: Shin2017A temporal-validation evidence index
+- `docs/V1_2_SHIN2017A_CLAIM_AUDIT.md`: Shin2017A temporal-validation claim boundary
 
 Dataset caches, generated manifests, and run outputs are written to the ignored
 `raw_data/`, `data/manifests/`, and `outputs/` paths when required; generated
@@ -122,9 +147,10 @@ granted by this repository. See [LICENSE_SCOPE.md](LICENSE_SCOPE.md),
 ## Release status
 
 The `v1.0.0` evidence remains frozen. v1.1 adds the separate Cho2017
-confirmatory extension without revising the original BNCI, Lee, or PhysioNet
-claims. Versioned release manifests record the reviewed source boundaries and
-curated evidence checksums. Secret-scan and manuscript-render checks for v1 are
-recorded in [the v1 publication QA note](release/PUBLICATION_QA.md). The v1.1
-inventory, links, paths, licenses, commit identity, and checksums are validated
-by `scripts/check_public_release.py`.
+confirmatory extension, and v1.2 adds the stopped Shin2017A temporal validation;
+neither revises the original BNCI, Lee, or PhysioNet claims. Versioned release
+manifests record reviewed source boundaries and curated evidence checksums.
+Secret-scan and manuscript-render checks for v1 are recorded in
+[the v1 publication QA note](release/PUBLICATION_QA.md). Public inventory,
+links, paths, licenses, commit identity, and checksums are validated by
+`scripts/check_public_release.py`.

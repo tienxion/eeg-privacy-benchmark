@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "release": "1.2.0",
+  "source_checkpoint": "0ed3c3c",
+  "evidence_file_count": 9,
+  "files": [
+    {
+      "path": "configs/shin2017a_temporal_validation_v1.yaml",
+      "bytes": 7611,
+      "sha256": "1433dec449247752b46a3c9e896da33ae422534acad598442513ff116c5a5178",
+      "media_type": "application/octet-stream",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "configs/shin2017a_confirmatory_baseline_utility_gate_v1.json",
+      "bytes": 34725,
+      "sha256": "acf6bd721cd500439a5a3a2d40bb006dadc345ddd065586781d16b42e00a5f2a",
+      "media_type": "application/json",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "configs/shin2017a_confirmatory_subject_id_detectability_gate_v1.json",
+      "bytes": 16805,
+      "sha256": "bd07a86fc7d698ed57980b4dc242530e0f0b4218237a4620cb9cf80a9d8b51de",
+      "media_type": "application/json",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "configs/shin2017a_confirmatory_bottleneck_utility_gate_v1.json",
+      "bytes": 19997,
+      "sha256": "8db7708bbb2dc015d025e4b6dac0d828d2f11a336a9c42ce23a02cf8794cd440",
+      "media_type": "application/json",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docs/V1_2_SHIN2017A_BASELINE_UTILITY_GATE.md",
+      "bytes": 2215,
+      "sha256": "949f9cc4efcc1d4aaaeeef45113f86b152d770b38d43a87881c98046bc08272c",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "docs/V1_2_SHIN2017A_SUBJECT_ID_DETECTABILITY_GATE.md",
+      "bytes": 1790,
+      "sha256": "a4cf5714f293a23e9865ae0e9f0b99e6fb50d146fbcf486edfb091065aac3441",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "docs/V1_2_SHIN2017A_BOTTLENECK_UTILITY_GATE.md",
+      "bytes": 2341,
+      "sha256": "3f0a9d9e87b329dd9cc80dcaa58dabb076a603ab140206aa4aba1c8661263c56",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "docs/V1_2_SHIN2017A_CLAIM_AUDIT.md",
+      "bytes": 5184,
+      "sha256": "48201df03568f27aaf53f0c00949e36a8be322dd5157ab32dcaca2d378b43de8",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1.2/README.md",
+      "bytes": 2314,
+      "sha256": "b6b97f8d67a539d501193b5cc8ebe8f3be70fd173c4dc954789f9b171469fb65",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    }
+  ]
+}

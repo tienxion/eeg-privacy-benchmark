@@ -1,11 +1,12 @@
-# Reproducing Benchmark v1.1
+# Reproducing Benchmark v1.2
 
 ## Provenance
 
-The public release tree is derived from development checkpoint
-`5dee43de85a2b4011fc97581efcf65f35fa5a4aa`. Curated evidence is versioned under
-`results/v1/` and covered by `release/v1.0.0-manifest.json` plus
-`release/SHA256SUMS`.
+The frozen v1 core is derived from development checkpoint
+`5dee43de85a2b4011fc97581efcf65f35fa5a4aa`; the v1.1 and v1.2 scientific
+source checkpoints are `c737c1a` and `0ed3c3c`. Curated evidence is separated
+under `results/v1/`, `results/v1.1/`, and `results/v1.2/`, with a versioned
+manifest and checksum file for each release.
 
 ## No-download validation
 
@@ -73,3 +74,34 @@ For Cho2017, both utility gates passed, but the three-family membership gate did
 not. Reproducing a favorable individual attack row does not override the tracked
 `NO_PROMOTION` decision in
 `configs/cho2017_confirmatory_privacy_gate_v1.json`.
+
+## Shin2017A v1.2 historical evidence
+
+The committed v1.2 contract and aggregate gate artifacts can be checked without
+EEG data, downloads, model training, or privacy-probe fitting:
+
+```bash
+PYTHONPATH=src python scripts/check_shin2017a_public_evidence.py
+PYTHONPATH=src python scripts/check_shin2017a_split_plumbing.py
+PYTHONPATH=src python scripts/check_shin2017a_nemar_loader.py
+```
+
+The contract is a historical execution record. Its project-owner acceptance
+fields do not accept the NEMAR terms for another user. Before downloading,
+review https://nemar.org/dataset/nm000267 and inspect the bounded plan:
+
+```bash
+PYTHONPATH=src python scripts/acquire_shin2017a_nemar.py
+```
+
+Actual acquisition requires both explicit flags:
+
+```bash
+PYTHONPATH=src python scripts/acquire_shin2017a_nemar.py \
+  --confirmatory --confirm-download --accept-dataset-terms
+```
+
+This command writes only to the ignored local cache and performs no model
+training. The public v1.2 release preserves aggregate evidence and no-download
+plumbing; internal authorization records and local feature/result caches are
+not release artifacts.

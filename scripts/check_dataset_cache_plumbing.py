@@ -3,7 +3,10 @@ from __future__ import annotations
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from eeg_privacy_benchmark.datasets.cache_status import inspect_dataset_cache
+from eeg_privacy_benchmark.datasets.cache_status import (
+    expected_dataset_relative_paths,
+    inspect_dataset_cache,
+)
 
 
 def _touch(root: Path, relative_paths: list[str]) -> None:
@@ -108,6 +111,36 @@ def main() -> None:
             (
                 "cho_missing_file_detected",
                 status.present_files == 1 and status.missing_files == 1,
+            )
+        )
+
+        shin_root = root / "NEMAR-nm000267-v1.0.3"
+        shin_paths = expected_dataset_relative_paths("shin2017a", [1])
+        _touch(shin_root, [str(path) for path in shin_paths])
+        status = inspect_dataset_cache(
+            dataset_key="shin2017a",
+            cache_dir=root,
+            subjects=[1],
+        )
+        checks.append(
+            (
+                "shin_cache_contract",
+                status.complete
+                and status.expected_files == 37
+                and status.cache_root.endswith("NEMAR-nm000267-v1.0.3"),
+            )
+        )
+
+        (shin_root / shin_paths[-1]).unlink()
+        status = inspect_dataset_cache(
+            dataset_key="shin2017a",
+            cache_dir=root,
+            subjects=[1],
+        )
+        checks.append(
+            (
+                "shin_missing_file_detected",
+                status.present_files == 36 and status.missing_files == 1,
             )
         )
 

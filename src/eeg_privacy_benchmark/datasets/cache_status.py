@@ -58,7 +58,19 @@ def _cache_root(cache_dir: str | Path, dataset_key: str) -> Path:
         return root / "MNE-lee2019-mi-data"
     if dataset_key == "cho2017":
         return root / "MNE-gigadb-data"
+    if dataset_key == "shin2017a":
+        return root / "NEMAR-nm000267-v1.0.3"
+
     raise ValueError(f"Unsupported dataset cache inspection target: {dataset_key}")
+
+
+def expected_dataset_relative_paths(
+    dataset_key: str,
+    subjects: list[int],
+) -> tuple[Path, ...]:
+    """Return the frozen cache inventory for an explicit subject list."""
+
+    return tuple(_expected_relative_paths(dataset_key, sorted(subjects)))
 
 
 def _expected_relative_paths(dataset_key: str, subjects: list[int]) -> list[Path]:
@@ -99,6 +111,38 @@ def _expected_relative_paths(dataset_key: str, subjects: list[int]) -> list[Path
                 Path("gigadb-datasets/live/pub/10.5524/100001_101000/100295/mat_data")
                 / f"s{subject:02d}.mat"
             )
+        return relative_paths
+
+    if dataset_key == "shin2017a":
+        relative_paths.extend(
+            (
+                Path("README.md"),
+                Path("dataset_description.json"),
+                Path("participants.json"),
+                Path("participants.tsv"),
+            )
+        )
+        for subject in subjects:
+            for session in ("0imagery", "2imagery", "4imagery"):
+                session_dir = Path(f"sub-{subject}") / f"ses-{session}"
+                eeg_dir = session_dir / "eeg"
+                prefix = f"sub-{subject}_ses-{session}"
+                task_prefix = f"{prefix}_task-imagery_run-0"
+                relative_paths.extend(
+                    (
+                        eeg_dir / f"{prefix}_space-CapTrak_coordsystem.json",
+                        eeg_dir / f"{prefix}_space-CapTrak_electrodes.json",
+                        eeg_dir / f"{prefix}_space-CapTrak_electrodes.tsv",
+                        eeg_dir / f"{task_prefix}_channels.json",
+                        eeg_dir / f"{task_prefix}_channels.tsv",
+                        eeg_dir / f"{task_prefix}_eeg.bdf",
+                        eeg_dir / f"{task_prefix}_eeg.json",
+                        eeg_dir / f"{task_prefix}_events.json",
+                        eeg_dir / f"{task_prefix}_events.tsv",
+                        session_dir / f"{prefix}_scans.json",
+                        session_dir / f"{prefix}_scans.tsv",
+                    )
+                )
         return relative_paths
 
     raise ValueError(f"Unsupported dataset cache inspection target: {dataset_key}")
