@@ -34,4 +34,7 @@ jobs:
           PYTHONPATH=src python scripts/check_cho2017_validation_contract.py
           PYTHONPATH=src python scripts/check_cho2017_split_plumbing.py
       - name: Validate public inventory, links, paths, licenses, and checksums
-        run: python scripts/check_public_release.py --allow-remote origin
+        run: >-
+          python scripts/check_public_release.py
+          --allow-remote origin
+          --identity-ref "${{ github.event.pull_request.head.sha || github.sha }}"

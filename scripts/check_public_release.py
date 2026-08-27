@@ -305,7 +305,9 @@ def _check_manifest(errors: list[str]) -> None:
     )
 
 
-def _check_git(errors: list[str], allowed_remotes: set[str]) -> None:
+def _check_git(
+    errors: list[str], allowed_remotes: set[str], identity_ref: str
+) -> None:
     if not (ROOT / ".git").exists():
         errors.append("candidate is not a Git repository")
         return
@@ -314,10 +316,11 @@ def _check_git(errors: list[str], allowed_remotes: set[str]) -> None:
     unexpected = remotes - allowed_remotes
     if unexpected:
         errors.append(f"unexpected Git remotes: {', '.join(sorted(unexpected))}")
-    commits = _run_git("rev-list", "HEAD")
+    commits = _run_git("rev-list", identity_ref)
     if commits.returncode != 0 or not commits.stdout.strip():
+        errors.append(f"could not resolve identity history: {identity_ref}")
         return
-    identities = _run_git("log", "HEAD", "--format=%an%x09%ae")
+    identities = _run_git("log", identity_ref, "--format=%an%x09%ae")
     for line in identities.stdout.splitlines():
         name, email = line.split("\t", 1)
         if name != APPROVED_NAME or email != APPROVED_EMAIL:
@@ -332,6 +335,11 @@ def parse_args() -> argparse.Namespace:
         default=[],
         help="Allow a named remote, intended only for CI clones.",
     )
+    parser.add_argument(
+        "--identity-ref",
+        default="HEAD",
+        help="Git ref whose reachable commit identities must be approved.",
+    )
     return parser.parse_args()
 
 
@@ -342,7 +350,7 @@ def main() -> None:
     _check_paths_and_contents(errors)
     _check_markdown_links(errors)
     _check_manifest(errors)
-    _check_git(errors, set(args.allow_remote))
+    _check_git(errors, set(args.allow_remote), args.identity_ref)
     if errors:
         for error in errors:
             print(f"FAIL {error}")
