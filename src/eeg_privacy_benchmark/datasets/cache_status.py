@@ -56,6 +56,8 @@ def _cache_root(cache_dir: str | Path, dataset_key: str) -> Path:
         return root / "MNE-eegbci-data"
     if dataset_key == "lee2019_mi":
         return root / "MNE-lee2019-mi-data"
+    if dataset_key == "cho2017":
+        return root / "MNE-gigadb-data"
     raise ValueError(f"Unsupported dataset cache inspection target: {dataset_key}")
 
 
@@ -89,6 +91,14 @@ def _expected_relative_paths(dataset_key: str, subjects: list[int]) -> list[Path
                     / f"s{subject}"
                     / f"sess{session:02d}_subj{subject:02d}_EEG_MI.mat"
                 )
+        return relative_paths
+
+    if dataset_key == "cho2017":
+        for subject in subjects:
+            relative_paths.append(
+                Path("gigadb-datasets/live/pub/10.5524/100001_101000/100295/mat_data")
+                / f"s{subject:02d}.mat"
+            )
         return relative_paths
 
     raise ValueError(f"Unsupported dataset cache inspection target: {dataset_key}")

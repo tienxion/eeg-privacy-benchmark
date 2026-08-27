@@ -1,4 +1,4 @@
-"""Frozen dataset registry for benchmark version 1."""
+"""Dataset registry for the frozen v1 benchmark and bounded v1.1 pilots."""
 
 from __future__ import annotations
 
@@ -51,11 +51,24 @@ LEE2019_MI = DatasetSpec(
     ),
 )
 
+CHO2017 = DatasetSpec(
+    key="cho2017",
+    display_name="Cho2017 Motor Imagery",
+    source_library="moabb",
+    source_id="Cho2017",
+    sessions=1,
+    notes=(
+        "Version 1.1 integration pilot only. Restrict trials to left-hand and "
+        "right-hand imagery and do not use pilot metrics to change benchmark claims."
+    ),
+)
+
 DATASET_REGISTRY = {
     spec.key: spec
     for spec in (
         PHYSIONET_MOTOR_IMAGERY,
         BNCI2014_001,
         LEE2019_MI,
+        CHO2017,
     )
 }

@@ -78,6 +78,39 @@ def main() -> None:
         )
         checks.append(("lee_cache_contract", status.complete))
 
+        cho_root = (
+            root
+            / "MNE-gigadb-data/gigadb-datasets/live/pub/"
+            "10.5524/100001_101000/100295/mat_data"
+        )
+        _touch(cho_root, ["s01.mat", "s02.mat"])
+        status = inspect_dataset_cache(
+            dataset_key="cho2017",
+            cache_dir=root,
+            subjects=[1, 2],
+        )
+        checks.append(
+            (
+                "cho_cache_contract",
+                status.complete
+                and status.expected_files == 2
+                and status.cache_root.endswith("MNE-gigadb-data"),
+            )
+        )
+
+        (cho_root / "s02.mat").unlink()
+        status = inspect_dataset_cache(
+            dataset_key="cho2017",
+            cache_dir=root,
+            subjects=[1, 2],
+        )
+        checks.append(
+            (
+                "cho_missing_file_detected",
+                status.present_files == 1 and status.missing_files == 1,
+            )
+        )
+
     for name, passed in checks:
         print(f"{name}: {'PASS' if passed else 'FAIL'}")
     passed_count = sum(passed for _, passed in checks)

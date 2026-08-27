@@ -34,10 +34,16 @@ REQUIRED_FILES = {
     "paper/references.bib",
     "pyproject.toml",
     "release/SHA256SUMS",
+    "release/SHA256SUMS-v1.1.0",
+    "release/V1_1_PUBLICATION_QA.md",
+    "release/V1_1_RELEASE_NOTES.md",
     "release/v1.0.0-manifest.json",
+    "release/v1.1.0-manifest.json",
     "requirements-lock.txt",
     "results/v1/README.md",
     "results/v1/PROVENANCE.md",
+    "results/v1.1/README.md",
+    "docs/V1_1_CHO2017_CLAIM_AUDIT.md",
 }
 
 ALLOWED_TOP_LEVEL = {
@@ -57,6 +63,7 @@ ALLOWED_TOP_LEVEL = {
     "SECURITY.md",
     "configs",
     "data",
+    "docs",
     "paper",
     "pyproject.toml",
     "release",
@@ -233,20 +240,37 @@ def _check_markdown_links(errors: list[str]) -> None:
                 errors.append(f"broken link: {path.relative_to(ROOT)} -> {target}")
 
 
-def _check_manifest(errors: list[str]) -> None:
-    manifest_path = ROOT / "release" / "v1.0.0-manifest.json"
-    checksums_path = ROOT / "release" / "SHA256SUMS"
+def _check_manifest_file(
+    errors: list[str],
+    *,
+    release: str,
+    source_checkpoint: str,
+    checksums_name: str,
+) -> None:
+    manifest_path = ROOT / "release" / f"v{release}-manifest.json"
+    checksums_path = ROOT / "release" / checksums_name
     if not manifest_path.exists():
         return
     payload = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if payload.get("release") != "1.0.0":
-        errors.append("release manifest version is not 1.0.0")
-    if payload.get("source_checkpoint") != "5dee43de85a2b4011fc97581efcf65f35fa5a4aa":
-        errors.append("release manifest source checkpoint mismatch")
+    if payload.get("release") != release:
+        errors.append(f"release manifest version is not {release}")
+    if payload.get("source_checkpoint") != source_checkpoint:
+        errors.append(f"release {release} manifest source checkpoint mismatch")
     entries = payload.get("files", [])
     if payload.get("evidence_file_count") != len(entries):
         errors.append("release manifest evidence count mismatch")
     for entry in entries:
+        relative = Path(entry["path"])
+        expected_license = (
+            "CC-BY-4.0"
+            if relative.parts[0] in {"paper", "results", "docs"}
+            else "Apache-2.0"
+        )
+        if entry.get("license") != expected_license:
+            errors.append(
+                f"manifest license mismatch: {entry['path']} "
+                f"(expected {expected_license})"
+            )
         path = ROOT / entry["path"]
         if not path.exists():
             errors.append(f"manifest file missing: {entry['path']}")
@@ -261,7 +285,24 @@ def _check_manifest(errors: list[str]) -> None:
         )
         actual = checksums_path.read_text(encoding="utf-8").splitlines()
         if actual != expected:
-            errors.append("SHA256SUMS does not exactly match the release manifest")
+            errors.append(
+                f"{checksums_name} does not exactly match the release manifest"
+            )
+
+
+def _check_manifest(errors: list[str]) -> None:
+    _check_manifest_file(
+        errors,
+        release="1.0.0",
+        source_checkpoint="5dee43de85a2b4011fc97581efcf65f35fa5a4aa",
+        checksums_name="SHA256SUMS",
+    )
+    _check_manifest_file(
+        errors,
+        release="1.1.0",
+        source_checkpoint="c737c1a",
+        checksums_name="SHA256SUMS-v1.1.0",
+    )
 
 
 def _check_git(errors: list[str], allowed_remotes: set[str]) -> None:
@@ -273,10 +314,10 @@ def _check_git(errors: list[str], allowed_remotes: set[str]) -> None:
     unexpected = remotes - allowed_remotes
     if unexpected:
         errors.append(f"unexpected Git remotes: {', '.join(sorted(unexpected))}")
-    commits = _run_git("rev-list", "--all")
+    commits = _run_git("rev-list", "HEAD")
     if commits.returncode != 0 or not commits.stdout.strip():
         return
-    identities = _run_git("log", "--all", "--format=%an%x09%ae")
+    identities = _run_git("log", "HEAD", "--format=%an%x09%ae")
     for line in identities.stdout.splitlines():
         name, email = line.split("\t", 1)
         if name != APPROVED_NAME or email != APPROVED_EMAIL:

@@ -1,4 +1,4 @@
-# Reproducing Benchmark v1
+# Reproducing Benchmark v1.1
 
 ## Provenance
 
@@ -25,6 +25,25 @@ Read `DATASETS.md`, create `raw_data/mne_data/`, then run
 `check-dataset-cache`. `build-manifest` may download missing files and must be an
 explicit user action. Frozen split examples are under `data/splits/`.
 
+The Cho2017 v1.1 contract and split plumbing can be checked without EEG data:
+
+```bash
+PYTHONPATH=src python scripts/check_cho2017_validation_contract.py
+PYTHONPATH=src python scripts/check_cho2017_split_plumbing.py
+```
+
+Inspect the confirmatory acquisition plan before downloading:
+
+```bash
+PYTHONPATH=src python scripts/acquire_cho2017_confirmatory_cache.py
+```
+
+Actual acquisition requires `--confirm-download`, can require approximately
+10.3 GB, and writes only to ignored local cache paths. The model and attack
+runners default to dry runs and require `--confirm-run`; use `--max-jobs 1` for
+bounded first execution. The complete sequence and stop rules are frozen in
+`docs/V1_1_CHO2017_VALIDATION_CONTRACT.md`.
+
 ## Training and attack reproduction
 
 The root CLI runs individual baselines, defenses, privacy attacks, and sweeps.
@@ -49,3 +68,8 @@ Always apply the utility gate before interpreting privacy deltas. In particular,
 the PhysioNet federated result is diagnostic because mean task balanced accuracy
 is 0.5185, below the frozen 0.60 gate. The secure-aggregation result establishes
 functional equivalence and measured local overhead only.
+
+For Cho2017, both utility gates passed, but the three-family membership gate did
+not. Reproducing a favorable individual attack row does not override the tracked
+`NO_PROMOTION` decision in
+`configs/cho2017_confirmatory_privacy_gate_v1.json`.

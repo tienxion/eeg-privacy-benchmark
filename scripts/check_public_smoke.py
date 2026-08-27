@@ -60,7 +60,7 @@ def _check_import_and_cli() -> None:
         capture_output=True,
         check=True,
     ).stdout.strip()
-    if version != "1.0.0":
+    if version != "1.1.0":
         raise AssertionError(f"Unexpected package version: {version}")
 
 

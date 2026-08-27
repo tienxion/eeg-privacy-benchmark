@@ -1,4 +1,4 @@
-name: public-v1-ci
+name: public-v1.1-ci
 
 on:
   push:
@@ -29,5 +29,9 @@ jobs:
         run: git diff --check
       - name: Compile, import, parse configs, and run no-download smoke
         run: python scripts/check_public_smoke.py
+      - name: Validate Cho2017 contract and split plumbing without data
+        run: |
+          PYTHONPATH=src python scripts/check_cho2017_validation_contract.py
+          PYTHONPATH=src python scripts/check_cho2017_split_plumbing.py
       - name: Validate public inventory, links, paths, licenses, and checksums
         run: python scripts/check_public_release.py --allow-remote origin

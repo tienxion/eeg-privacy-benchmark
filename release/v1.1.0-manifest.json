@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "release": "1.1.0",
+  "source_checkpoint": "c737c1a",
+  "evidence_file_count": 12,
+  "files": [
+    {
+      "path": "configs/cho2017_confirmatory_validation_v1.yaml",
+      "bytes": 5965,
+      "sha256": "e2fba8919211a2b88db3979b5bace08e902e319c13900086506502be36a62aea",
+      "media_type": "application/octet-stream",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "configs/cho2017_confirmatory_cache_manifest_v1.json",
+      "bytes": 43890,
+      "sha256": "d22683ff493e69ad5ec74a914974621d0ce7406c48b16ab652361d5a1a348f54",
+      "media_type": "application/json",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "configs/cho2017_confirmatory_baseline_gate_v1.json",
+      "bytes": 46200,
+      "sha256": "f142495aa4ae2ba81e848b9af6b276b6e57805b44750224a006d1e96b781771c",
+      "media_type": "application/json",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "configs/cho2017_confirmatory_bottleneck_gate_v1.json",
+      "bytes": 29326,
+      "sha256": "b76a1fa7f856a72b5e440c4a906b0fe60e471164c45b6814257b6076f8003b18",
+      "media_type": "application/json",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "configs/cho2017_confirmatory_privacy_gate_v1.json",
+      "bytes": 80110,
+      "sha256": "79589f90632135fc0fc5326860917352ce9a1d3153a9c1e971994103a72531bf",
+      "media_type": "application/json",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docs/V1_1_CHO2017_VALIDATION_CONTRACT.md",
+      "bytes": 5871,
+      "sha256": "9e204585152874ab715b9c5e3c71d3521f6e15de82e3e64038af8ad030a4fb79",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "docs/V1_1_CHO2017_CACHE_QA.md",
+      "bytes": 2605,
+      "sha256": "92acf51b84a173099daf0c42bae80918854b0617c133305846594fda6c4c652a",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "docs/V1_1_CHO2017_BASELINE_GATE.md",
+      "bytes": 2146,
+      "sha256": "fc48702b30e335646203b4e019ec815e4d9b56f1efd3d631bfa05442ede0e819",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "docs/V1_1_CHO2017_BOTTLENECK_GATE.md",
+      "bytes": 2351,
+      "sha256": "ee7511b45d25f1d83d813071b4f530a066c4c332d40f9faf65d50bc981e11582",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "docs/V1_1_CHO2017_PRIVACY_GATE.md",
+      "bytes": 2789,
+      "sha256": "8bc3011dac4a70edc7a468d3697736daea4a63d7718e5d2941f1398d1ae76c1a",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "docs/V1_1_CHO2017_CLAIM_AUDIT.md",
+      "bytes": 4291,
+      "sha256": "65e3f2cb1febf344ef2e4ccf8513bb22df7ed8bcaa533310b9f1150c21f7ce34",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "results/v1.1/README.md",
+      "bytes": 1736,
+      "sha256": "429b4301be160e1ae079c9f56f37751a962070a1eb1c6850092ba5d49a43b619",
+      "media_type": "application/octet-stream",
+      "license": "CC-BY-4.0"
+    }
+  ]
+}

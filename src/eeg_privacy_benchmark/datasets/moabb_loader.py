@@ -71,6 +71,8 @@ class MOABBDatasetLoader:
 
     dataset_key: str
     resample_hz: float | None = None
+    frequency_band_hz: tuple[float, float] | None = None
+    epoch_seconds: tuple[float, float] | None = None
 
     @property
     def dataset_spec(self) -> DatasetSpec:
@@ -107,7 +109,14 @@ class MOABBDatasetLoader:
 
         dataset = self.instantiate_dataset()
         LeftRightImagery = _import_left_right_paradigm()
-        paradigm = LeftRightImagery(resample=self.resample_hz)
+        paradigm_kwargs: dict[str, Any] = {"resample": self.resample_hz}
+        if self.frequency_band_hz is not None:
+            paradigm_kwargs["fmin"] = self.frequency_band_hz[0]
+            paradigm_kwargs["fmax"] = self.frequency_band_hz[1]
+        if self.epoch_seconds is not None:
+            paradigm_kwargs["tmin"] = self.epoch_seconds[0]
+            paradigm_kwargs["tmax"] = self.epoch_seconds[1]
+        paradigm = LeftRightImagery(**paradigm_kwargs)
         with warnings.catch_warnings():
             warnings.filterwarnings(
                 "ignore",
@@ -123,4 +132,7 @@ class MOABBDatasetLoader:
             features=features,
             labels=labels,
             trial_records=_build_trial_records(self.dataset_key, labels, metadata),
+            resample_hz=self.resample_hz,
+            frequency_band_hz=self.frequency_band_hz,
+            epoch_seconds=self.epoch_seconds,
         )

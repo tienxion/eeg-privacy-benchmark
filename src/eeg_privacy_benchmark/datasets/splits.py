@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from random import Random
+from typing import Iterable
 
 from eeg_privacy_benchmark.datasets.base import DatasetManifest, TrialRecord
 
@@ -25,6 +26,77 @@ class SplitManifest:
     seed: int
     subject_ids: tuple[str, ...]
     assignments: tuple[SplitAssignment, ...]
+
+
+@dataclass(frozen=True)
+class ExplicitTrialSplit:
+    """Exact model-facing trial roles for a preregistered evaluation."""
+
+    protocol: str
+    train_trial_ids: tuple[str, ...]
+    validation_trial_ids: tuple[str, ...]
+    test_trial_ids: tuple[str, ...]
+    nonmember_trial_ids: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class ResolvedExplicitTrialSplit:
+    """Array indices aligned to an explicit trial split."""
+
+    train_indices: tuple[int, ...]
+    validation_indices: tuple[int, ...]
+    test_indices: tuple[int, ...]
+    nonmember_indices: tuple[int, ...]
+
+
+def resolve_explicit_trial_split(
+    trial_records: Iterable[TrialRecord],
+    split: ExplicitTrialSplit,
+) -> ResolvedExplicitTrialSplit:
+    """Resolve exact trial IDs to aligned indices with strict leakage guards."""
+
+    records = tuple(trial_records)
+    record_ids = [record.trial_id for record in records]
+    if len(set(record_ids)) != len(record_ids):
+        raise ValueError("trial records contain duplicate trial IDs")
+
+    role_ids = {
+        "train": tuple(split.train_trial_ids),
+        "validation": tuple(split.validation_trial_ids),
+        "test": tuple(split.test_trial_ids),
+        "nonmember": tuple(split.nonmember_trial_ids),
+    }
+    if any(not role_ids[name] for name in ("train", "validation", "test")):
+        raise ValueError("explicit train, validation, and test roles must be non-empty")
+    if any(len(set(ids)) != len(ids) for ids in role_ids.values()):
+        raise ValueError("an explicit trial role contains duplicate IDs")
+
+    train_ids = set(role_ids["train"])
+    validation_ids = set(role_ids["validation"])
+    test_ids = set(role_ids["test"])
+    nonmember_ids = set(role_ids["nonmember"])
+    all_roles = (train_ids, validation_ids, test_ids, nonmember_ids)
+    if any(
+        left & right
+        for index, left in enumerate(all_roles)
+        for right in all_roles[index + 1 :]
+    ):
+        raise ValueError("explicit trial roles must be disjoint")
+    missing = (train_ids | validation_ids | test_ids | nonmember_ids) - set(record_ids)
+    if missing:
+        raise ValueError(f"explicit trial split references {len(missing)} unknown IDs")
+
+    index_by_id = {trial_id: index for index, trial_id in enumerate(record_ids)}
+    return ResolvedExplicitTrialSplit(
+        train_indices=tuple(sorted(index_by_id[trial_id] for trial_id in train_ids)),
+        validation_indices=tuple(
+            sorted(index_by_id[trial_id] for trial_id in validation_ids)
+        ),
+        test_indices=tuple(sorted(index_by_id[trial_id] for trial_id in test_ids)),
+        nonmember_indices=tuple(
+            sorted(index_by_id[trial_id] for trial_id in nonmember_ids)
+        ),
+    )
 
 
 def _group_trials_by_subject(

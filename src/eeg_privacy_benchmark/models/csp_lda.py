@@ -4,12 +4,17 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 
-from eeg_privacy_benchmark.datasets.base import DatasetManifest
+from eeg_privacy_benchmark.datasets.base import (
+    DatasetManifest,
+    validate_loaded_array_dataset,
+)
 from eeg_privacy_benchmark.datasets.factory import build_dataset_loader
 from eeg_privacy_benchmark.datasets.splits import (
+    ExplicitTrialSplit,
     generate_cross_run_split,
     generate_cross_session_split,
     generate_cross_subject_split,
+    resolve_explicit_trial_split,
 )
 
 
@@ -71,12 +76,32 @@ def fit_csp_lda(
     seed: int,
     subjects: list[int] | None = None,
     n_components: int = 8,
+    frequency_band_hz: tuple[float, float] | None = None,
+    epoch_seconds: tuple[float, float] | None = None,
+    explicit_trial_split: ExplicitTrialSplit | None = None,
+    loaded_dataset=None,
 ) -> CSPTrainingArtifacts:
     """Fit the CSP+LDA baseline and return the trained pipeline plus metadata."""
 
     deps = _import_model_dependencies()
-    loader = build_dataset_loader(dataset_key)
-    loaded = loader.load_array_data(subjects=subjects)
+    loader = build_dataset_loader(
+        dataset_key,
+        frequency_band_hz=frequency_band_hz,
+        epoch_seconds=epoch_seconds,
+    )
+    loaded = (
+        loaded_dataset
+        if loaded_dataset is not None
+        else loader.load_array_data(subjects=subjects)
+    )
+    validate_loaded_array_dataset(
+        loaded,
+        dataset_key=dataset_key,
+        subjects=subjects,
+        resample_hz=None,
+        frequency_band_hz=frequency_band_hz,
+        epoch_seconds=epoch_seconds,
+    )
     manifest = DatasetManifest(
         dataset_key=dataset_key,
         trial_records=loaded.trial_records,
@@ -84,30 +109,43 @@ def fit_csp_lda(
         notes=loader.dataset_spec.notes,
     )
 
-    if protocol == "cross_subject":
-        split_manifest = generate_cross_subject_split(manifest, seed=seed)
-    elif protocol == "cross_session":
-        split_manifest = generate_cross_session_split(manifest, seed=seed)
-    elif protocol == "cross_run":
-        split_manifest = generate_cross_run_split(manifest, seed=seed)
+    if explicit_trial_split is not None:
+        if protocol != explicit_trial_split.protocol:
+            raise ValueError("protocol must match the explicit trial split")
+        resolved_split = resolve_explicit_trial_split(
+            loaded.trial_records,
+            explicit_trial_split,
+        )
+        train_indices = list(resolved_split.train_indices)
+        test_indices = list(resolved_split.test_indices)
     else:
-        raise ValueError(f"Unsupported protocol for CSP+LDA baseline: {protocol}")
+        if protocol == "cross_subject":
+            split_manifest = generate_cross_subject_split(manifest, seed=seed)
+        elif protocol == "cross_session":
+            split_manifest = generate_cross_session_split(manifest, seed=seed)
+        elif protocol == "cross_run":
+            split_manifest = generate_cross_run_split(manifest, seed=seed)
+        else:
+            raise ValueError(f"Unsupported protocol for CSP+LDA baseline: {protocol}")
 
-    split_lookup = {
-        assignment.trial_id: assignment.split for assignment in split_manifest.assignments
-    }
-    train_indices = [
-        index
-        for index, record in enumerate(loaded.trial_records)
-        if split_lookup[record.trial_id] == "train"
-    ]
-    test_indices = [
-        index
-        for index, record in enumerate(loaded.trial_records)
-        if split_lookup[record.trial_id] == "test"
-    ]
-    if not train_indices or not test_indices:
-        raise ValueError(f"Protocol {protocol} did not produce both train and test trials.")
+        split_lookup = {
+            assignment.trial_id: assignment.split
+            for assignment in split_manifest.assignments
+        }
+        train_indices = [
+            index
+            for index, record in enumerate(loaded.trial_records)
+            if split_lookup[record.trial_id] == "train"
+        ]
+        test_indices = [
+            index
+            for index, record in enumerate(loaded.trial_records)
+            if split_lookup[record.trial_id] == "test"
+        ]
+        if not train_indices or not test_indices:
+            raise ValueError(
+                f"Protocol {protocol} did not produce both train and test trials."
+            )
 
     label_encoder = deps["LabelEncoder"]()
     encoded_labels = label_encoder.fit_transform(loaded.labels)
@@ -157,6 +195,10 @@ def run_csp_lda(
     seed: int,
     subjects: list[int] | None = None,
     n_components: int = 8,
+    frequency_band_hz: tuple[float, float] | None = None,
+    epoch_seconds: tuple[float, float] | None = None,
+    explicit_trial_split: ExplicitTrialSplit | None = None,
+    loaded_dataset=None,
 ) -> BaselineResult:
     """Train and evaluate the CSP+LDA baseline on one dataset/protocol."""
 
@@ -166,4 +208,8 @@ def run_csp_lda(
         seed=seed,
         subjects=subjects,
         n_components=n_components,
+        frequency_band_hz=frequency_band_hz,
+        epoch_seconds=epoch_seconds,
+        explicit_trial_split=explicit_trial_split,
+        loaded_dataset=loaded_dataset,
     ).result

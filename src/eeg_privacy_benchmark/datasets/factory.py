@@ -8,7 +8,11 @@ from eeg_privacy_benchmark.datasets.registry import DATASET_REGISTRY
 
 
 def build_dataset_loader(
-    dataset_key: str, *, resample_hz: float | None = None
+    dataset_key: str,
+    *,
+    resample_hz: float | None = None,
+    frequency_band_hz: tuple[float, float] | None = None,
+    epoch_seconds: tuple[float, float] | None = None,
 ) -> EEGDatasetLoader:
     """Construct the benchmark loader for a dataset key."""
 
@@ -19,4 +23,9 @@ def build_dataset_loader(
         raise ValueError(
             f"Unsupported source library {spec.source_library} for {dataset_key}."
         )
-    return MOABBDatasetLoader(dataset_key=dataset_key, resample_hz=resample_hz)
+    return MOABBDatasetLoader(
+        dataset_key=dataset_key,
+        resample_hz=resample_hz,
+        frequency_band_hz=frequency_band_hz,
+        epoch_seconds=epoch_seconds,
+    )

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from dataclasses import asdict, dataclass, replace
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from eeg_privacy_benchmark.models import (
     fit_bottleneck_eegnet,
@@ -20,6 +21,9 @@ from eeg_privacy_benchmark.models.eegnet import (
 )
 from eeg_privacy_benchmark.models.eegnet_adversarial import fit_adversarial_eegnet
 from eeg_privacy_benchmark.models.eegnet_federated import fit_federated_eegnet
+
+if TYPE_CHECKING:
+    from eeg_privacy_benchmark.cho2017_validation import AttackerSubjectPartition
 
 
 def _import_attack_dependencies():
@@ -89,9 +93,15 @@ class MembershipInferenceResult:
     federated_local_epochs: int | None = None
     federated_clients: int | None = None
     estimated_communication_bytes: int | None = None
+    attacker_training_subjects: list[int] | None = None
+    attacker_evaluation_subjects: list[int] | None = None
 
-    def to_dict(self) -> dict[str, float | int | str | None]:
-        return asdict(self)
+    def to_dict(self) -> dict[str, object]:
+        payload = asdict(self)
+        if self.attacker_training_subjects is None:
+            payload.pop("attacker_training_subjects")
+            payload.pop("attacker_evaluation_subjects")
+        return payload
 
 
 @dataclass(frozen=True)
@@ -126,6 +136,25 @@ class PosteriorFeatureCache:
     federated_local_epochs: int | None = None
     federated_clients: int | None = None
     estimated_communication_bytes: int | None = None
+    trial_subject_ids: list[str] | None = None
+    attacker_training_subjects: list[int] | None = None
+    attacker_evaluation_subjects: list[int] | None = None
+
+
+@dataclass(frozen=True)
+class _AttackIndexPartition:
+    member_training_indices: list[int]
+    nonmember_training_indices: list[int]
+    member_evaluation_indices: list[int]
+    nonmember_evaluation_indices: list[int]
+
+
+@dataclass(frozen=True)
+class _AttackEvaluationDetails:
+    evaluation_indices: list[int]
+    evaluation_labels: object
+    evaluation_scores: object
+    decision_threshold: float
 
 
 def _posterior_cache_metadata(cache: PosteriorFeatureCache) -> dict:
@@ -134,7 +163,18 @@ def _posterior_cache_metadata(cache: PosteriorFeatureCache) -> dict:
     metadata.pop("encoded_labels")
     metadata.pop("member_indices")
     metadata.pop("nonmember_indices")
-    metadata["cache_schema_version"] = 1
+    partition_values = (
+        cache.trial_subject_ids,
+        cache.attacker_training_subjects,
+        cache.attacker_evaluation_subjects,
+    )
+    if not any(value is not None for value in partition_values):
+        metadata.pop("trial_subject_ids")
+        metadata.pop("attacker_training_subjects")
+        metadata.pop("attacker_evaluation_subjects")
+        metadata["cache_schema_version"] = 1
+    else:
+        metadata["cache_schema_version"] = 2
     return metadata
 
 
@@ -164,6 +204,58 @@ def _validate_posterior_cache_metadata(metadata: dict) -> None:
         ):
             raise ValueError(
                 "Posterior cache metadata subjects must be null or a list of integers."
+            )
+    trial_subject_ids = metadata.get("trial_subject_ids")
+    if trial_subject_ids is not None and (
+        not isinstance(trial_subject_ids, list)
+        or not all(
+            isinstance(subject_id, str) and subject_id
+            for subject_id in trial_subject_ids
+        )
+    ):
+        raise ValueError(
+            "Posterior cache metadata trial_subject_ids must be null or a list "
+            "of non-empty strings."
+        )
+    attacker_training = metadata.get("attacker_training_subjects")
+    attacker_evaluation = metadata.get("attacker_evaluation_subjects")
+    if (attacker_training is None) != (attacker_evaluation is None):
+        raise ValueError(
+            "Posterior cache attacker subject partitions must be supplied together."
+        )
+    if trial_subject_ids is not None and attacker_training is None:
+        raise ValueError(
+            "Posterior cache trial_subject_ids require attacker subject partitions."
+        )
+    if attacker_training is not None:
+        for field, values in [
+            ("attacker_training_subjects", attacker_training),
+            ("attacker_evaluation_subjects", attacker_evaluation),
+        ]:
+            if not isinstance(values, list) or not all(
+                isinstance(subject, int) and not isinstance(subject, bool)
+                for subject in values
+            ):
+                raise ValueError(
+                    f"Posterior cache metadata {field} must be a list of integers."
+                )
+        if (
+            len(attacker_training) != 15
+            or len(set(attacker_training)) != 15
+            or len(attacker_evaluation) != 15
+            or len(set(attacker_evaluation)) != 15
+        ):
+            raise ValueError(
+                "Posterior cache attacker subject partitions must contain 15 unique "
+                "subjects each."
+            )
+        if set(attacker_training) & set(attacker_evaluation):
+            raise ValueError(
+                "Posterior cache attacker subject partitions must be disjoint."
+            )
+        if trial_subject_ids is None:
+            raise ValueError(
+                "Posterior cache attacker subject partitions require trial_subject_ids."
             )
     for field in ["task_balanced_accuracy", "task_macro_f1"]:
         value = metadata.get(field)
@@ -221,6 +313,7 @@ def _validate_posterior_feature_cache_arrays(
     encoded_labels,
     member_indices,
     nonmember_indices,
+    trial_subject_ids=None,
 ) -> None:
     deps = _import_attack_dependencies()
     np = deps["np"]
@@ -248,6 +341,13 @@ def _validate_posterior_feature_cache_arrays(
     if labels.shape[0] != probabilities.shape[0]:
         raise ValueError(
             "Posterior cache encoded_labels length must match probability rows."
+        )
+    if (
+        trial_subject_ids is not None
+        and len(trial_subject_ids) != probabilities.shape[0]
+    ):
+        raise ValueError(
+            "Posterior cache trial_subject_ids length must match probability rows."
         )
     if member.ndim != 1 or nonmember.ndim != 1:
         raise ValueError("Posterior cache member/nonmember indices must be 1D arrays.")
@@ -284,6 +384,14 @@ def write_posterior_feature_cache(
         encoded_labels,
         member_indices,
         nonmember_indices,
+        cache.trial_subject_ids,
+    )
+    _resolve_attacker_index_partition(
+        member_indices=cache.member_indices,
+        nonmember_indices=cache.nonmember_indices,
+        trial_subject_ids=cache.trial_subject_ids,
+        attacker_training_subjects=cache.attacker_training_subjects,
+        attacker_evaluation_subjects=cache.attacker_evaluation_subjects,
     )
     out_path = Path(path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -306,8 +414,21 @@ def load_posterior_feature_cache(path: str | Path) -> PosteriorFeatureCache:
     with np.load(Path(path), allow_pickle=False) as payload:
         metadata = json.loads(str(payload["metadata"]))
         version = metadata.pop("cache_schema_version", None)
-        if version != 1:
+        if version not in {1, 2}:
             raise ValueError(f"Unsupported posterior cache schema version: {version}")
+        partition_fields = {
+            "trial_subject_ids",
+            "attacker_training_subjects",
+            "attacker_evaluation_subjects",
+        }
+        present_partition_fields = partition_fields & metadata.keys()
+        if version == 1 and present_partition_fields:
+            raise ValueError("Posterior cache schema v1 cannot contain attacker roles.")
+        if version == 2 and (
+            present_partition_fields != partition_fields
+            or any(metadata[field] is None for field in partition_fields)
+        ):
+            raise ValueError("Posterior cache schema v2 requires all attacker roles.")
         _validate_posterior_cache_metadata(metadata)
         class_probabilities = payload["class_probabilities"].copy()
         encoded_labels = payload["encoded_labels"].copy()
@@ -318,14 +439,77 @@ def load_posterior_feature_cache(path: str | Path) -> PosteriorFeatureCache:
             encoded_labels,
             member_indices,
             nonmember_indices,
+            metadata.get("trial_subject_ids"),
         )
-        return PosteriorFeatureCache(
+        cache = PosteriorFeatureCache(
             **metadata,
             class_probabilities=class_probabilities,
             encoded_labels=encoded_labels,
             member_indices=member_indices.tolist(),
             nonmember_indices=nonmember_indices.tolist(),
         )
+        _resolve_attacker_index_partition(
+            member_indices=cache.member_indices,
+            nonmember_indices=cache.nonmember_indices,
+            trial_subject_ids=cache.trial_subject_ids,
+            attacker_training_subjects=cache.attacker_training_subjects,
+            attacker_evaluation_subjects=cache.attacker_evaluation_subjects,
+        )
+        return cache
+
+
+def _resolve_attacker_index_partition(
+    *,
+    member_indices: list[int],
+    nonmember_indices: list[int],
+    trial_subject_ids: list[str] | None,
+    attacker_training_subjects: list[int] | None,
+    attacker_evaluation_subjects: list[int] | None,
+) -> _AttackIndexPartition | None:
+    """Resolve explicit subject roles to trial indices without random trial splits."""
+
+    supplied = (
+        trial_subject_ids is not None,
+        attacker_training_subjects is not None,
+        attacker_evaluation_subjects is not None,
+    )
+    if not any(supplied):
+        return None
+    if not all(supplied):
+        raise ValueError(
+            "Explicit attacker partition requires trial subject IDs plus both subject roles."
+        )
+
+    training_ids = {f"sub-{subject}" for subject in attacker_training_subjects}
+    evaluation_ids = {f"sub-{subject}" for subject in attacker_evaluation_subjects}
+    if len(training_ids) != 15 or len(evaluation_ids) != 15:
+        raise ValueError(
+            "Explicit attacker partition requires 15 unique subjects per role."
+        )
+    if training_ids & evaluation_ids:
+        raise ValueError("Attacker training and evaluation subjects must be disjoint.")
+
+    membership_indices = [*member_indices, *nonmember_indices]
+    observed_subjects = {trial_subject_ids[index] for index in membership_indices}
+    if observed_subjects != training_ids | evaluation_ids:
+        raise ValueError(
+            "Attacker subject partition must exactly cover member/nonmember subjects."
+        )
+
+    def _select(indices: list[int], subject_pool: set[str]) -> list[int]:
+        return [index for index in indices if trial_subject_ids[index] in subject_pool]
+
+    partition = _AttackIndexPartition(
+        member_training_indices=_select(member_indices, training_ids),
+        nonmember_training_indices=_select(nonmember_indices, training_ids),
+        member_evaluation_indices=_select(member_indices, evaluation_ids),
+        nonmember_evaluation_indices=_select(nonmember_indices, evaluation_ids),
+    )
+    if not all(asdict(partition).values()):
+        raise ValueError(
+            "Each attacker subject role must contain both member and nonmember trials."
+        )
+    return partition
 
 
 def _run_membership_attack_from_cache(
@@ -334,7 +518,15 @@ def _run_membership_attack_from_cache(
     attack_type: str,
     score_type: str,
     attack_seed: int | None = None,
-) -> MembershipInferenceResult:
+    return_evaluation_details: bool = False,
+):
+    attack_index_partition = _resolve_attacker_index_partition(
+        member_indices=cache.member_indices,
+        nonmember_indices=cache.nonmember_indices,
+        trial_subject_ids=cache.trial_subject_ids,
+        attacker_training_subjects=cache.attacker_training_subjects,
+        attacker_evaluation_subjects=cache.attacker_evaluation_subjects,
+    )
     attack_kwargs = dict(
         task_model=cache.task_model,
         dataset_key=cache.dataset_key,
@@ -358,15 +550,25 @@ def _run_membership_attack_from_cache(
         feature_noise_std=cache.feature_noise_std,
         mixup_alpha=cache.mixup_alpha,
         confidence_penalty_beta=cache.confidence_penalty_beta,
+        attack_index_partition=attack_index_partition,
     )
     if attack_type == "threshold":
-        result = _run_threshold_membership_attack(**attack_kwargs)
+        attack_output = _run_threshold_membership_attack(
+            **attack_kwargs,
+            return_evaluation_details=return_evaluation_details,
+        )
     else:
-        result = _run_learned_membership_attack(
+        attack_output = _run_learned_membership_attack(
             attack_type=attack_type,
             **attack_kwargs,
+            return_evaluation_details=return_evaluation_details,
         )
-    return replace(
+    if return_evaluation_details:
+        result, evaluation_details = attack_output
+    else:
+        result = attack_output
+        evaluation_details = None
+    completed_result = replace(
         result,
         best_checkpoint_epoch=cache.best_checkpoint_epoch,
         resample_hz=cache.resample_hz,
@@ -377,7 +579,12 @@ def _run_membership_attack_from_cache(
         federated_local_epochs=cache.federated_local_epochs,
         federated_clients=cache.federated_clients,
         estimated_communication_bytes=cache.estimated_communication_bytes,
+        attacker_training_subjects=cache.attacker_training_subjects,
+        attacker_evaluation_subjects=cache.attacker_evaluation_subjects,
     )
+    if return_evaluation_details:
+        return completed_result, evaluation_details
+    return completed_result
 
 
 def run_cached_membership_inference_attack(
@@ -396,6 +603,83 @@ def run_cached_membership_inference_attack(
         score_type=score_type,
         attack_seed=attack_seed,
     )
+
+
+def run_cached_membership_inference_attack_with_subject_metrics(
+    cache_path: str | Path,
+    *,
+    attack_type: str,
+    score_type: str,
+    attack_seed: int | None = None,
+) -> tuple[MembershipInferenceResult, list[dict[str, object]]]:
+    """Run a cached attack and retain held-out attacker-subject metrics."""
+
+    deps = _import_attack_dependencies()
+    np = deps["np"]
+    average_precision_score = deps["average_precision_score"]
+    balanced_accuracy_score = deps["balanced_accuracy_score"]
+    roc_auc_score = deps["roc_auc_score"]
+    cache = load_posterior_feature_cache(cache_path)
+    if cache.trial_subject_ids is None or cache.attacker_evaluation_subjects is None:
+        raise ValueError(
+            "Subject metrics require a schema-v2 cache with frozen attacker roles."
+        )
+    result, details = _run_membership_attack_from_cache(
+        cache,
+        attack_type=attack_type,
+        score_type=score_type,
+        attack_seed=attack_seed,
+        return_evaluation_details=True,
+    )
+    evaluation_indices = np.asarray(details.evaluation_indices, dtype=int)
+    evaluation_labels = np.asarray(details.evaluation_labels, dtype=int)
+    evaluation_scores = np.asarray(details.evaluation_scores, dtype=float)
+    if not (
+        evaluation_indices.shape
+        == evaluation_labels.shape
+        == evaluation_scores.shape
+    ):
+        raise RuntimeError("Membership evaluation arrays are not aligned.")
+
+    subject_metrics: list[dict[str, object]] = []
+    for subject in cache.attacker_evaluation_subjects:
+        subject_id = f"sub-{subject}"
+        positions = np.asarray(
+            [
+                position
+                for position, index in enumerate(evaluation_indices)
+                if cache.trial_subject_ids[int(index)] == subject_id
+            ],
+            dtype=int,
+        )
+        if positions.size == 0:
+            raise RuntimeError(f"No held-out attack trials found for subject {subject}.")
+        labels = evaluation_labels[positions]
+        scores = evaluation_scores[positions]
+        member_mask = labels == 1
+        nonmember_mask = labels == 0
+        if not member_mask.any() or not nonmember_mask.any():
+            raise RuntimeError(
+                f"Subject {subject} does not contain both membership classes."
+            )
+        predictions = (scores >= details.decision_threshold).astype(int)
+        subject_metrics.append(
+            {
+                "subject": int(subject),
+                "member_trials": int(member_mask.sum()),
+                "nonmember_trials": int(nonmember_mask.sum()),
+                "attack_auc": float(roc_auc_score(labels, scores)),
+                "attack_average_precision": float(
+                    average_precision_score(labels, scores)
+                ),
+                "attack_balanced_accuracy": float(
+                    balanced_accuracy_score(labels, predictions)
+                ),
+                "member_score_mean": float(scores[member_mask].mean()),
+                "nonmember_score_mean": float(scores[nonmember_mask].mean()),
+            }
+        )
+    return result, subject_metrics
 
 
 def _save_cache_if_requested(
@@ -489,6 +773,39 @@ def _split_attack_indices(np, indices: list[int], seed: int) -> tuple[list[int],
     return sorted(shuffled[:split_point]), sorted(shuffled[split_point:])
 
 
+def _resolve_learned_attack_indices(
+    np,
+    *,
+    member_indices: list[int],
+    nonmember_indices: list[int],
+    seed: int,
+    attack_index_partition: _AttackIndexPartition | None,
+) -> tuple[list[int], list[int], list[int], list[int]]:
+    if attack_index_partition is not None:
+        return (
+            attack_index_partition.member_training_indices,
+            attack_index_partition.member_evaluation_indices,
+            attack_index_partition.nonmember_training_indices,
+            attack_index_partition.nonmember_evaluation_indices,
+        )
+    member_training, member_evaluation = _split_attack_indices(
+        np,
+        member_indices,
+        seed,
+    )
+    nonmember_training, nonmember_evaluation = _split_attack_indices(
+        np,
+        nonmember_indices,
+        seed + 1,
+    )
+    return (
+        member_training,
+        member_evaluation,
+        nonmember_training,
+        nonmember_evaluation,
+    )
+
+
 def _best_balanced_accuracy_threshold(scores, membership_labels) -> tuple[float, float]:
     deps = _import_attack_dependencies()
     np = deps["np"]
@@ -530,11 +847,14 @@ def _run_threshold_membership_attack(
     feature_noise_std: float | None = None,
     mixup_alpha: float | None = None,
     confidence_penalty_beta: float | None = None,
-) -> MembershipInferenceResult:
+    attack_index_partition: _AttackIndexPartition | None = None,
+    return_evaluation_details: bool = False,
+):
     _validate_attack_configuration("threshold", score_type)
     deps = _import_attack_dependencies()
     np = deps["np"]
     average_precision_score = deps["average_precision_score"]
+    balanced_accuracy_score = deps["balanced_accuracy_score"]
     roc_auc_score = deps["roc_auc_score"]
 
     scores = _membership_scores(
@@ -545,16 +865,35 @@ def _run_threshold_membership_attack(
     membership_labels = np.zeros(len(scores), dtype=int)
     membership_labels[member_indices] = 1
 
-    evaluation_indices = member_indices + nonmember_indices
+    if attack_index_partition is None:
+        calibration_indices = member_indices + nonmember_indices
+        evaluation_member_indices = member_indices
+        evaluation_nonmember_indices = nonmember_indices
+    else:
+        calibration_indices = (
+            attack_index_partition.member_training_indices
+            + attack_index_partition.nonmember_training_indices
+        )
+        evaluation_member_indices = attack_index_partition.member_evaluation_indices
+        evaluation_nonmember_indices = (
+            attack_index_partition.nonmember_evaluation_indices
+        )
+    evaluation_indices = evaluation_member_indices + evaluation_nonmember_indices
     evaluation_scores = scores[evaluation_indices]
     evaluation_labels = membership_labels[evaluation_indices]
 
-    attack_balanced_accuracy, best_threshold = _best_balanced_accuracy_threshold(
-        evaluation_scores,
-        evaluation_labels,
+    _, best_threshold = _best_balanced_accuracy_threshold(
+        scores[calibration_indices],
+        membership_labels[calibration_indices],
+    )
+    attack_balanced_accuracy = float(
+        balanced_accuracy_score(
+            evaluation_labels,
+            (evaluation_scores >= best_threshold).astype(int),
+        )
     )
 
-    return MembershipInferenceResult(
+    result = MembershipInferenceResult(
         task_model=task_model,
         dataset_key=dataset_key,
         protocol=protocol,
@@ -564,15 +903,15 @@ def _run_threshold_membership_attack(
         score_type=score_type,
         task_balanced_accuracy=task_balanced_accuracy,
         task_macro_f1=task_macro_f1,
-        member_trials=len(member_indices),
-        nonmember_trials=len(nonmember_indices),
+        member_trials=len(evaluation_member_indices),
+        nonmember_trials=len(evaluation_nonmember_indices),
         attack_auc=float(roc_auc_score(evaluation_labels, evaluation_scores)),
         attack_average_precision=float(
             average_precision_score(evaluation_labels, evaluation_scores)
         ),
         attack_balanced_accuracy=attack_balanced_accuracy,
-        member_score_mean=float(scores[member_indices].mean()),
-        nonmember_score_mean=float(scores[nonmember_indices].mean()),
+        member_score_mean=float(scores[evaluation_member_indices].mean()),
+        nonmember_score_mean=float(scores[evaluation_nonmember_indices].mean()),
         best_threshold=best_threshold,
         attack_seed_policy=(
             "task_seed_default" if attack_seed is None else "explicit_fixed_seed"
@@ -588,6 +927,14 @@ def _run_threshold_membership_attack(
         mixup_alpha=mixup_alpha,
         confidence_penalty_beta=confidence_penalty_beta,
     )
+    if return_evaluation_details:
+        return result, _AttackEvaluationDetails(
+            evaluation_indices=list(evaluation_indices),
+            evaluation_labels=evaluation_labels,
+            evaluation_scores=evaluation_scores,
+            decision_threshold=best_threshold,
+        )
+    return result
 
 
 def _run_learned_membership_attack(
@@ -615,7 +962,9 @@ def _run_learned_membership_attack(
     feature_noise_std: float | None = None,
     mixup_alpha: float | None = None,
     confidence_penalty_beta: float | None = None,
-) -> MembershipInferenceResult:
+    attack_index_partition: _AttackIndexPartition | None = None,
+    return_evaluation_details: bool = False,
+):
     _validate_attack_configuration(attack_type, score_type)
     deps = _import_attack_dependencies()
     np = deps["np"]
@@ -624,18 +973,21 @@ def _run_learned_membership_attack(
     Pipeline = deps["Pipeline"]
     StandardScaler = deps["StandardScaler"]
     average_precision_score = deps["average_precision_score"]
+    balanced_accuracy_score = deps["balanced_accuracy_score"]
     roc_auc_score = deps["roc_auc_score"]
     effective_attack_seed = seed if attack_seed is None else attack_seed
 
-    member_attack_train, member_attack_eval = _split_attack_indices(
+    (
+        member_attack_train,
+        member_attack_eval,
+        nonmember_attack_train,
+        nonmember_attack_eval,
+    ) = _resolve_learned_attack_indices(
         np,
-        member_indices,
-        effective_attack_seed,
-    )
-    nonmember_attack_train, nonmember_attack_eval = _split_attack_indices(
-        np,
-        nonmember_indices,
-        effective_attack_seed + 1,
+        member_indices=member_indices,
+        nonmember_indices=nonmember_indices,
+        seed=effective_attack_seed,
+        attack_index_partition=attack_index_partition,
     )
 
     attack_train_indices = member_attack_train + nonmember_attack_train
@@ -680,12 +1032,25 @@ def _run_learned_membership_attack(
         raise ValueError(f"Unsupported learned membership attack type: {attack_type}")
     attack_model.fit(attack_train_features, attack_train_labels)
     attack_scores = attack_model.predict_proba(attack_eval_features)[:, 1]
-    attack_balanced_accuracy, best_threshold = _best_balanced_accuracy_threshold(
-        attack_scores,
-        attack_eval_labels,
-    )
+    if attack_index_partition is None:
+        attack_balanced_accuracy, best_threshold = _best_balanced_accuracy_threshold(
+            attack_scores,
+            attack_eval_labels,
+        )
+    else:
+        calibration_scores = attack_model.predict_proba(attack_train_features)[:, 1]
+        _, best_threshold = _best_balanced_accuracy_threshold(
+            calibration_scores,
+            attack_train_labels,
+        )
+        attack_balanced_accuracy = float(
+            balanced_accuracy_score(
+                attack_eval_labels,
+                (attack_scores >= best_threshold).astype(int),
+            )
+        )
 
-    return MembershipInferenceResult(
+    result = MembershipInferenceResult(
         task_model=task_model,
         dataset_key=dataset_key,
         protocol=protocol,
@@ -719,6 +1084,14 @@ def _run_learned_membership_attack(
         mixup_alpha=mixup_alpha,
         confidence_penalty_beta=confidence_penalty_beta,
     )
+    if return_evaluation_details:
+        return result, _AttackEvaluationDetails(
+            evaluation_indices=list(attack_eval_indices),
+            evaluation_labels=attack_eval_labels,
+            evaluation_scores=attack_scores,
+            decision_threshold=best_threshold,
+        )
+    return result
 
 
 def run_eegnet_membership_inference_attack(
@@ -761,6 +1134,17 @@ def run_eegnet_membership_inference_attack(
     )
 
 
+def _centralized_membership_indices(artifacts) -> tuple[list[int], list[int]]:
+    """Select legacy or explicitly reserved membership roles from artifacts."""
+
+    if getattr(artifacts, "nonmember_indices", ()):
+        return list(artifacts.train_indices), list(artifacts.nonmember_indices)
+    return (
+        list(artifacts.train_indices) + list(artifacts.validation_indices),
+        list(artifacts.test_indices),
+    )
+
+
 def run_eegnet_membership_inference_from_artifacts(
     artifacts,
     *,
@@ -770,12 +1154,23 @@ def run_eegnet_membership_inference_from_artifacts(
     score_type: str = "label_known_log_probability",
     attack_seed: int | None = None,
     posterior_cache_output: str | Path | None = None,
+    attacker_subject_partition: AttackerSubjectPartition | None = None,
 ) -> MembershipInferenceResult:
     """Attack an already-fitted centralized EEGNet without retraining it."""
 
     logits = batched_eegnet_logits(artifacts)
     probabilities = logits.softmax(dim=1).numpy()
     result = artifacts.result
+    member_indices, nonmember_indices = _centralized_membership_indices(artifacts)
+    if attacker_subject_partition is not None and not getattr(
+        artifacts,
+        "nonmember_indices",
+        (),
+    ):
+        raise ValueError(
+            "An explicit attacker subject partition requires reserved nonmember indices."
+        )
+
     cache = PosteriorFeatureCache(
         task_model=task_model,
         dataset_key=artifacts.dataset_key,
@@ -786,10 +1181,8 @@ def run_eegnet_membership_inference_from_artifacts(
         task_macro_f1=result.macro_f1,
         class_probabilities=probabilities,
         encoded_labels=artifacts.encoded_labels,
-        member_indices=(
-            list(artifacts.train_indices) + list(artifacts.validation_indices)
-        ),
-        nonmember_indices=list(artifacts.test_indices),
+        member_indices=member_indices,
+        nonmember_indices=nonmember_indices,
         epochs_trained=result.epochs_trained,
         best_checkpoint_epoch=result.best_checkpoint_epoch,
         best_validation_loss=result.best_validation_loss,
@@ -801,6 +1194,21 @@ def run_eegnet_membership_inference_from_artifacts(
         feature_noise_std=result.feature_noise_std,
         mixup_alpha=result.mixup_alpha,
         confidence_penalty_beta=result.confidence_penalty_beta,
+        trial_subject_ids=(
+            [record.subject_id for record in artifacts.trial_records]
+            if attacker_subject_partition is not None
+            else None
+        ),
+        attacker_training_subjects=(
+            list(attacker_subject_partition.training_subjects)
+            if attacker_subject_partition is not None
+            else None
+        ),
+        attacker_evaluation_subjects=(
+            list(attacker_subject_partition.evaluation_subjects)
+            if attacker_subject_partition is not None
+            else None
+        ),
     )
     _save_cache_if_requested(posterior_cache_output, cache)
     return _run_membership_attack_from_cache(

@@ -1,0 +1,1842 @@
+Warning: truncated output (original token count: 72918)
+Total output lines: 6783
+
+{
+  "schema_version": 1,
+  "stage": "cho2017_confirmatory_membership_privacy_gate",
+  "status": "NO_PROMOTION",
+  "recorded_date": "2026-08-26",
+  "provenance": {
+    "contract_sha256": "e2fba8919211a2b88db3979b5bace08e902e319c13900086506502be36a62aea",
+    "baseline_gate_sha256": "f142495aa4ae2ba81e848b9af6b276b6e57805b44750224a006d1e96b781771c",
+    "bottleneck_gate_sha256": "b76a1fa7f856a72b5e440c4a906b0fe60e471164c45b6814257b6076f8003b18",
+    "attack_result_set_sha256": "0d79afbcd10972bd9196e65faf3283450e4a67070eda8bea09a1bde4d8da0d8b",
+    "validated_attack_jobs": 600,
+    "task_model_training": false,
+    "utility_gate_status": "PASS"
+  },
+  "inference": {
+    "unit": "attacker_evaluation_subject",
+    "evaluated_subjects": [
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52
+    ],
+    "evaluated_subject_count": 46,
+    "confirmatory_subjects_never_assigned_to_attacker_evaluation": [
+      6,
+      13,
+      17,
+      40
+    ],
+    "aggregation_order": [
+      "equal_weight_frozen_score_variants_within_family",
+      "equal_weight_task_seed_and_eligible_fold_repetitions_within_subject",
+      "pair_plain_and_bottleneck_within_subject_and_attacker_seed",
+      "equal_weight_three_attacker_seeds_within_subject",
+      "bootstrap_subject_aggregates"
+    ],
+    "bootstrap_replicates": 100000,
+    "bootstrap_seeds_by_family": {
+      "threshold": 20260826,
+      "logistic_regression": 20260827,
+      "mlp": 20260828
+    },
+    "confidence_level": 0.95,
+    "multiplicity_control": "holm",
+    "folds_trials_task_seeds_and_attacker_seeds_treated_as_independent": false
+  },
+  "promotion_rule": {
+    "minimum_mean_auc_reduction": 0.01,
+    "minimum_improved_families": 2,
+    "require_adjusted_interval_excludes_zero": true,
+    "require_consistent_attacker_seed_direction": true,
+    "maximum_allowed_family_auc_regression": 0.01
+  },
+  "family_summaries": {
+    "threshold": {
+      "score_variants": [
+        "threshold_label_known_log_probability",
+        "threshold_max_probability"
+      ],
+      "subjects": 46,
+      "plain_auc_subject_mean": 0.5167909189122888,
+      "bottleneck_auc_subject_mean": 0.5168209529268569,
+      "mean_auc_reduction_plain_minus_bottleneck": -3.00340145682452e-05,
+      "two_sided_95_percent_subject_bootstrap_ci": {
+        "lower": -0.003680566170365346,
+        "upper": 0.0038236614724863997
+      },
+      "unadjusted_two_sided_bootstrap_p": 0.976530234697653,
+      "attacker_seed_summaries": [
+        {
+          "attack_seed": 101,
+          "subjects": 46,
+          "mean_auc_reduction": -3.00340145682452e-05
+        },
+        {
+          "attack_seed": 103,
+          "subjects": 46,
+          "mean_auc_reduction": -3.00340145682452e-05
+        },
+        {
+          "attack_seed": 107,
+          "subjects": 46,
+          "mean_auc_reduction": -3.00340145682452e-05
+        }
+      ],
+      "consistent_positive_attacker_seed_direction": false,
+      "minimum_mean_reduction_pass": false,
+      "maximum_regression_pass": true,
+      "holm_rank": 2,
+      "holm_adjusted_p": 1.0,
+      "holm_step_down_rejected_zero": false,
+      "holm_rank_adjusted_subject_bootstrap_ci": {
+        "confidence_level": 0.975,
+        "lower": -0.004193806671290013,
+        "upper": 0.004392517900697291
+      },
+      "adjusted_interval_excludes_zero_in_positive_direction": false,
+      "family_promotion_pass": false
+    },
+    "logistic_regression": {
+      "score_variants": [
+        "logistic_regression_posterior_probabilities",
+        "logistic_regression_posterior_probabilities_plus_true_label"
+      ],
+      "subjects": 46,
+      "plain_auc_subject_mean": 0.4961736854147796,
+      "bottleneck_auc_subject_mean": 0.4961528803876057,
+      "mean_auc_reduction_plain_minus_bottleneck": 2.0805027173919464e-05,
+      "two_sided_95_percent_subject_bootstrap_ci": {
+        "lower": -0.00530142344599183,
+        "upper": 0.005113957059556159
+      },
+      "unadjusted_two_sided_bootstrap_p": 0.985090149098509,
+      "attacker_seed_summaries": [
+        {
+          "attack_seed": 101,
+          "subjects": 46,
+          "mean_auc_reduction": 2.0805027173919464e-05
+        },
+        {
+          "attack_seed": 103,
+          "subjects": 46,
+          "mean_auc_reduction": 2.0805027173919464e-05
+        },
+        {
+          "attack_seed": 107,
+          "subjects": 46,
+          "mean_auc_reduction": 2.0805027173919464e-05
+        }
+      ],
+      "consistent_positive_attacker_seed_direction": true,
+      "minimum_mean_reduction_pass": false,
+      "maximum_regression_pass": true,
+      "holm_rank": 3,
+      "holm_adjusted_p": 1.0,
+      "holm_step_down_rejected_zero": false,
+      "holm_rank_adjusted_subject_bootstrap_ci": {
+        "confidence_level": 0.95,
+        "lower": -0.00530142344599183,
+        "upper": 0.005113957059556159
+      },
+      "adjusted_interval_excludes_zero_in_positive_direction": false,
+      "family_promotion_pass": false
+    },
+    "mlp": {
+      "score_variants": [
+        "mlp_posterior_probabilities"
+      ],
+      "subjects": 46,
+      "plain_auc_subject_mean": 0.5034714536313658,
+      "bottleneck_auc_subject_mean": 0.5020702731858896,
+      "mean_auc_reduction_plain_minus_bottleneck": 0.0014011804454760384,
+      "two_sided_95_percent_subject_bootstrap_ci": {
+        "lower": -0.0008944535554895182,
+        "upper": 0.003655361550249711
+      },
+      "unadjusted_two_sided_bootstrap_p": 0.22857771422285778,
+      "attacker_seed_summaries": [
+        {
+          "attack_seed": 101,
+          "subjects": 46,
+          "mean_auc_reduction": 2.0869895455897284e-05
+        },
+        {
+          "attack_seed": 103,
+          "subjects": 46,
+          "mean_auc_reduction": 0.001983972816651574
+        },
+        {
+          "attack_seed": 107,
+          "subjects": 46,
+          "mean_auc_reduction": 0.0021986986243206423
+        }
+      ],
+      "consistent_positive_attacker_seed_direction": true,
+      "minimum_mean_reduction_pass": false,
+      "maximum_regression_pass": true,
+      "holm_rank": 1,
+      "holm_adjusted_p": 0.6857331426685733,
+      "holm_step_down_rejected_zero": false,
+      "holm_rank_adjusted_subject_bootstrap_ci": {
+        "confidence_level": 0.9833333333333333,
+        "lower": -0.0014144401120295014,
+        "upper": 0.004157545842218322
+      },
+      "adjusted_interval_excludes_zero_in_positive_direction": false,
+      "family_promotion_pass": false
+    }
+  },
+  "privacy_promotion": {
+    "improved_families": [],
+    "improved_family_count": 0,
+    "required_family_count": 2,
+    "pass": false,
+    "decision": "retain_utility_noninferiority_and_report_no_confirmatory_privacy_promotion"
+  },
+  "family_subject_aggregates": [
+    {
+      "family": "threshold",
+      "subject": 3,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.51392578125,
+          "bottleneck_auc_mean": 0.5162011718749999,
+          "auc_reduction_plain_minus_bottleneck": -0.002275390624999929
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.51392578125,
+          "bottleneck_auc_mean": 0.5162011718749999,
+          "auc_reduction_plain_minus_bottleneck": -0.002275390624999929
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.51392578125,
+          "bottleneck_auc_mean": 0.5162011718749999,
+          "auc_reduction_plain_minus_bottleneck": -0.002275390624999929
+        }
+      ],
+      "plain_auc_mean": 0.51392578125,
+      "bottleneck_auc_mean": 0.5162011718749999,
+      "auc_reduction_plain_minus_bottleneck": -0.002275390624999929
+    },
+    {
+      "family": "threshold",
+      "subject": 4,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.460830078125,
+          "bottleneck_auc_mean": 0.464970703125,
+          "auc_reduction_plain_minus_bottleneck": -0.004140625000000009
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.460830078125,
+          "bottleneck_auc_mean": 0.464970703125,
+          "auc_reduction_plain_minus_bottleneck": -0.004140625000000009
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.460830078125,
+          "bottleneck_auc_mean": 0.464970703125,
+          "auc_reduction_plain_minus_bottleneck": -0.004140625000000009
+        }
+      ],
+      "plain_auc_mean": 0.46083007812500004,
+      "bottleneck_auc_mean": 0.46497070312499994,
+      "auc_reduction_plain_minus_bottleneck": -0.004140625000000009
+    },
+    {
+      "family": "threshold",
+      "subject": 5,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.52767578125,
+          "bottleneck_auc_mean": 0.5369628906249999,
+          "auc_reduction_plain_minus_bottleneck": -0.00928710937499988
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.52767578125,
+          "bottleneck_auc_mean": 0.5369628906249999,
+          "auc_reduction_plain_minus_bottleneck": -0.00928710937499988
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.52767578125,
+          "bottleneck_auc_mean": 0.5369628906249999,
+          "auc_reduction_plain_minus_bottleneck": -0.00928710937499988
+        }
+      ],
+      "plain_auc_mean": 0.52767578125,
+      "bottleneck_auc_mean": 0.5369628906249999,
+      "auc_reduction_plain_minus_bottleneck": -0.00928710937499988
+    },
+    {
+      "family": "threshold",
+      "subject": 7,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5570339626736112,
+          "bottleneck_auc_mean": 0.5410834418402778,
+          "auc_reduction_plain_minus_bottleneck": 0.01595052083333337
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5570339626736112,
+          "bottleneck_auc_mean": 0.5410834418402778,
+          "auc_reduction_plain_minus_bottleneck": 0.01595052083333337
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5570339626736112,
+          "bottleneck_auc_mean": 0.5410834418402778,
+          "auc_reduction_plain_minus_bottleneck": 0.01595052083333337
+        }
+      ],
+      "plain_auc_mean": 0.5570339626736112,
+      "bottleneck_auc_mean": 0.5410834418402778,
+      "auc_reduction_plain_minus_bottleneck": 0.01595052083333337
+    },
+    {
+      "family": "threshold",
+      "subject": 8,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.507578125,
+          "bottleneck_auc_mean": 0.5037304687499999,
+          "auc_reduction_plain_minus_bottleneck": 0.0038476562500000533
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.507578125,
+          "bottleneck_auc_mean": 0.5037304687499999,
+          "auc_reduction_plain_minus_bottleneck": 0.0038476562500000533
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.507578125,
+          "bottleneck_auc_mean": 0.5037304687499999,
+          "auc_reduction_plain_minus_bottleneck": 0.0038476562500000533
+        }
+      ],
+      "plain_auc_mean": 0.507578125,
+      "bottleneck_auc_mean": 0.5037304687499999,
+      "auc_reduction_plain_minus_bottleneck": 0.0038476562500000533
+    },
+    {
+      "family": "threshold",
+      "subject": 9,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.573486328125,
+          "bottleneck_auc_mean": 0.5780164930555556,
+          "auc_reduction_plain_minus_bottleneck": -0.00453016493055558
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.573486328125,
+          "bottleneck_auc_mean": 0.5780164930555556,
+          "auc_reduction_plain_minus_bottleneck": -0.00453016493055558
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.573486328125,
+          "bottleneck_auc_mean": 0.5780164930555556,
+          "auc_reduction_plain_minus_bottleneck": -0.00453016493055558
+        }
+      ],
+      "plain_auc_mean": 0.573486328125,
+      "bottleneck_auc_mean": 0.5780164930555556,
+      "auc_reduction_plain_minus_bottleneck": -0.00453016493055558
+    },
+    {
+      "family": "threshold",
+      "subject": 10,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5261914062499999,
+          "bottleneck_auc_mean": 0.4925,
+          "auc_reduction_plain_minus_bottleneck": 0.033691406249999944
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5261914062499999,
+          "bottleneck_auc_mean": 0.4925,
+          "auc_reduction_plain_minus_bottleneck": 0.033691406249999944
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5261914062499999,
+          "bottleneck_auc_mean": 0.4925,
+          "auc_reduction_plain_minus_bottleneck": 0.033691406249999944
+        }
+      ],
+      "plain_auc_mean": 0.5261914062499999,
+      "bottleneck_auc_mean": 0.4925,
+      "auc_reduction_plain_minus_bottleneck": 0.033691406249999944
+    },
+    {
+      "family": "threshold",
+      "subject": 11,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.49945312500000005,
+          "bottleneck_auc_mean": 0.46392578125,
+          "auc_reduction_plain_minus_bottleneck": 0.03552734375000005
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.49945312500000005,
+          "bottleneck_auc_mean": 0.46392578125,
+          "auc_reduction_plain_minus_bottleneck": 0.03552734375000005
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.49945312500000005,
+          "bottleneck_auc_mean": 0.46392578125,
+          "auc_reduction_plain_minus_bottleneck": 0.03552734375000005
+        }
+      ],
+      "plain_auc_mean": 0.49945312500000005,
+      "bottleneck_auc_mean": 0.46392578125,
+      "auc_reduction_plain_minus_bottleneck": 0.03552734375000005
+    },
+    {
+      "family": "threshold",
+      "subject": 12,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.48255859375,
+          "bottleneck_auc_mean": 0.47484375,
+          "auc_reduction_plain_minus_bottleneck": 0.007714843749999978
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.48255859375,
+          "bottleneck_auc_mean": 0.47484375,
+          "auc_reduction_plain_minus_bottleneck": 0.007714843749999978
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.48255859375,
+          "bottleneck_auc_mean": 0.47484375,
+          "auc_reduction_plain_minus_bottleneck": 0.007714843749999978
+        }
+      ],
+      "plain_auc_mean": 0.48255859375000004,
+      "bottleneck_auc_mean": 0.47484375,
+      "auc_reduction_plain_minus_bottleneck": 0.007714843749999978
+    },
+    {
+      "family": "threshold",
+      "subject": 14,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.47258789062499995,
+          "bottleneck_auc_mean": 0.46902343750000003,
+          "auc_reduction_plain_minus_bottleneck": 0.0035644531249999223
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.47258789062499995,
+          "bottleneck_auc_mean": 0.46902343750000003,
+          "auc_reduction_plain_minus_bottleneck": 0.0035644531249999223
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.47258789062499995,
+          "bottleneck_auc_mean": 0.46902343750000003,
+          "auc_reduction_plain_minus_bottleneck": 0.0035644531249999223
+        }
+      ],
+      "plain_auc_mean": 0.472587890625,
+      "bottleneck_auc_mean": 0.46902343750000003,
+      "auc_reduction_plain_minus_bottleneck": 0.0035644531249999223
+    },
+    {
+      "family": "threshold",
+      "subject": 15,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.5228645833333333,
+          "bottleneck_auc_mean": 0.5220833333333333,
+          "auc_reduction_plain_minus_bottleneck": 0.0007812499999999556
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.5228645833333333,
+          "bottleneck_auc_mean": 0.5220833333333333,
+          "auc_reduction_plain_minus_bottleneck": 0.0007812499999999556
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.5228645833333333,
+          "bottleneck_auc_mean": 0.5220833333333333,
+          "auc_reduction_plain_minus_bottleneck": 0.0007812499999999556
+        }
+      ],
+      "plain_auc_mean": 0.5228645833333333,
+      "bottleneck_auc_mean": 0.5220833333333333,
+      "auc_reduction_plain_minus_bottleneck": 0.0007812499999999556
+    },
+    {
+      "family": "threshold",
+      "subject": 16,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.51353515625,
+          "bottleneck_auc_mean": 0.5253515625,
+          "auc_reduction_plain_minus_bottleneck": -0.011816406250000022
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.51353515625,
+          "bottleneck_auc_mean": 0.5253515625,
+          "auc_reduction_plain_minus_bottleneck": -0.011816406250000022
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.51353515625,
+          "bottleneck_auc_mean": 0.5253515625,
+          "auc_reduction_plain_minus_bottleneck": -0.011816406250000022
+        }
+      ],
+      "plain_auc_mean": 0.51353515625,
+      "bottleneck_auc_mean": 0.5253515625,
+      "auc_reduction_plain_minus_bottleneck": -0.011816406250000022
+    },
+    {
+      "family": "threshold",
+      "subject": 18,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.505576171875,
+          "bottleneck_auc_mean": 0.50927734375,
+          "auc_reduction_plain_minus_bottleneck": -0.0037011718749999645
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.505576171875,
+          "bottleneck_auc_mean": 0.50927734375,
+          "auc_reduction_plain_minus_bottleneck": -0.0037011718749999645
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.505576171875,
+          "bottleneck_auc_mean": 0.50927734375,
+          "auc_reduction_plain_minus_bottleneck": -0.0037011718749999645
+        }
+      ],
+      "plain_auc_mean": 0.505576171875,
+      "bottleneck_auc_mean": 0.50927734375,
+      "auc_reduction_plain_minus_bottleneck": -0.0037011718749999645
+    },
+    {
+      "family": "threshold",
+      "subject": 19,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5706640624999999,
+          "bottleneck_auc_mean": 0.57779296875,
+          "auc_reduction_plain_minus_bottleneck": -0.007128906250000067
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5706640624999999,
+          "bottleneck_auc_mean": 0.57779296875,
+          "auc_reduction_plain_minus_bottleneck": -0.007128906250000067
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5706640624999999,
+          "bottleneck_auc_mean": 0.57779296875,
+          "auc_reduction_plain_minus_bottleneck": -0.007128906250000067
+        }
+      ],
+      "plain_auc_mean": 0.5706640624999999,
+      "bottleneck_auc_mean": 0.57779296875,
+      "auc_reduction_plain_minus_bottleneck": -0.007128906250000067
+    },
+    {
+      "family": "threshold",
+      "subject": 20,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.49894531249999996,
+          "bottleneck_auc_mean": 0.5055468750000001,
+          "auc_reduction_plain_minus_bottleneck": -0.006601562500000102
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.49894531249999996,
+          "bottleneck_auc_mean": 0.5055468750000001,
+          "auc_reduction_plain_minus_bottleneck": -0.006601562500000102
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.49894531249999996,
+          "bottleneck_auc_mean": 0.5055468750000001,
+          "auc_reduction_plain_minus_bottleneck": -0.006601562500000102
+        }
+      ],
+      "plain_auc_mean": 0.4989453124999999,
+      "bottleneck_auc_mean": 0.5055468750000001,
+      "auc_reduction_plain_minus_bottleneck": -0.006601562500000102
+    },
+    {
+      "family": "threshold",
+      "subject": 21,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.53458984375,
+          "bottleneck_auc_mean": 0.52541015625,
+          "auc_reduction_plain_minus_bottleneck": 0.009179687499999978
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.53458984375,
+          "bottleneck_auc_mean": 0.52541015625,
+          "auc_reduction_plain_minus_bottleneck": 0.009179687499999978
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.53458984375,
+          "bottleneck_auc_mean": 0.52541015625,
+          "auc_reduction_plain_minus_bottleneck": 0.009179687499999978
+        }
+      ],
+      "plain_auc_mean": 0.53458984375,
+      "bottleneck_auc_mean": 0.52541015625,
+      "auc_reduction_plain_minus_bottleneck": 0.009179687499999978
+    },
+    {
+      "family": "threshold",
+      "subject": 22,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.52580078125,
+          "bottleneck_auc_mean": 0.5592578125,
+          "auc_reduction_plain_minus_bottleneck": -0.03345703124999999
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.52580078125,
+          "bottleneck_auc_mean": 0.5592578125,
+          "auc_reduction_plain_minus_bottleneck": -0.03345703124999999
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.52580078125,
+          "bottleneck_auc_mean": 0.5592578125,
+          "auc_reduction_plain_minus_bottleneck": -0.03345703124999999
+        }
+      ],
+      "plain_auc_mean": 0.52580078125,
+      "bottleneck_auc_mean": 0.5592578125,
+      "auc_reduction_plain_minus_bottleneck": -0.03345703124999999
+    },
+    {
+      "family": "threshold",
+      "subject": 23,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5093554687499999,
+          "bottleneck_auc_mean": 0.49759765625,
+          "auc_reduction_plain_minus_bottleneck": 0.011757812499999909
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5093554687499999,
+          "bottleneck_auc_mean": 0.49759765625,
+          "auc_reduction_plain_minus_bottleneck": 0.011757812499999909
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5093554687499999,
+          "bottleneck_auc_mean": 0.49759765625,
+          "auc_reduction_plain_minus_bottleneck": 0.011757812499999909
+        }
+      ],
+      "plain_auc_mean": 0.5093554687499999,
+      "bottleneck_auc_mean": 0.49759765625,
+      "auc_reduction_plain_minus_bottleneck": 0.011757812499999909
+    },
+    {
+      "family": "threshold",
+      "subject": 24,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.4929427083333333,
+          "bottleneck_auc_mean": 0.49272786458333334,
+          "auc_reduction_plain_minus_bottleneck": 0.00021484374999997113
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.4929427083333333,
+          "bottleneck_auc_mean": 0.49272786458333334,
+          "auc_reduction_plain_minus_bottleneck": 0.00021484374999997113
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.4929427083333333,
+          "bottleneck_auc_mean": 0.49272786458333334,
+          "auc_reduction_plain_minus_bottleneck": 0.00021484374999997113
+        }
+      ],
+      "plain_auc_mean": 0.4929427083333333,
+      "bottleneck_auc_mean": 0.49272786458333334,
+      "auc_reduction_plain_minus_bottleneck": 0.00021484374999997113
+    },
+    {
+      "family": "threshold",
+      "subject": 25,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5263671875,
+          "bottleneck_auc_mean": 0.5415234375,
+          "auc_reduction_plain_minus_bottleneck": -0.015156249999999982
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5263671875,
+          "bottleneck_auc_mean": 0.5415234375,
+          "auc_reduction_plain_minus_bottleneck": -0.015156249999999982
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5263671875,
+          "bottleneck_auc_mean": 0.5415234375,
+          "auc_reduction_plain_minus_bottleneck": -0.015156249999999982
+        }
+      ],
+      "plain_auc_mean": 0.5263671875,
+      "bottleneck_auc_mean": 0.5415234375,
+      "auc_reduction_plain_minus_bottleneck": -0.015156249999999982
+    },
+    {
+      "family": "threshold",
+      "subject": 26,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.4858984375,
+          "bottleneck_auc_mean": 0.47871093750000004,
+          "auc_reduction_plain_minus_bottleneck": 0.007187499999999958
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.4858984375,
+          "bottleneck_auc_mean": 0.47871093750000004,
+          "auc_reduction_plain_minus_bottleneck": 0.007187499999999958
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.4858984375,
+          "bottleneck_auc_mean": 0.47871093750000004,
+          "auc_reduction_plain_minus_bottleneck": 0.007187499999999958
+        }
+      ],
+      "plain_auc_mean": 0.4858984375,
+      "bottleneck_auc_mean": 0.47871093750000004,
+      "auc_reduction_plain_minus_bottleneck": 0.007187499999999958
+    },
+    {
+      "family": "threshold",
+      "subject": 27,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.44287109375,
+          "bottleneck_auc_mean": 0.44169921875,
+          "auc_reduction_plain_minus_bottleneck": 0.001171874999999989
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.44287109375,
+          "bottleneck_auc_mean": 0.44169921875,
+          "auc_reduction_plain_minus_bottleneck": 0.001171874999999989
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.44287109375,
+          "bottleneck_auc_mean": 0.44169921875,
+          "auc_reduction_plain_minus_bottleneck": 0.001171874999999989
+        }
+      ],
+      "plain_auc_mean": 0.44287109375,
+      "bottleneck_auc_mean": 0.44169921875,
+      "auc_reduction_plain_minus_bottleneck": 0.001171874999999989
+    },
+    {
+      "family": "threshold",
+      "subject": 28,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.48744140625000004,
+          "bottleneck_auc_mean": 0.48857421875,
+          "auc_reduction_plain_minus_bottleneck": -0.001132812499999969
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.48744140625000004,
+          "bottleneck_auc_mean": 0.48857421875,
+          "auc_reduction_plain_minus_bottleneck": -0.001132812499999969
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.48744140625000004,
+          "bottleneck_auc_mean": 0.48857421875,
+          "auc_reduction_plain_minus_bottleneck": -0.001132812499999969
+        }
+      ],
+      "plain_auc_mean": 0.48744140625000004,
+      "bottleneck_auc_mean": 0.48857421875,
+      "auc_reduction_plain_minus_bottleneck": -0.001132812499999969
+    },
+    {
+      "family": "threshold",
+      "subject": 29,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.48681640625,
+          "bottleneck_auc_mean": 0.49322265625,
+          "auc_reduction_plain_minus_bottleneck": -0.006406250000000002
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.48681640625,
+          "bottleneck_auc_mean": 0.49322265625,
+          "auc_reduction_plain_minus_bottleneck": -0.006406250000000002
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.48681640625,
+          "bottleneck_auc_mean": 0.49322265625,
+          "auc_reduction_plain_minus_bottleneck": -0.006406250000000002
+        }
+      ],
+      "plain_auc_mean": 0.48681640625,
+      "bottleneck_auc_mean": 0.49322265625,
+      "auc_reduction_plain_minus_bottleneck": -0.006406250000000002
+    },
+    {
+      "family": "threshold",
+      "subject": 30,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.5360026041666667,
+          "bottleneck_auc_mean": 0.5386979166666667,
+          "auc_reduction_plain_minus_bottleneck": -0.002695312499999991
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.5360026041666667,
+          "bottleneck_auc_mean": 0.5386979166666667,
+          "auc_reduction_plain_minus_bottleneck": -0.002695312499999991
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.5360026041666667,
+          "bottleneck_auc_mean": 0.5386979166666667,
+          "auc_reduction_plain_minus_bottleneck": -0.002695312499999991
+        }
+      ],
+      "plain_auc_mean": 0.5360026041666667,
+      "bottleneck_auc_mean": 0.5386979166666667,
+      "auc_reduction_plain_minus_bottleneck": -0.002695312499999991
+    },
+    {
+      "family": "threshold",
+      "subject": 31,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.54970703125,
+          "bottleneck_auc_mean": 0.5502734375,
+          "auc_reduction_plain_minus_bottleneck": -0.00056640625000004
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.54970703125,
+          "bottleneck_auc_mean": 0.5502734375,
+          "auc_reduction_plain_minus_bottleneck": -0.00056640625000004
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.54970703125,
+          "bottleneck_auc_mean": 0.5502734375,
+          "auc_reduction_plain_minus_bottleneck": -0.00056640625000004
+        }
+      ],
+      "plain_auc_mean": 0.54970703125,
+      "bottleneck_auc_mean": 0.5502734375,
+      "auc_reduction_plain_minus_bottleneck": -0.00056640625000004
+    },
+    {
+      "family": "threshold",
+      "subject": 32,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.49815429687499996,
+          "bottleneck_auc_mean": 0.51173828125,
+          "auc_reduction_plain_minus_bottleneck": -0.013583984375000024
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.49815429687499996,
+          "bottleneck_auc_mean": 0.51173828125,
+          "auc_reduction_plain_minus_bottleneck": -0.013583984375000024
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.49815429687499996,
+          "bottleneck_auc_mean": 0.51173828125,
+          "auc_reduction_plain_minus_bottleneck": -0.013583984375000024
+        }
+      ],
+      "plain_auc_mean": 0.49815429687499996,
+      "bottleneck_auc_mean": 0.51173828125,
+      "auc_reduction_plain_minus_bottleneck": -0.013583984375000024
+    },
+    {
+      "family": "threshold",
+      "subject": 33,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.5625390625000001,
+          "bottleneck_auc_mean": 0.56818359375,
+          "auc_reduction_plain_minus_bottleneck": -0.005644531249999973
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.5625390625000001,
+          "bottleneck_auc_mean": 0.56818359375,
+          "auc_reduction_plain_minus_bottleneck": -0.005644531249999973
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 24,
+          "plain_auc_mean": 0.5625390625000001,
+          "bottleneck_auc_mean": 0.56818359375,
+          "auc_reduction_plain_minus_bottleneck": -0.005644531249999973
+        }
+      ],
+      "plain_auc_mean": 0.5625390625000001,
+      "bottleneck_auc_mean": 0.56818359375,
+      "auc_reduction_plain_minus_bottleneck": -0.005644531249999973
+    },
+    {
+      "family": "threshold",
+      "subject": 34,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5279101562499999,
+          "bottleneck_auc_mean": 0.5135156250000001,
+          "auc_reduction_plain_minus_bottleneck": 0.014394531249999787
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5279101562499999,
+          "bottleneck_auc_mean": 0.5135156250000001,
+          "auc_reduction_plain_minus_bottleneck": 0.014394531249999787
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 8,
+          "plain_auc_mean": 0.5279101562499999,
+          "bottleneck_auc_mean": 0.5135156250000001,
+          "auc_reduction_plain_minus_bottleneck": 0.014394531249999787
+        }
+      ],
+      "plain_auc_mean": 0.5279101562499999,
+      "bottleneck_auc_mean": 0.5135156250000001,
+      "auc_reduction_plain_minus_bottleneck": 0.014394531249999787
+    },
+    {
+      "family": "threshold",
+      "subject": 35,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.483935546875,
+          "bottleneck_auc_mean": 0.49324218750000004,
+          "auc_reduction_plain_minus_bottleneck": -0.009306640625000029
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.483935546875,
+          "bottleneck_auc_mean": 0.49324218750000004,
+          "auc_reduction_plain_minus_bottleneck": -0.009306640625000029
+        },
+        {
+          "attack_seed": 107,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.483935546875,
+          "bottleneck_auc_mean": 0.49324218750000004,
+          "auc_reduction_plain_minus_bottleneck": -0.009306640625000029
+        }
+      ],
+      "plain_auc_mean": 0.483935546875,
+      "bottleneck_auc_mean": 0.4932421875000001,
+      "auc_reduction_plain_minus_bottleneck": -0.009306640625000029
+    },
+    {
+      "family": "threshold",
+      "subject": 36,
+      "attacker_seed_aggregates": [
+        {
+          "attack_seed": 101,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.51080078125,
+          "bottleneck_auc_mean": 0.491123046875,
+          "auc_reduction_plain_minus_bottleneck": 0.019677734374999922
+        },
+        {
+          "attack_seed": 103,
+          "paired_fold_task_variant_observations": 16,
+          "plain_auc_mean": 0.51080078125,
+          "bottle…52918 tokens truncated…t_bottleneck_eegnet_dim6_fold3_taskseed13_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "8a55b196ba52456ba7c947f9f3d618cbf987f323b6219fe7d0b379224e5f9034"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed13_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "8cef1d2d9dd92948764568aefa6a1b6602884b6701ce973ae2886efafc2c3635"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed13_attackseed107_threshold_max_probability.json",
+      "sha256": "1d453fdde899b0ab209020e5dbf9071a93dc5d45622b0d74f53e1cfbb2b6479c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed13_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "5210e0e6a195cb503fe06886f7678694825f11e2fa3bb92bfec0766fc144ea6c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed13_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "a6bead48901dcea638c423f65be8d3f5de3718e184433f560e38028d9f2f13ed"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed13_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "a06bad2e0eb63aeedfb79f948e0620cfa240d8d2c26c9bc84be61b23b7d7b9a3"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "409208e156dce3385fe7255c9f6fbd2f4b191fd7eb0bb6bedb7d2880d2645372"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed101_threshold_max_probability.json",
+      "sha256": "23766eedbc1e47ba335da9dfa43f9e2a63c6f4e05e2016be6c95212140416b82"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "ba93fdd2da7b3f08a3da15add0b5a7d45ee95f3ecd1537754a718888d0a237ff"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "2d10a68a75a199c56ce36258e0abe836c0a976f9a1842738f7c7debe61a4302c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "ab3ba381c8cadfc1fc47f5ba0e95974de5ed3d30790213c586d72636aae7d672"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "2aa0c39a713b7c2f0ee253b00b7cc573b524c93412e7ffd5a60f3b8717127398"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed103_threshold_max_probability.json",
+      "sha256": "a856874e70715052210f030e6059abe3f6acd61eba3bb8510a9ecaece8e80d52"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "10479c356811b16c8f3def241b6be5cb077f662e9efd2ff8c490905413b9fbaf"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "f94e3b4d130f7eddec984180fac84765559380948c42d62adf3fca9c64253d80"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "72c19baf58243b055c9184dcc3d8036a845f4f0204ee6998f4a77278c0bbb704"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "b923c57e169ed3ef5a78c8df7345d10f2e0615a77d9076333df418bb8dfdbbfb"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed107_threshold_max_probability.json",
+      "sha256": "e085ae7bcfe6ff195e5ba179b3ae6db0a8c427cfd6b83bd297c77eb3c796c4db"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "8a2d4e7df961fb3e3608f87fe71887a5b1fb87f84a504d9e95351e8eb1841b1f"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "8949641490c8f88cac0518d71ea184ad334b05b10afa770540fc1b3b276e9685"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed17_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "a50d1515a62a60d068ddf7aef98b9aa92e94b20f9d7cd047297bbe32244b2014"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "dd5a5dfce7ba0d087be4affef4da981e5e5e3e52c3775a162cb5f1878ca7312c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed101_threshold_max_probability.json",
+      "sha256": "f44b5b46b1a09dfd7cf368b8ba4e39848a60b080a25e76dfe8a2f9963c9d86b7"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "c06b749745c01e389f4b71e98148cb42c9b6041febd72c7852f116567db6f250"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "bd3c2cd0f28cad7571ae14c5bd7c8b084cdfa5d0c0c9d6c8432692a596afc9fb"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "71a3345cf45090bd81ff49fb5d7efb826edc793ac6af8e9fb52d60e6891b041b"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "3d8d3432df61c4fa48b8f64df67d1fe57101fcde3990fc75ab996f4fdc0c89c6"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed103_threshold_max_probability.json",
+      "sha256": "fc7acade9cc481bee5da2076357d4fc038f3d41d81e3f259ed5b23243d7f7514"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "72d5fc9ab3eb82d5e2e5b6d3482c0668df2732967eb691564d33da51a606680f"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "6389222ed57dd926360a9b478dfcf23a9d690a9eba9d29f7eec8f2c0a37081bb"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "f5ec094d7153b642c7d81556731cafc0a3796bddced7d8ebad42da05e4975011"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "1f1b39ff5a513c0be59b9675b564517298cd1e912e1f87f39e75eebef0f91d90"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed107_threshold_max_probability.json",
+      "sha256": "8b5c9054739aa45c9db2bfa938424df175423a5ef052904fec59edd87de36d0f"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "854a3af3e09583e3f2645b098dbb4d919ffa0f8ceec8d982b58adda5e816f6f2"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "eee39a7474fbe46d5ccc36aef868426c32b71d178b3a600e90508897a2ebf18c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed19_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "7270a2cad0f979694c0b8b8dbf18cd18b2ed074de957b1a703643d503e13b7e2"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "5d871f77f0caca23b367004f098e96488b41c35e5dd86b620f0bcc3a99345879"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed101_threshold_max_probability.json",
+      "sha256": "513d49f5a48833c2a178c8b9eb6dc5b50cdcbc4bd85bfe7bc5fae5a387e34f31"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "72367908ab8882b5170c627b59d43df37ae6abe7b837986acdab220a4055c574"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "c1c836f80a2b8c1cd8f95e90423707c13cc852d0fea8165252269db0f7958b0b"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "84f0c6dcdde3d4dc3c096658eccf8521b3f7461deeaf71e5657000cb32e377f6"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "13373ef0f73d4b4b25edb28e1dd47e19ed4336f25c705f9b1e6537c44213882a"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed103_threshold_max_probability.json",
+      "sha256": "5a478dc9c5d6982679ff906cb4d4c33c52642b8868d774d5956c2185972498c0"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "e6782f7f177e690711998c7dccbb890c0b8cfc1386abf5eb2ccd37e38e9592f6"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "0157909a8636f8b846494c7b28f543c0a887171d28ac0b40a322dfde196a8bd8"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "febe9433d0a2da6030828b0471f9e81e50746a150997fe4295766b0d657a908b"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "bff48344117318ac355d1ca6accf5e6387becfb35918990aa08e48100613e633"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed107_threshold_max_probability.json",
+      "sha256": "8329588c52847b39095a0bdd8bdadf8e8a2dcfa727180b3b7c9850ef423d0837"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "8d56d07d3aee4de090caec0820781141505c551189ce42113fa43446508cb17e"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "503155f610f3637c5b0fcde130681eb6ef9d31a522dde8cf448ec097368a996c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold3_taskseed23_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "ddb3e02b1c7ae6fef5990ac50dc3c0547bf432557bd747f0505f32c204a7edf4"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "59a78be02b3a30e63ec17f6d51cedb8c8bbf1937cf728858c76775b729dca935"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed101_threshold_max_probability.json",
+      "sha256": "6a73c898b27e1518ec84385de900c88eff331c3b278237b469ce1118a848fb95"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "5139cb185cdd9053cbd81213ac84e655863e6c53310ce94f4af2beec75098075"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "ea83990b8daa4a96f1a1e5bc3bd1d780355a8026448c422af39655a6c7c39ee4"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "88269693ad2df4497508309b2f1f286a8878290553c4179f823b7beb507fdd11"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "b2e6942e02937cb018bd2c6b7ca107b764660fff42217b891d670dc7f67e39ed"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed103_threshold_max_probability.json",
+      "sha256": "ec931c37fa9d9e8b09fdbba03c034183912efa6d4decdd75fabf2ada12b14d3c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "a245c9c2d77da42126e50864ea50d2a5bc14fff1a4d24dbd3c80112665047306"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "04c7d3bd86d34be2aeadbd368ddb71cb6d69ee2a5cb8b8866e812d9da2efb580"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "adbfeb18b061c9c663b720e0203b62c83f1911edaa36080525a82d71411b908e"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "c973eb073c466b7a87e4e72a103a4202d806d0f5787d2dec73dfb3a5a47525da"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed107_threshold_max_probability.json",
+      "sha256": "5419bb15455fc59489879f4b4312b10797cc74f8876ce86e00cc655245c75416"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "87bd38c8e8ff28a57ef6d28b2a430330cca3bd5ebd393d42283766d344eac536"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "e786b310eea708a63101b895d1faa763201cd7d2c035b75aad807f79ef7a8103"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed13_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "ea38ec38b20d7b92e8915485365057c444af8b4f40cb705ac01ab7c0e73dc67e"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "c8bd2685d91792f0aaebeb86f1bb7d89231c1c174c0123f92b16fed8005fa210"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed101_threshold_max_probability.json",
+      "sha256": "e31bf1b91bae4bb126097d1511ffefe69e3590e0f283650c97533e16c3ffd606"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "67d02e7fdabf97c70e98d1a33747a642aaa8d5a636b8349b1d8d284d7b4c242b"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "dfbe44d22713323d8d14f38dae0df2988bd6ca497b94d95b029a59a81204f8e7"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "d1652d64dc96ee4252e00f877cb0c8965d5866f5d978f48af44dfa5372e2feb4"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "d8795fd0cd5fc162886445837965cfe6a682e07277eb1048b918b1cb53a39933"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed103_threshold_max_probability.json",
+      "sha256": "ef2efcd12c49159af53925e6598b05978bae086e80ca014c976a3c8318887426"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "16dcac031e7090760861f385a5792519652e5f48dd36fbff664c0b36002e6322"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "3dfc824163c3db552295f003283e22c3c43bc287aafc0c65852aea52e0858f8c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "af508f1cc3781b1a6378ca354f36aeff511472cf06a02b0909ed320bc6911d90"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "3334d4e4ad5c2425318aa70e36cafc8a9f637436ae254c8578920fb15d899ee1"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed107_threshold_max_probability.json",
+      "sha256": "cd0b0647976e4395565209f43f2ff52995b0ca03f95bb3d759e3f43fb52b80c3"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "45b4a060228147d690442af01056a696431c6c94aa49c61765beabb844f3afac"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "6d1fb1dbe6ef16b46ef8505c8dae77a29639c120b4578aa990df1fe819442d12"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed17_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "ffd0ebc91065d1bcac036ad33841436f204922ba7fc4e349e3b2081d7abbb826"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "77d8443726ca9bac7c94354902036760e58c59d3d3524c3c43f4bb310211b35e"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed101_threshold_max_probability.json",
+      "sha256": "d44c0d7eac46e87b6cbc3948a549ae9fe5d670aab5d29683b8505fbb20ab95ea"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "a8c0724e4d994e07c4f5d728af00b00bc2706a4c4a721736de8397e112fa0075"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "2b3d23b7d3cf8473b49235fadd74f9cce6440bd00fff4f246a72779314e897ce"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "6ae8bec5f0e8e6fba038695432bbd5a39e0e39769ca17a64e00eb675d9a17788"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "9e83fdb2c411ca0f31990c5074510d356f78a03a651f05494914094c059332a6"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed103_threshold_max_probability.json",
+      "sha256": "52e43491071ccd9f8f62d0e75229ff68658660bf3517816477efecced9cf8cdc"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "81876f017077bf81bf6b2db3b349bb64f7edeb5ad936749b2b46bfa7d4d5017b"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "80b8fc23388a46af61c129b796c4f5f4e62085fc7a1c8473a84cb7ee6a37fa7c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "3a4d8fcc048c927f7baffd54900d055ccbfd788126fac585c40973def777bfbe"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "d2ecee85123bf1548462e993d8883b398a7da58fb20ebfa5ee707a24908ea90a"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed107_threshold_max_probability.json",
+      "sha256": "9fdf2b1bfd74985b814fee61888e6eaa9f3b69537c8f29e333f93ae9ff30f201"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "d5975ce45fa8201a0945a368949c1df1f00f6e41d260188e0874e9e3e47d9fb0"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "6b8e60772bbe7f1903ebddb174bad66160e9012267fb4ee1388d7fa841142464"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed19_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "7812883f972be879f38a3f529acf776e1fe8614e3d4a64e33dd2369699ef96b1"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "4dee89b41b7bad95568ae38169e93b85afb720530525df7e5101448fd4f4d37a"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed101_threshold_max_probability.json",
+      "sha256": "5712e4ad042662e6be4005098bfe3f379abb68f1caff032093332fc9295153a7"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "53275318e20685d409c51e087f04ff3bea4ea76b5e1124cab490f9ff16675ac3"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "f5218f7d3dd35deb41dc169713eca481953ba1725d95b1b4d4b3c3cf8aba9a80"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "42199e357c2454f8947eac3ec4ef54f385ceb9ee3c30c5f72ca5eacc314d8b29"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "427caf34c8acb2f4a11075845adb4b6ead6303499aa4df6e0484e5ccd3bcf535"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed103_threshold_max_probability.json",
+      "sha256": "794173cdefe4f74460b38d7a1e24b41d9cf088b7a9d98a94500fc26757ec5904"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "6b6652d4e64be4f9b3c23d354ec6ef34f7db9cc8e8a768e0a66e328bba89abc1"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "e4ce0dbc41c3afcc930d51aaa3b98320c0a91467eb8f57ab414075f3b921c5b7"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "6eb26888b4ae51f954a93cc2c8d471879cb84bdefda9f590c164f88610aeb108"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "8804fa6cae6dcc3498af1eded451813c66ebad1d0a19ce6f711aa50edddd5771"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed107_threshold_max_probability.json",
+      "sha256": "bf550a96b35986534c7dafa10f06e897d7ed733c80dcb3244bc6b030976ec681"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "d784ecdd6de64216472f520052f121d44b460c47c601015b37e9d2667e3aeb6b"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "6804983e961c88a11bc16e7c27eb3837ae73eeba1c26efbba80827bc4c71aa17"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold4_taskseed23_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "4c0627285631f61001eeb912428a1750fc6c4bb8b2123d5311ff4994128efe98"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "f00255bb1b192b80c3a3a0a52bad24f3568993177a2268865057dcdcafc9ed19"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed101_threshold_max_probability.json",
+      "sha256": "e0c52a1a80707726a4ff77e3ad86f3a24ddba925093f0b36fad1a63a1d55b1d6"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "897f6524f25d216a14b3d24820d6525b89d8b4c873d6272e8061bad1f59cab9d"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "7540a1be368c091fd5d3d21c388ab7b3c40cba5f66f682e20c24f66dbc62c2fe"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "0767b537215dbabde52d935a65ccc83f7d9b13a66ceb985c15d3bde46bb594dd"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "5c82fb084ea47815cff02fb17431f07377de0d8de194dc1a3fd6c8d397362086"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed103_threshold_max_probability.json",
+      "sha256": "516f168e7093fe3c0d11e1f1177a01034df4d02f17045fbb1d167b6a694ea3fd"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "cdf3831b80204f0cdcca1f71b79dd0fec3799c17b7ab22a3dfaef04d44791e75"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "ce547431dbedd8f0960f1ecabff52a85cbab420556b54695ab501c1dab81cdec"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "336bd76e466e91a309e8afa98e22494c81d318a0ef8b419f78a3801b3942d694"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "21018e028bb0f1fce1696b8eb226af8fc1412b68cdb9495a30aa4c2ed8388e64"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed107_threshold_max_probability.json",
+      "sha256": "e03168f6315e06d8be690e34e9f1ed0257aa6bd1300a0628ea1e5a8899d913e3"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "b328e3716b52be60a71f9399288b1a461dd92bc051c777419d71a7db68be6076"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "b3b6e6740910455dfc217018356a546e753253d249f9b4e5219470bf43d2ded8"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed13_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "58da7386fd16d5d764c699d7b0d140f55c4d09f2dba3fc251fa895ac0a5c9e67"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "0a150f352bd75732c4af93e4f396cb3cc540e3d4e50e0a9763e3e28883063fbc"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed101_threshold_max_probability.json",
+      "sha256": "3373fb224672c0b619c1f13748912e8856beb92f4591fa6281ff40fb0c62a84f"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "90efcf92488f3f713e5c2f977ee4bcdf6e4de2260e80345e8bcd13c205c1cd02"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "849cf4623b9bed3c5e045231f4c045eac31bf5efe38cfb7d64c50cc0004aeeb1"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "f05dcbdffdb80c524ab65f20bf0b1f09e17509880627f1042af0aa388311647b"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "6005a97f4dc7b28e0fcfb5f242841c12c0a7af3f5da1e2b66ef11e8f6a8b601d"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed103_threshold_max_probability.json",
+      "sha256": "7f0f8954078b8f100ffe258011d4073240524b70d8d42d483e48f19107aea64c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "47063ecd1cce6fbb01c9bb83697ffac6b287fd8d0d7d19a6c02a0809ac3e85ca"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "32183fff51f6dcd99ffdd165baed40181934a0e4edc32b71d9f1a53bdf68dd43"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "1ca298edaacd8061f7017d8d17e5dc261a07e7022d935decbf45a65f008fbe9c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "dcb8d586aa3ff7da248a83ad9e6d4fbdfa3787a4385d19d0122fdb1cb46e3f74"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed107_threshold_max_probability.json",
+      "sha256": "1ec4be80401d48d6d9a1f5c1e302b721cf3352ad4604956feb4820f6b12941ec"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "4b466d2b6c289b6d28df321315aae228bbffa4a2d7f60ae41010b47bed6d36ef"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "76dae23fab14f1675bb5789b10cdade073641710fb42060aeda318e114c2896c"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed17_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "53287604a8c34003d455f8ded7e90c5de46eaa080959edc73d92f320a58688e4"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "d1075d49120dbfa406c1b5098ef6b447c972db41de9aa9fa29f637bdff9a1370"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed101_threshold_max_probability.json",
+      "sha256": "b3545850b3164ed9a591fcefe5e6405cf9e1759524e9713595eebb565243e6d0"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "acaef7658af944e01be67b9ddd2a8f0ffa195502c6f4f2a17dd7225bf7efe755"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "69ebd45f1f66d650b0f0cb4c8ecf982ef25d4aa25f861309e4b22e387546c555"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "845af3cea7e1e483c4914aefc7de5e1bf259aa04fbf1b3bd08e5df40b59567c7"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "ac3b544d1258bf951448496716d514d6b9f5468efae108c9456543f3510a6084"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed103_threshold_max_probability.json",
+      "sha256": "2196b9b452ddc22ec5b2541c2225c2ab5ae32fa76f5622ba02e4c11f38de0b2b"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "d73c70415922a1713d676825e6324cb5f5d10bb4e832a99d9056d7d8b0bc67b0"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "4408d076953ad010bd2d55bba2a5c7418a7f56d88f31fef7a00ae09b7fb08938"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "04bf79d9c3ca65ce9d0b78f9da8d696c43098e11505e9d868b1e42c1940c2a67"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "c13a8d853bcdf89cbf1fb2b1498f890643257b347495f1d1cda3f3c549c71e8b"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed107_threshold_max_probability.json",
+      "sha256": "a562a9ed790ee9d3e40f54a7091f0bb959041ad76906ece950b1d2435fc4f669"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "17a498c6e915b71d33b2195664e96928c4e0da4dea773a7db9075f8e35ce1b04"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "1f829e2b4b4c4e451d24a4caedeaaa80f54de48cbd27aa82456d6aff7e1cc486"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed19_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "d4da602756b4dc84963ba91ff954867daccae0f2eeffa3befd3489bc4076276a"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed101_threshold_label_known_log_probability.json",
+      "sha256": "1ec19b97af84147200c7c009070fab07c5a57618a1fa2a62ddaa59aaad59d074"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed101_threshold_max_probability.json",
+      "sha256": "842e6071b7add999fef00e7a31d377610eb2c0040e152b8113f3c7d38bc315ea"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed101_logistic_regression_posterior_probabilities.json",
+      "sha256": "c550ce59c6a5c373ac46eb8294f5186902166fca1687a831499fd55430561364"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed101_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "59530d7d2a8e1f86527cd595bd73521af94ae803cd28964bda62ea2e1f246b81"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed101_mlp_posterior_probabilities.json",
+      "sha256": "88721efcc1ed13bb18a34ef264dbd486193b6120850680e8a070b7679621a41e"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed103_threshold_label_known_log_probability.json",
+      "sha256": "7c96d7dee499ffc660824191703668b2aaf20ea0ef2b1480ff8393fc46ca2425"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed103_threshold_max_probability.json",
+      "sha256": "f79f62e21665363f8c9ac5af73d14d5b4cb87955699ca805fb432565e3a14f4d"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed103_logistic_regression_posterior_probabilities.json",
+      "sha256": "ffb604905aa1168de35fe650f54ba660ae78081b9a24aae968cf47f762b17efc"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed103_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "3a5476f7db6f83a0269a273242177275165329ca174403a66db6b3d855d780b3"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed103_mlp_posterior_probabilities.json",
+      "sha256": "d8ac127cfb86896f0bd2cdd28da429edf6a33d408271c6c50dd45ff2e89067f9"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed107_threshold_label_known_log_probability.json",
+      "sha256": "e0fac525df39f10c5fa834985d01e5ada289a4add0b4a6d3822dc3ee901459b0"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed107_threshold_max_probability.json",
+      "sha256": "80c65b9919c5255e7210b45bf66a89e585561f2a97cfd22037b55c7f02ab817e"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed107_logistic_regression_posterior_probabilities.json",
+      "sha256": "8813f214a6e16ba2ce3c1c5f0db73bc61716d8a96b0d2bad6b1433589758e54a"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed107_logistic_regression_posterior_probabilities_plus_true_label.json",
+      "sha256": "bfcdd6602fb95d9e05389cf6cf708bfc5b84ae30b8099f9fa2c206abbb317387"
+    },
+    {
+      "result_file": "results/compact_bottleneck_eegnet_dim6_fold5_taskseed23_attackseed107_mlp_posterior_probabilities.json",
+      "sha256": "335a95e2fca91a25160611477b38d5772ca63749efa60efc430472ca5d014b46"
+    }
+  ]
+}

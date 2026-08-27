@@ -1,4 +1,4 @@
-# EEG Privacy Benchmark v1
+# EEG Privacy Benchmark v1.1
 
 A reproducible benchmark for asking a narrow question: when an EEG decoder is
 trained for left- versus right-hand motor imagery, what subject-identity and
@@ -25,6 +25,25 @@ guarantee.
 
 See [RESULTS.md](RESULTS.md), the [venue-neutral manuscript](paper/manuscript.md),
 and the [curated v1 evidence](results/v1/README.md).
+
+## v1.1 Cho2017 confirmatory extension
+
+v1.1 adds a preregistered transfer evaluation on 50 previously untouched
+Cho2017 subjects. Plain compact EEGNet reached mean subject balanced accuracy
+`0.6287` (95% subject-bootstrap CI `[0.6012, 0.6585]`). The fixed compact
+bottleneck (`dim=6`) reached `0.6256`; its paired utility loss was `0.0032`,
+with a one-sided 95% upper bound of `0.0075` below the frozen `0.030` margin.
+
+The subsequent 600-job cache-only membership evaluation did **not** promote a
+privacy claim. Mean AUC reductions for threshold, logistic-regression, and MLP
+attacker families were `-0.00003`, `+0.00002`, and `+0.00140`; all
+Holm-controlled intervals crossed zero, and `0/3` families passed versus `2/3`
+required. The supported result is utility noninferiority, not a Cho2017
+membership-privacy improvement.
+
+See the [v1.1 evidence index](results/v1.1/README.md), [validation
+contract](docs/V1_1_CHO2017_VALIDATION_CONTRACT.md), and [claim
+audit](docs/V1_1_CHO2017_CLAIM_AUDIT.md).
 
 ## Installation
 
@@ -87,6 +106,7 @@ is run. Keep all downloads under ignored `raw_data/mne_data/`.
 - `data/`: frozen split definitions and metadata documentation
 - `paper/`: venue-neutral manuscript and bibliography
 - `results/v1/`: curated aggregate evidence, figures, tables, and checksums
+- `results/v1.1/`: Cho2017 confirmatory-extension evidence index
 
 Dataset caches, generated manifests, and run outputs are written to the ignored
 `raw_data/`, `data/manifests/`, and `outputs/` paths when required; generated
@@ -101,7 +121,10 @@ granted by this repository. See [LICENSE_SCOPE.md](LICENSE_SCOPE.md),
 
 ## Release status
 
-The `v1.0.0` release is the frozen public benchmark and evidence boundary. Its
-versioned manifest records the development source checkpoint and curated
-evidence checksums. Secret-scan and manuscript-render checks are recorded in
-[the publication QA note](release/PUBLICATION_QA.md).
+The `v1.0.0` evidence remains frozen. v1.1 adds the separate Cho2017
+confirmatory extension without revising the original BNCI, Lee, or PhysioNet
+claims. Versioned release manifests record the reviewed source boundaries and
+curated evidence checksums. Secret-scan and manuscript-render checks for v1 are
+recorded in [the v1 publication QA note](release/PUBLICATION_QA.md). The v1.1
+inventory, links, paths, licenses, commit identity, and checksums are validated
+by `scripts/check_public_release.py`.

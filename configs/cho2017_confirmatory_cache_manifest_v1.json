@@ -1,0 +1,1916 @@
+{
+  "schema_version": 1,
+  "dataset": "Cho2017",
+  "cohort": "confirmatory_subjects_3_52",
+  "qa_status": "PASS",
+  "objective_subject_exclusions": [],
+  "primary_analysis_trial_policy": "moabb_all_trials",
+  "raw_bad_trial_index_mapping": "unmapped_upstream_metadata_only",
+  "network_or_training": false,
+  "summary": {
+    "subject_count": 50,
+    "file_count": 50,
+    "total_bytes": 10295233855,
+    "trials_per_class_counts": {
+      "100": 47,
+      "120": 3
+    },
+    "source_shape_variants": [
+      {
+        "source_channels": 68,
+        "samples_per_class_recording": 358400,
+        "trials_per_class": 100
+      },
+      {
+        "source_channels": 68,
+        "samples_per_class_recording": 430080,
+        "trials_per_class": 120
+      }
+    ],
+    "identical_source_shape": false,
+    "identical_source_shape_explanation": "Expected source-level variation: 47 subjects have 100 trials per class and 3 have 120. The frozen post-preprocessing representation remains fixed.",
+    "raw_bad_trial_index_entry_count": 775,
+    "subjects_with_raw_bad_trial_indices": [
+      5,
+      6,
+      7,
+      8,
+      12,
+      15,
+      16,
+      17,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      36,
+      37,
+      38,
+      39,
+      41,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      51
+    ],
+    "finite_eeg_all_subjects": true,
+    "nonzero_channel_variance_all_subjects": true
+  },
+  "provenance": {
+    "source_qa_sha256": "d6b59ab707ed37bdae388c0d354c1441c4ec51ce46969363c2a205432bdd2f9e",
+    "audit_command": "PYTHONPATH=src .venv/bin/python scripts/audit_cho2017_cached_subjects.py --mne-data-dir raw_data/mne_data --subjects 3,4,...,52",
+    "freeze_command": "PYTHONPATH=src .venv/bin/python scripts/freeze_cho2017_cache_manifest.py"
+  },
+  "rows": [
+    {
+      "subject": 3,
+      "file": "s03.mat",
+      "bytes": 206547925,
+      "sha256": "f2b4e386c501add1bfd5b43767f2d684a7c1fa29f811d3a1876d4e5861377ebc",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 4,
+      "file": "s04.mat",
+      "bytes": 200456673,
+      "sha256": "9c4e682deb3d60f9b5f3e77d0b369046674a5ecc0db440975c1ca516fd501840",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 5,
+      "file": "s05.mat",
+      "bytes": 204209809,
+      "sha256": "5d25609b80f2d61c7a0698d9443b236dd369e77b41a15355643b85d97c97d902",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            15
+          ],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 6,
+      "file": "s06.mat",
+      "bytes": 201737794,
+      "sha256": "74375f26572b73b6d6caf51705ef355d978e46796ac5d91517a36ab1a0c02e8c",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 22,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            78,
+            80
+          ],
+          "cell_2_unmapped": [
+            1,
+            10,
+            17,
+            20,
+            21,
+            22,
+            28,
+            32,
+            44,
+            47,
+            54,
+            58,
+            59,
+            60,
+            68,
+            70,
+            81,
+            82,
+            89,
+            90
+          ]
+        }
+      }
+    },
+    {
+      "subject": 7,
+      "file": "s07.mat",
+      "bytes": 233546637,
+      "sha256": "59300489a42f04ad304c5f3e74a5984bd1127f473eac4d754ea46679c5b5c8dc",
+      "trials_per_class": 120,
+      "event_onsets": 120,
+      "samples_per_class_recording": 430080,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [
+            119
+          ],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 8,
+      "file": "s08.mat",
+      "bytes": 202618405,
+      "sha256": "be4b73dd6c6d41d9005011f5298e51f4be709c2f5e6d1d0722215df19c7df882",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 2,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            48,
+            52
+          ],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 9,
+      "file": "s09.mat",
+      "bytes": 234672043,
+      "sha256": "fff2e17497211bb70f0050564353108098513398c0836add8e84d85585f9b541",
+      "trials_per_class": 120,
+      "event_onsets": 120,
+      "samples_per_class_recording": 430080,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 10,
+      "file": "s10.mat",
+      "bytes": 202678732,
+      "sha256": "1d9638cad324fb12ada1313679c35a54a991fc80939c6502a8bf3102fb137ee8",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 11,
+      "file": "s11.mat",
+      "bytes": 203651167,
+      "sha256": "afb8a7e00531149f54af6b597ee171143f60fd114cdd6853bb2193aa747c2091",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 12,
+      "file": "s12.mat",
+      "bytes": 208557544,
+      "sha256": "b14c885be9999c108287cdfc6c46bc0fe1b364c971b3c1ddd4d2c645fb1809e7",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 26,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            36,
+            56,
+            59,
+            60,
+            66,
+            70,
+            84,
+            89,
+            90,
+            91,
+            94,
+            95,
+            96,
+            98
+          ],
+          "cell_2_unmapped": [
+            26,
+            32,
+            40,
+            52,
+            54,
+            55,
+            56,
+            86,
+            92,
+            98,
+            99,
+            100
+          ]
+        }
+      }
+    },
+    {
+      "subject": 13,
+      "file": "s13.mat",
+      "bytes": 199330843,
+      "sha256": "4c9806b3051ccb9ce4ffb19a80cce510d9424d2cf3dc81da2e6969dc2cdd6481",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 14,
+      "file": "s14.mat",
+      "bytes": 203565516,
+      "sha256": "d80df4caafa163a62ef9c9533ef5baded9fb6a8aa7ae7ab6ecdb70bf45f05c83",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 15,
+      "file": "s15.mat",
+      "bytes": 203290650,
+      "sha256": "95011e9b668784c8dad3c45bb6105232190848db6100eafe53d4ddff55cb35d7",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 11,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [
+            81
+          ],
+          "cell_2_unmapped": [
+            96
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            35,
+            53,
+            81
+          ],
+          "cell_2_unmapped": [
+            26,
+            28,
+            31,
+            32,
+            34,
+            61
+          ]
+        }
+      }
+    },
+    {
+      "subject": 16,
+      "file": "s16.mat",
+      "bytes": 204250575,
+      "sha256": "d3280d213c723e8623e8364edfb24104ed6dcd035a20f3e1f86c9510b0d947b0",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            68
+          ],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 17,
+      "file": "s17.mat",
+      "bytes": 205150610,
+      "sha256": "8b55f5ce72b983e52617e866fabdf45446376701d9e819c439715b7aba9e055a",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            29
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 18,
+      "file": "s18.mat",
+      "bytes": 201912526,
+      "sha256": "c875a04e589afef69388702fa293012d35237abbff5240c2ce37488184fc607c",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 19,
+      "file": "s19.mat",
+      "bytes": 207257547,
+      "sha256": "cbb9fdf4c063d0dac3e83f6089242f56562775bfe0d952dfc93ba08d7861f658",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 57,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            4,
+            14,
+            18,
+            57,
+            58,
+            62,
+            63,
+            68,
+            70,
+            72,
+            73,
+            74,
+            75,
+            76,
+            94,
+            96,
+            97,
+            99,
+            100
+          ],
+          "cell_2_unmapped": [
+            2,
+            10,
+            13,
+            14,
+            16,
+            17,
+            28,
+            32,
+            42,
+            44,
+            45,
+            49,
+            50,
+            51,
+            52,
+            54,
+            55,
+            56,
+            57,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            67,
+            68,
+            69,
+            70,
+            72,
+            74,
+            75,
+            76,
+            77,
+            80,
+            81,
+            94,
+            98
+          ]
+        }
+      }
+    },
+    {
+      "subject": 20,
+      "file": "s20.mat",
+      "bytes": 202043554,
+      "sha256": "5b91cf6de405b8a23e9c01e70b8955fdf15c6334c18d6335e93d94715a64f64d",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 117,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            1,
+            15,
+            16,
+            17,
+            18,
+            19,
+            21,
+            22,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            36,
+            37,
+            38,
+            39,
+            40,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            65,
+            67,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ],
+          "cell_2_unmapped": [
+            24,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            37,
+            38,
+            39,
+            40,
+            41,
+            44,
+            45,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            57,
+            58,
+            59,
+            60,
+            69,
+            71,
+            72,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            95,
+            96,
+            98,
+            99,
+            100
+          ]
+        }
+      }
+    },
+    {
+      "subject": 21,
+      "file": "s21.mat",
+      "bytes": 202697521,
+      "sha256": "2c95224bddff358a89cba617bf9eb74a261b8b853790f4ce9c75c5473ced8a18",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            99
+          ]
+        }
+      }
+    },
+    {
+      "subject": 22,
+      "file": "s22.mat",
+      "bytes": 203579859,
+      "sha256": "0eac5d10dc674ee5bbf6d35e96e0a44a2d6056ad4a1d3a0a22ff80a2e7027fcf",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            1
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 23,
+      "file": "s23.mat",
+      "bytes": 205256611,
+      "sha256": "c4a01839bc60d44eff43675492c3056c1338d0202f2cb6c72d37ecaaa95c81b0",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 3,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            32,
+            73
+          ],
+          "cell_2_unmapped": [
+            21
+          ]
+        }
+      }
+    },
+    {
+      "subject": 24,
+      "file": "s24.mat",
+      "bytes": 202913409,
+      "sha256": "b28db34626242be4975e19bea742e486d8fd0c4f9eaefd3878077745816f4d35",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            1
+          ],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 25,
+      "file": "s25.mat",
+      "bytes": 205061623,
+      "sha256": "8b7baa831b699fc95527f2a7eb87e920374e87052acb87556790e0277e993a3d",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 5,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            56
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            71,
+            79,
+            93
+          ],
+          "cell_2_unmapped": [
+            40
+          ]
+        }
+      }
+    },
+    {
+      "subject": 26,
+      "file": "s26.mat",
+      "bytes": 203011452,
+      "sha256": "479472ff4574d2b54a6653ce129db2f8e36ec5500ece321b2b113d5ce58e0723",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 2,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            35,
+            36
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 27,
+      "file": "s27.mat",
+      "bytes": 204789998,
+      "sha256": "2e0d2c30ff6df46cb07c5b8563e1012d0d924261b0d062c49be33d7a1cb9a7dc",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 16,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            100
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            16,
+            19,
+            33,
+            35,
+            39,
+            40,
+            41,
+            65,
+            77,
+            97,
+            98
+          ],
+          "cell_2_unmapped": [
+            40,
+            49,
+            50,
+            71
+          ]
+        }
+      }
+    },
+    {
+      "subject": 28,
+      "file": "s28.mat",
+      "bytes": 205554539,
+      "sha256": "b6c51b130fb2bb349e614fcab23655948c6658fdf782199041cbb03ff7a36dbd",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 5,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            78
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            78
+          ],
+          "cell_2_unmapped": [
+            25,
+            49,
+            73
+          ]
+        }
+      }
+    },
+    {
+      "subject": 29,
+      "file": "s29.mat",
+      "bytes": 202928099,
+      "sha256": "bcadd645f161acae0f5b45bfc3f724d6b6e25ed9c9978d3e339a74908bc13f73",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 179,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            66,
+            74,
+            75,
+            77,
+            78,
+            79,
+            80,
+            81,
+            83,
+            84,
+            85,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99
+          ],
+          "cell_2_unmapped": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ]
+        }
+      }
+    },
+    {
+      "subject": 30,
+      "file": "s30.mat",
+      "bytes": 204129671,
+      "sha256": "29d0d8714bb8e59cc9c3718ff84542536f34703eb17f536e7400d39abf5561f8",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 78,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            5,
+            7,
+            10,
+            14,
+            15,
+            21,
+            25,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60
+          ],
+          "cell_2_unmapped": [
+            10,
+            11,
+            22,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            63
+          ]
+        }
+      }
+    },
+    {
+      "subject": 31,
+      "file": "s31.mat",
+      "bytes": 207323724,
+      "sha256": "e03f3343b410ddff2584d95e5af0aad8039ceeecbded59f2fcc1e94a91a9e30a",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            16
+          ],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 32,
+      "file": "s32.mat",
+      "bytes": 206235816,
+      "sha256": "79217e2938b36fe29ef040ae34ffe3628ee8f557563771d3601b3c2253ee0ea7",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 33,
+      "file": "s33.mat",
+      "bytes": 205696384,
+      "sha256": "fc0ae6795a14bdf112e07812929570ad1bc140718d71e3605e2c99588ccf5d2d",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 8,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [
+            1,
+            72,
+            77,
+            81
+          ],
+          "cell_2_unmapped": [
+            66,
+            81,
+            85
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            41
+          ]
+        }
+      }
+    },
+    {
+      "subject": 34,
+      "file": "s34.mat",
+      "bytes": 203249088,
+      "sha256": "8fd506677c43ffdbe7f3cbbb5ed22b9426ab3eb1275595202d88c508df6e240a",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 184,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            3,
+            5,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            65,
+            67,
+            68,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ],
+          "cell_2_unmapped": [
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ]
+        }
+      }
+    },
+    {
+      "subject": 35,
+      "file": "s35.mat",
+      "bytes": 201382139,
+      "sha256": "656951a3620d0ba432e24273d191fff428735e092833491599ca302e9bfcb51d",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 36,
+      "file": "s36.mat",
+      "bytes": 202238390,
+      "sha256": "201e2aa49eb2dad84a4738668e0a02db9abebf57376251040c1aa9cf4efcd413",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 7,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [
+            77
+          ],
+          "cell_2_unmapped": [
+            33
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            16,
+            40,
+            94
+          ],
+          "cell_2_unmapped": [
+            68,
+            84
+          ]
+        }
+      }
+    },
+    {
+      "subject": 37,
+      "file": "s37.mat",
+      "bytes": 205542398,
+      "sha256": "82badb54e53e3895f72681d9cf581613573e0675c8cd9a0f578913ef18d846e3",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 4,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            64,
+            69,
+            75,
+            88
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 38,
+      "file": "s38.mat",
+      "bytes": 204908512,
+      "sha256": "2f95a38d9f50492781dd57c0638122f3fb0794b1361f220475bc20700bf75a12",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 9,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            57,
+            72,
+            80,
+            81
+          ],
+          "cell_2_unmapped": [
+            10,
+            17,
+            34,
+            57,
+            76
+          ]
+        }
+      }
+    },
+    {
+      "subject": 39,
+      "file": "s39.mat",
+      "bytes": 206867819,
+      "sha256": "26c8a180de81d2671984efb7a9a3655a78e292a289b97a8083b8cc180244ed15",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            43
+          ]
+        }
+      }
+    },
+    {
+      "subject": 40,
+      "file": "s40.mat",
+      "bytes": 200137624,
+      "sha256": "94b8d9c933011543251d2075e4575b01c6534ab1fb43ee1406b7fb53f3200d11",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 41,
+      "file": "s41.mat",
+      "bytes": 203184362,
+      "sha256": "88d058863f7d1942cb24a32230d39c663f8902057a0e9aaa6063d36e5fc81fdc",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "subject": 42,
+      "file": "s42.mat",
+      "bytes": 201632098,
+      "sha256": "fe60fdfc6120d9716510b8a5a056c4bf0bf9b77782eed806a3ccf7a50bc040e5",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 43,
+      "file": "s43.mat",
+      "bytes": 205312190,
+      "sha256": "7d4d7f93acf84569669ff2655364e0ddf7018d68e7d8b5e2060f0ec479507ea0",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 44,
+      "file": "s44.mat",
+      "bytes": 208780878,
+      "sha256": "b0433df98a59f5c354743d97e5ffea422cb9bfa69cf025f828d4e038872d3c7d",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 2,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            14,
+            20
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 45,
+      "file": "s45.mat",
+      "bytes": 208130079,
+      "sha256": "1d679a6daba9a60160eb080abe7532bab49f78f6ebe7bc79f817512d6b9f855b",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 4,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [
+            32
+          ],
+          "cell_2_unmapped": [
+            20,
+            41,
+            68
+          ]
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 46,
+      "file": "s46.mat",
+      "bytes": 237147858,
+      "sha256": "be33aa595d7a32cf7666758f102f52fd4d71f150a70f7529c7bb86c3c09ea0a8",
+      "trials_per_class": 120,
+      "event_onsets": 120,
+      "samples_per_class_recording": 430080,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            78
+          ],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 47,
+      "file": "s47.mat",
+      "bytes": 201698159,
+      "sha256": "e5d5161a85b645839ec3c23b5ef8e334f423aab132cd6b938d96eccd73ed5137",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 8,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            47,
+            50,
+            70,
+            83,
+            87,
+            99
+          ],
+          "cell_2_unmapped": [
+            54,
+            74
+          ]
+        }
+      }
+    },
+    {
+      "subject": 48,
+      "file": "s48.mat",
+      "bytes": 205771783,
+      "sha256": "ad01fd29a2f358204b0f528e78dbb909d35ad4304b3fa222dff90e759941a287",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 1,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": [
+            40
+          ]
+        }
+      }
+    },
+    {
+      "subject": 49,
+      "file": "s49.mat",
+      "bytes": 203273886,
+      "sha256": "a1e24e633b20ea4ed3eba5d93f9cf51b8cf24a340ec72b78d7000da5afaf957b",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 8,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            1,
+            7,
+            8,
+            14,
+            15,
+            17,
+            20,
+            78
+          ],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 50,
+      "file": "s50.mat",
+      "bytes": 205228049,
+      "sha256": "b5df79bb64eb585ff01eb77cc176c9a02964c564dd40a4eeec7764b510950d40",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    },
+    {
+      "subject": 51,
+      "file": "s51.mat",
+      "bytes": 199549446,
+      "sha256": "0c09887cc122d4a0c043d2304af1537a293fe86562b4296ec0e75f5bf2e95fbb",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 6,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [
+            15,
+            64
+          ],
+          "cell_2_unmapped": [
+            20,
+            63,
+            65,
+            75
+          ]
+        }
+      }
+    },
+    {
+      "subject": 52,
+      "file": "s52.mat",
+      "bytes": 206541841,
+      "sha256": "94840189e02d45ccca5d340bde6ca7f3e4c726acaf9749f6b9c6053ecb147f50",
+      "trials_per_class": 100,
+      "event_onsets": 100,
+      "samples_per_class_recording": 358400,
+      "raw_bad_trial_index_entry_count": 0,
+      "bad_trial_indices_raw_matlab": {
+        "bad_trial_idx_voltage": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        },
+        "bad_trial_idx_mi": {
+          "cell_1_unmapped": [],
+          "cell_2_unmapped": []
+        }
+      }
+    }
+  ]
+}

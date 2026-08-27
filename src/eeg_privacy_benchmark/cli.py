@@ -156,6 +156,7 @@ def _dataset_mne_config_keys(dataset_key: str | None) -> list[str]:
         "bnci2014_001": {"BNCI"},
         "physionet_motor_imagery": {"EEGBCI", "PhysionetMotorImagery"},
         "lee2019_mi": {"Lee2019-MI"},
+        "cho2017": {"GIGADB"},
     }
     tokens = {
         dataset_key,

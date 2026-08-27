@@ -5,12 +5,17 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 import random
 
-from eeg_privacy_benchmark.datasets.base import DatasetManifest
+from eeg_privacy_benchmark.datasets.base import (
+    DatasetManifest,
+    validate_loaded_array_dataset,
+)
 from eeg_privacy_benchmark.datasets.factory import build_dataset_loader
 from eeg_privacy_benchmark.datasets.splits import (
+    ExplicitTrialSplit,
     generate_cross_run_split,
     generate_cross_session_split,
     generate_cross_subject_split,
+    resolve_explicit_trial_split,
 )
 
 
@@ -168,6 +173,30 @@ def _build_validation_indices(np, train_indices: list[int], labels, seed: int, v
     return sorted(train_subset), sorted(validation_subset)
 
 
+def _resolve_training_validation_indices(
+    np,
+    train_indices: list[int],
+    labels,
+    seed: int,
+    validation_fraction: float,
+    *,
+    explicit_validation_indices: list[int] | None,
+) -> tuple[list[int], list[int]]:
+    """Use a frozen validation role or fall back to the legacy trial split."""
+
+    if explicit_validation_indices is not None:
+        if not train_indices or not explicit_validation_indices:
+            raise ValueError("explicit training and validation indices must be non-empty")
+        return sorted(train_indices), sorted(explicit_validation_indices)
+    return _build_validation_indices(
+        np,
+        train_indices,
+        labels,
+        seed,
+        validation_fraction,
+    )
+
+
 def _normalize_features(
     np,
     features,
@@ -233,6 +262,7 @@ class EEGNetTrainingArtifacts:
     train_indices: tuple[int, ...]
     validation_indices: tuple[int, ...]
     test_indices: tuple[int, ...]
+    nonmember_indices: tuple[int, ...] = ()
 
 
 def _batched_model_forward(
@@ -313,6 +343,10 @@ def fit_eegnet(
     resample_hz: float | None = None,
     normalization: str = "global_train_channel",
     classifier_head: str = "flatten",
+    frequency_band_hz: tuple[float, float] | None = None,
+    epoch_seconds: tuple[float, float] | None = None,
+    explicit_trial_split: ExplicitTrialSplit | None = None,
+    loaded_dataset=None,
 ) -> EEGNetTrainingArtifacts:
     """Train EEGNet and return the fitted model plus aligned metadata."""
 
@@ -322,8 +356,25 @@ def fit_eegnet(
     nn = deps["nn"]
     _set_all_seeds(torch, np, seed)
 
-    loader = build_dataset_loader(dataset_key, resample_hz=resample_hz)
-    loaded = loader.load_array_data(subjects=subjects)
+    loader = build_dataset_loader(
+        dataset_key,
+        resample_hz=resample_hz,
+        frequency_band_hz=frequency_band_hz,
+        epoch_seconds=epoch_seconds,
+    )
+    loaded = (
+        loaded_dataset
+        if loaded_dataset is not None
+        else loader.load_array_data(subjects=subjects)
+    )
+    validate_loaded_array_dataset(
+        loaded,
+        dataset_key=dataset_key,
+        subjects=subjects,
+        resample_hz=resample_hz,
+        frequency_band_hz=frequency_band_hz,
+        epoch_seconds=epoch_seconds,
+    )
     manifest = DatasetManifest(
         dataset_key=dataset_key,
         trial_records=loaded.trial_records,
@@ -331,40 +382,59 @@ def fit_eegnet(
         notes=loader.dataset_spec.notes,
     )
 
-    if protocol == "cross_subject":
-        split_manifest = generate_cross_subject_split(manifest, seed=seed)
-    elif protocol == "cross_session":
-        split_manifest = generate_cross_session_split(manifest, seed=seed)
-    elif protocol == "cross_run":
-        split_manifest = generate_cross_run_split(manifest, seed=seed)
+    if explicit_trial_split is not None:
+        if protocol != explicit_trial_split.protocol:
+            raise ValueError("protocol must match the explicit trial split")
+        resolved_split = resolve_explicit_trial_split(
+            loaded.trial_records,
+            explicit_trial_split,
+        )
+        train_indices = list(resolved_split.train_indices)
+        validation_indices = list(resolved_split.validation_indices)
+        test_indices = list(resolved_split.test_indices)
+        nonmember_indices = list(resolved_split.nonmember_indices)
     else:
-        raise ValueError(f"Unsupported protocol for EEGNet baseline: {protocol}")
+        nonmember_indices = []
+        if protocol == "cross_subject":
+            split_manifest = generate_cross_subject_split(manifest, seed=seed)
+        elif protocol == "cross_session":
+            split_manifest = generate_cross_session_split(manifest, seed=seed)
+        elif protocol == "cross_run":
+            split_manifest = generate_cross_run_split(manifest, seed=seed)
+        else:
+            raise ValueError(f"Unsupported protocol for EEGNet baseline: {protocol}")
 
-    split_lookup = {
-        assignment.trial_id: assignment.split for assignment in split_manifest.assignments
-    }
-    train_indices = [
-        index
-        for index, record in enumerate(loaded.trial_records)
-        if split_lookup[record.trial_id] == "train"
-    ]
-    test_indices = [
-        index
-        for index, record in enumerate(loaded.trial_records)
-        if split_lookup[record.trial_id] == "test"
-    ]
-    if not train_indices or not test_indices:
-        raise ValueError(f"Protocol {protocol} did not produce both train and test trials.")
+        split_lookup = {
+            assignment.trial_id: assignment.split
+            for assignment in split_manifest.assignments
+        }
+        train_indices = [
+            index
+            for index, record in enumerate(loaded.trial_records)
+            if split_lookup[record.trial_id] == "train"
+        ]
+        test_indices = [
+            index
+            for index, record in enumerate(loaded.trial_records)
+            if split_lookup[record.trial_id] == "test"
+        ]
+        if not train_indices or not test_indices:
+            raise ValueError(
+                f"Protocol {protocol} did not produce both train and test trials."
+            )
 
     features = np.asarray(loaded.features, dtype=np.float32)
     label_encoder = deps["LabelEncoder"]()
     encoded_labels = label_encoder.fit_transform(loaded.labels)
-    train_indices, validation_indices = _build_validation_indices(
+    train_indices, validation_indices = _resolve_training_validation_indices(
         np,
         train_indices,
         encoded_labels,
         seed,
         validation_fraction,
+        explicit_validation_indices=(
+            validation_indices if explicit_trial_split is not None else None
+        ),
     )
     features, _, _ = _normalize_features(
         np,
@@ -529,6 +599,7 @@ def fit_eegnet(
         train_indices=tuple(train_indices),
         validation_indices=tuple(validation_indices),
         test_indices=tuple(test_indices),
+        nonmember_indices=tuple(nonmember_indices),
     )
 
 
@@ -551,6 +622,10 @@ def run_eegnet(
     resample_hz: float | None = None,
     normalization: str = "global_train_channel",
     classifier_head: str = "flatten",
+    frequency_band_hz: tuple[float, float] | None = None,
+    epoch_seconds: tuple[float, float] | None = None,
+    explicit_trial_split: ExplicitTrialSplit | None = None,
+    loaded_dataset=None,
 ) -> DeepBaselineResult:
     """Train and evaluate the EEGNet baseline on one dataset/protocol."""
 
@@ -572,6 +647,10 @@ def run_eegnet(
         resample_hz=resample_hz,
         normalization=normalization,
         classifier_head=classifier_head,
+        frequency_band_hz=frequency_band_hz,
+        epoch_seconds=epoch_seconds,
+        explicit_trial_split=explicit_trial_split,
+        loaded_dataset=loaded_dataset,
     ).result
 
 
@@ -645,6 +724,10 @@ def fit_bottleneck_eegnet(
     validation_fraction: float = 0.2,
     early_stopping_patience: int = 5,
     bottleneck_dim: int = 8,
+    resample_hz: float | None = None,
+    normalization: str = "global_train_channel",
+    classifier_head: str = "flatten",
+    explicit_trial_split: ExplicitTrialSplit | None = None,
 ) -> EEGNetTrainingArtifacts:
     """Train EEGNet with a low-dimensional feature bottleneck."""
 
@@ -661,6 +744,10 @@ def fit_bottleneck_eegnet(
         validation_fraction=validation_fraction,
         early_stopping_patience=early_stopping_patience,
         bottleneck_dim=bottleneck_dim,
+        resample_hz=resample_hz,
+        normalization=normalization,
+        classifier_head=classifier_head,
+        explicit_trial_split=explicit_trial_split,
     )
 
 
@@ -850,6 +937,10 @@ def run_bottleneck_eegnet(
     validation_fraction: float = 0.2,
     early_stopping_patience: int = 5,
     bottleneck_dim: int = 8,
+    resample_hz: float | None = None,
+    normalization: str = "global_train_channel",
+    classifier_head: str = "flatten",
+    explicit_trial_split: ExplicitTrialSplit | None = None,
 ) -> DeepBaselineResult:
     """Train and evaluate EEGNet with a low-dimensional feature bottleneck."""
 
@@ -864,4 +955,8 @@ def run_bottleneck_eegnet(
         validation_fraction=validation_fraction,
         early_stopping_patience=early_stopping_patience,
         bottleneck_dim=bottleneck_dim,
+        resample_hz=resample_hz,
+        normalization=normalization,
+        classifier_head=classifier_head,
+        explicit_trial_split=explicit_trial_split,
     ).result

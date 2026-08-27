@@ -5,9 +5,10 @@ Unless a file states otherwise:
 - Source code, configuration files, command-line tools, validation scripts, and
   software documentation are licensed under the Apache License 2.0. See
   `LICENSE` and `LICENSES/Apache-2.0.txt`.
-- `paper/`, `results/v1/figures/`, `results/v1/tables/`, and curated narrative
-  or tabular report assets under `results/v1/summaries/` are licensed under the
-  Creative Commons Attribution 4.0 International license. See
+- `paper/`, `results/v1/figures/`, `results/v1/tables/`, curated narrative or
+  tabular report assets under `results/v1/summaries/`, `results/v1.1/`, and the
+  Cho2017 evidence reports matching `docs/V1_1_CHO2017_*.md` are licensed under
+  the Creative Commons Attribution 4.0 International license. See
   `LICENSES/CC-BY-4.0.txt`.
 - The release manifest and checksums are factual metadata and may be reused with
   the materials they describe.

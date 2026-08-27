@@ -42,6 +42,22 @@ dataset page reached through MOABB and the original provider's current terms.
 Review the GigaDB record's current access and reuse terms. This repository does
 not assert additional rights or redistribute the recordings.
 
+## Cho2017
+
+- MOABB documentation:
+  https://moabb.neurotechx.com/docs/generated/moabb.datasets.Cho2017.html
+- Data record: https://doi.org/10.5524/100295
+- Benchmark key: `cho2017`
+- v1.1 scope: pilot subjects 1-2 are excluded from confirmation; confirmatory
+  subjects are 3-52 under five frozen outer subject folds.
+- Citation: Cho et al. (2017), The Korea University EEG data set for motor
+  imagery brain-computer interface, GigaScience, doi:10.1093/gigascience/gix034.
+
+The v1.1 manifest records checksums and source-shape QA, not EEG samples. Review
+the current GigaDB record terms before downloading or processing the data. The
+full confirmatory cache is approximately 10.3 GB, remains under ignored
+`raw_data/mne_data/`, and is not redistributed by this repository.
+
 ## Local acquisition
 
 ```bash
