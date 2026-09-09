@@ -68,6 +68,9 @@ See the [historical contract](configs/shin2017a_temporal_validation_v1.yaml),
 [claim audit](docs/V1_2_SHIN2017A_CLAIM_AUDIT.md). The complete curated record
 is indexed under [results/v1.2](results/v1.2/README.md).
 
+Ongoing work is summarized in the [research log](docs/RESEARCH_LOG.md), including
+negative results and replication limitations. It does not change frozen releases.
+
 ## Installation
 
 Python 3.9 or newer is supported. The exact top-level versions used for the
