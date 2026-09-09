@@ -48,18 +48,33 @@ and no model fitting. They are not untouched confirmation data.
 | --- | --- | --- |
 | PhysioNet motor imagery | 46 subjects, 138 left/right imagery files; 45 eligible annotations per subject. Reserving 20 queries per class leaves only five target training trials. | Cannot reproduce Cho's 160–200-trial training addition at the same query budget. A different dose/query-budget experiment needs its own design. |
 | BNCI2014-001 | Nine subjects, all 18 expected MAT files with the expected top-level variable structure. | Available for development; nested labels, query budgets and signal quality not yet checked in this screen. |
-| Lee2019 MI | Twelve subjects, all 24 expected MAT files with training/test structures. | Next candidate for local trial/session/label QA; not yet training-ready. |
+| Lee2019 MI | Twelve subjects, all 24 expected MAT files; both phases have consistent labels and 50 trials per class. The benchmark uses only the offline phase: 200 trials across two sessions per subject. | Pooling the two offline sessions supports 40 balanced queries and 160 target training trials. This is a development candidate, not cross-session or untouched confirmation. |
 
 Only PhysioNet runs 4/8/12 represent left/right imagery; runs 6/10/14 are
 bilateral hand/foot imagery. See the [provider's run and annotation
 mapping](https://archive.physionet.org/pn4/eegmmidb/). Counts are upper bounds before
-signal-quality rejection, not final usable-epoch counts. MAT inventories do not
-certify nested labels or recording integrity.
+signal-quality rejection, not final usable-epoch counts. BNCI's MAT inventory
+does not certify nested labels or recording integrity.
 
-Next: verify Lee's trial budgets, then define the target cohort, background
-training and validation roles, fixed queries, training addition, estimand, and
-prior-use disclosure before new matched effects. Dataset-source separation
-alone does not establish statistical independence or outcome-blind replication.
+Lee's deeper check covered 48 offline/online runs, consistent numeric/text/one-hot
+labels, channel order, nonoverlapping in-bounds events, and 14,400 sampled
+comparisons between stored epochs and continuous recordings. It found labels in
+the cached online phases too, but these are excluded from the primary budget to
+preserve the existing offline-only benchmark selection. The phases have different
+feedback conditions; see the [original study](https://doi.org/10.1093/gigascience/giz002).
+Full local file hashes were recorded, without comparison to upstream checksums.
+Signal quality and complete epoch-array equality were not assessed.
+
+The budget depends on the design: pooling both offline sessions leaves 160
+training trials after 40 queries; a single-session design leaves 60; training on
+all of session 1 and querying session 2 provides 100 training trials and leaves
+60 session-2 trials unused. Pooling sessions is not a cross-session test.
+
+Next: define the target cohort, disjoint background training and validation roles,
+fixed queries, training addition, estimand, and prior-use disclosure, then verify
+the actual preprocessing and split construction before new matched effects.
+Dataset-source separation alone does not establish statistical independence or
+outcome-blind replication.
 
 Existing release claims remain in [RESULTS.md](../RESULTS.md). Dataset provenance
 and acquisition guidance remain in [DATASETS.md](../DATASETS.md). No recordings,
