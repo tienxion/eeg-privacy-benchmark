@@ -68,8 +68,21 @@ See the [historical contract](configs/shin2017a_temporal_validation_v1.yaml),
 [claim audit](docs/V1_2_SHIN2017A_CLAIM_AUDIT.md). The complete curated record
 is indexed under [results/v1.2](results/v1.2/README.md).
 
-Ongoing work is summarized in the [research log](docs/RESEARCH_LOG.md), including
-negative results and replication limitations. It does not change frozen releases.
+## Post-release output-stream development studies
+
+For a passive observer with identity-labeled enrollment outputs, revealing fixed
+confidence bands increased achieved twelve-output identity BA from 19.91% to
+46.99% on nine reused BNCI participants. The advantage was not reproduced under
+a different Shin protocol: ten-output BA was 7.10% with confidence versus 7.41%
+with labels on 27 reused participants. These are different enrollment/model/
+session designs, not an exact replication or a general privacy guarantee.
+
+The [research log](docs/RESEARCH_LOG.md) reports both outcomes and the earlier
+negative results. A [small aggregate bundle](results/development/output-stream-identity.json)
+and [standard-library checker](scripts/check_output_stream_evidence.py) let readers
+verify the arithmetic and figure without data or dependencies. They do not
+reproduce the full attack pipeline. This development update does not change
+the frozen v1.0–v1.2 releases, package version, or original Shin stop rule.
 
 ## Installation
 

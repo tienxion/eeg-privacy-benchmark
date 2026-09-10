@@ -12,6 +12,9 @@ Unless a file states otherwise:
   `LICENSES/CC-BY-4.0.txt`.
 - The release manifest and checksums are factual metadata and may be reused with
   the materials they describe.
+- Curated development evidence and figures under `results/development/` are
+  licensed under CC BY 4.0. Their verification/rendering scripts remain
+  Apache-2.0 code. Development evidence does not amend frozen release assets.
 
 The licenses in this repository do not grant rights to upstream EEG datasets.
 No raw EEG recordings are distributed. Dataset access, citation, and terms are
