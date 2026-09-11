@@ -105,3 +105,118 @@ This command writes only to the ignored local cache and performs no model
 training. The public v1.2 release preserves aggregate evidence and no-download
 plumbing; internal authorization records and local feature/result caches are
 not release artifacts.
+
+## Local output-stream identity development runner
+
+`scripts/output_stream_identity.py` runs the fixed passive observer used in the
+post-release output-stream studies on **your own local binary model scores**.
+It needs Python 3.9+ and no third-party packages. It does not load EEG, train or
+run a task model, download data, upload anything, or calculate EEG task utility.
+It is separate from the frozen v1.0–v1.2 release workflows and stop rules.
+
+Start with a complete, explicitly synthetic example:
+
+```sh
+python scripts/output_stream_identity.py demo --output-dir outputs/output-stream-demo
+python scripts/check_output_stream_runner.py
+```
+
+The demo writes `source.json`, `evaluation.json`, `enrollment.json` and
+`summary.json` under that ignored directory. It constructs three artificial
+identities with deliberately distinctive outputs; its perfect fine-symbol
+accuracy is a plumbing example, **not research evidence**. Existing files are
+never overwritten; use another output directory to repeat the demo.
+
+### Input contract
+
+Use the generated demo files as complete schema examples. All inputs are UTF-8
+JSON, with no duplicate fields or nonfinite numbers. Inputs are capped at 64 MiB
+and 100,000 trials. Only declared fields are accepted; validation data, true
+task labels, embeddings, routing metadata and alternate model outputs do not
+belong in these inputs.
+
+Enrollment JSON has exactly `schema_version` (1), `model_id` (a stable string),
+`score_kind` (`logits` or `probabilities`) and `trials`. Each trial has exactly:
+
+```json
+{"trial_id": "source-trial-1", "identity": 2, "scores": [0.8, 0.2]}
+```
+
+This is one record, not a complete enrollment file. Supply 2–256 identities as
+distinct nonnegative integers, with the **same nonzero number of enrollment
+trials per identity**. Numeric identity ordering defines the exact likelihood
+tie rule. Trial identifiers must be unique. Scores are two finite numbers in
+consistent task-class order. Probabilities must lie in [0,1] and sum to one
+within 1e-5; they are normalized before quantization. Exact argmax ties choose
+task class zero.
+
+Evaluation JSON has exactly `schema_version` (1), the same `model_id` and
+`score_kind`, and `bags`. Each bag has `identity` and `trials`; each trial has
+`trial_id` and `scores` but **no identity field**. All bags must contain exactly
+the chosen number of observations, belong to one enrolled person, and occur in
+equal numbers per person. Source and evaluation trial identifiers must be
+disjoint, and evaluation identifiers cannot repeat across bags. Grouping is
+explicit; the runner does not infer sessions/runs or establish chronological
+adjacency. Never combine outputs from different models in one input.
+
+Identity and trial metadata are used by the evaluator for allocation checks
+and scoring, not supplied as features to the prediction kernel. The observer
+receives only emitted symbols, identity-labeled enrollment and the knowledge
+that each bag comes from one of the enrolled people. If an observer knows the
+EEG input or identifying routing metadata, this restricted threat model does
+not describe it.
+
+### Fit first, record the table hash, evaluate second
+
+Prepare enrollment and held-out bags using a protocol fixed before looking at
+the evaluation outcomes. Then run:
+
+```sh
+python scripts/output_stream_identity.py fit \
+  --source outputs/your-enrollment.json \
+  --stream-budget 10 \
+  --output outputs/your-output-stream-table.json
+```
+
+`fit` opens only the enrollment input and prints `enrollment_sha256=...`.
+Record that exact 64-character digest outside the editable table before
+evaluation; for a prospective study, commit its hash and protocol first.
+The budget may be 2–128. There is no bin, prior or classifier tuning option:
+sixteen fine symbols, pseudocount one, coherent hard-label pseudocount eight,
+uniform identity priors and exact product comparisons are fixed.
+
+Replace `COPY_RECORDED_DIGEST_HERE` below with the recorded digest, not a newly
+computed digest of a potentially changed table:
+
+```sh
+python scripts/output_stream_identity.py evaluate \
+  --enrollment outputs/your-output-stream-table.json \
+  --expected-sha256 COPY_RECORDED_DIGEST_HERE \
+  --evaluation outputs/your-held-out-bags.json \
+  --output outputs/your-output-stream-result.json
+```
+
+The recorded hash is checked before the held-out input is opened. Evaluation
+reports hard-label and confidence-symbol identity BA/F1 at K=1 and the fixed
+stream budget, using all the same observations, and the exact primary stream
+BA difference. It writes aggregate metrics, not individual predictions.
+Generated files use owner-only permissions on systems supporting POSIX modes;
+inputs and enrollment tables nevertheless contain sensitive identity data and
+must stay private. Review any aggregate output before sharing it.
+
+### Limits of the safeguards and of reproduction
+
+Hash checking binds the table bytes; it does not certify that enrollment was
+outcome-blind. Duplicate checks trust supplied identifiers: relabeling a copied
+trial defeats them. A matching `model_id` is a caller assertion, not verified
+checkpoint provenance. Decide participant roles, model provenance, observation
+grouping, utility prerequisites and study stopping rules independently.
+
+This implements the attack calculation, not the upstream model/data pipeline.
+The separate aggregate checker validates the published arithmetic; neither
+command alone regenerates the historical EEG models or cohorts. Low attack
+accuracy does not prove privacy, and confidence symbols contain the hard label
+even when this fitted rule performs worse with them. Suppressing confidence
+removes confidence-dependent utility. The single-symbol binary alphabet bound
+does not apply to a stream. No deployment policy, membership-defense claim or
+new significance claim follows from running this tool.

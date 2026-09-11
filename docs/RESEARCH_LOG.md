@@ -21,6 +21,33 @@ Shin portability protocol. Both used existing plain-model outputs, not a new
 bottleneck defense. Both are closed without tuning or automatic extension.
 Frozen releases and the original Shin bottleneck stop remain unchanged.
 
+## Sep 10 — portable local attack runner
+
+The [standard-library runner](../scripts/output_stream_identity.py) now makes
+the fixed attack calculation executable on caller-supplied binary logits or
+probabilities. It fits balanced identity enrollment tables first, requires a
+recorded table hash before opening held-out inputs, and compares hard decisions
+with confidence symbols at one output and a fixed same-person stream budget.
+See [the input contract and synthetic demo](../REPRODUCING.md#local-output-stream-identity-development-runner).
+The demo is deliberately artificial, not an additional scientific result.
+
+Twelve synthetic test groups cover quantization, coherent smoothing, exact
+integer likelihood ties, independent rational metric recounts, schema/overlap
+rejection, hash-before-evaluation checks and non-overwriting local outputs.
+A private compatibility check against the unchanged BNCI/Shin artifacts also
+matched all sixteen enrollment tables, 23,328 source/evaluation symbols,
+25,488 individual identity decisions and all 64 BA/F1 endpoints. This reuses
+the same outputs to verify implementation parity; it adds no scientific
+endpoint, EEG fit, model inference or download. Participant-level inputs and
+tables remain private and are not required by the public synthetic tests.
+
+The tool trusts caller-supplied model identity, trial identifiers and allocation;
+it cannot certify honest held-out design, outcome blindness or chronological
+grouping. Enrollment requires identity-labeled auxiliary data. Aggregate output
+still needs review before sharing, and low achieved accuracy is not a privacy
+guarantee. This is attack-level tooling, not reproduction of upstream EEG
+training or a change to any frozen release or stopped experiment.
+
 ## Sep 10 — passive output-stream identity: benefit depends on the tested design
 
 The observer sees only a task model's emitted symbols, has identity-labeled
@@ -119,9 +146,10 @@ remains paused. No failed or stopped gate is reopened by output-stream findings.
 ## Follow-on study history
 
 This retrospective index records work done September 3–9. Study numbers below
-are internal experiment versions, not public release numbers. New runners and
-full attack reproduction bundles are not included; only the two output-stream
-studies above have a public aggregate-arithmetic bundle.
+are internal experiment versions, not public release numbers. Full historical
+experiment runners and data are not included. The two output-stream studies
+above have an aggregate-arithmetic bundle and a separate portable attack runner
+for caller-supplied scores; the latter does not regenerate historical EEG models.
 
 | Study | Result | Interpretation |
 | --- | --- | --- |

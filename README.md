@@ -84,6 +84,14 @@ verify the arithmetic and figure without data or dependencies. They do not
 reproduce the full attack pipeline. This development update does not change
 the frozen v1.0–v1.2 releases, package version, or original Shin stop rule.
 
+A separate [local output-stream runner](scripts/output_stream_identity.py) now
+fits and evaluates the same fixed attacker on caller-supplied binary scores.
+Try `python scripts/output_stream_identity.py demo` without installing any
+dependencies. The demo is synthetic, not research evidence. See the
+[two-stage input and evaluation instructions](REPRODUCING.md#local-output-stream-identity-development-runner)
+before using your own outputs; enrollment tables and trial-level inputs must
+stay private. This tool does not train an EEG model or reproduce a dataset.
+
 ## Installation
 
 Python 3.9 or newer is supported. The exact top-level versions used for the
